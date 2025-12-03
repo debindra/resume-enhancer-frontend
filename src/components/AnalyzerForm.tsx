@@ -306,7 +306,7 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
 
   return (
       <div className="mx-auto w-full max-w-6xl">
-        <div className="rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/30 to-white p-6 sm:rounded-[2rem] sm:p-8">
+        <div className="rounded-3xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-6 sm:rounded-[2rem] sm:p-8">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
         <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
           <ResumeInputPanel
@@ -349,36 +349,36 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
                 </div>
-                <strong className="text-base font-bold text-slate-900 sm:text-lg">Privacy & Security</strong>
+                <strong className="text-base font-bold text-neutral sm:text-lg">Privacy & Security</strong>
               </div>
-              <p className="text-xs leading-relaxed text-slate-600 sm:text-sm">
+              <p className="text-xs leading-relaxed text-neutral-light sm:text-sm">
                 We process your resume and job description through our secure API proxy. Files are encrypted in transit and purged after
                 analysis when you toggle auto-deletion. We never share your content with third parties.
               </p>
-              <label className="flex items-start gap-2.5 rounded-xl border-2 border-emerald-200 bg-white p-3 text-xs text-slate-700 shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50/30 sm:gap-3 sm:rounded-2xl sm:p-4 sm:text-sm">
+              <label className="flex items-start gap-2.5 rounded-xl border-2 border-secondary-muted bg-neutral-white p-3 text-xs text-neutral-light shadow-sm transition hover:border-secondary hover:bg-secondary-muted/30 sm:gap-3 sm:rounded-2xl sm:p-4 sm:text-sm">
                 <input
                   type="checkbox"
                   checked={privacyAcknowledged}
                   onChange={(event) => setPrivacyAcknowledged(event.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-emerald-300 text-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:h-5 sm:w-5"
+                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-secondary text-secondary-dark focus:ring-2 focus:ring-secondary focus:ring-offset-2 sm:h-5 sm:w-5"
                 />
                 <span className="font-medium">I understand the privacy policy and consent to processing for this analysis.</span>
               </label>
             </div>
             <div className="flex flex-row items-center gap-3 md:flex-col md:items-end md:gap-4">
-              <label className="flex cursor-pointer items-center gap-3 rounded-xl border-2 border-slate-200 bg-white px-4 py-3 shadow-sm transition hover:border-indigo-300 hover:shadow-md sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4 md:flex-col md:items-end">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:text-xs">Auto-delete after run</span>
+              <label className="flex cursor-pointer items-center gap-3 rounded-xl border-2 border-neutral-lightest bg-neutral-white px-4 py-3 shadow-sm transition hover:border-primary hover:shadow-md sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4 md:flex-col md:items-end">
+                <span className="text-[10px] font-bold uppercase tracking-wide text-neutral-light sm:text-xs">Auto-delete after run</span>
                 <input
                   type="checkbox"
                   checked={shouldDeleteAfter}
                   onChange={(event) => setShouldDeleteAfter(event.target.checked)}
-                  className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:h-5 sm:w-5"
+                  className="h-4 w-4 rounded border-neutral-lighter text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:h-5 sm:w-5"
                 />
               </label>
               <button
                 type="button"
                 onClick={handleDataDeletion}
-                className="whitespace-nowrap rounded-full border-2 border-red-200 bg-white px-4 py-2 text-[10px] font-bold text-red-600 shadow-sm transition-all hover:border-red-300 hover:bg-red-50 hover:shadow-md sm:px-5 sm:py-2.5 sm:text-xs md:w-full"
+                className="whitespace-nowrap rounded-full border-2 border-error-muted bg-neutral-white px-4 py-2 text-[10px] font-bold text-error shadow-sm transition-all hover:border-error hover:bg-error-muted hover:shadow-md sm:px-5 sm:py-2.5 sm:text-xs md:w-full"
               >
                 Delete session data now
               </button>
@@ -390,21 +390,27 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 py-3 text-sm font-bold text-white shadow-2xl transition-all hover:scale-[1.02] hover:shadow-[0_20px_60px_-15px_rgba(79,70,229,0.5)] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 sm:gap-3 sm:px-10 sm:py-5 sm:text-lg"
+            className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-accent to-accent-light px-6 py-3 text-sm font-semibold text-neutral-white shadow-lg animate-pulse transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-accent/30 hover:animate-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:animate-none disabled:hover:scale-100 sm:px-10 sm:py-4 sm:text-lg"
           >
-            <span className="absolute inset-0 rounded-full bg-white/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            {/* Subtle animated border */}
+            <span className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-accent via-primary to-accent bg-[length:200%_100%] animate-gradient-shift opacity-75 -z-10" />
+            
+            {/* Clean shimmer on hover */}
+            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+            
+            {/* Content */}
             <span className="relative flex items-center gap-3">
               {isSubmitting ? (
                 <>
-                  <span className="inline-flex h-6 w-6 items-center justify-center">
-                    <span className="h-6 w-6 animate-spin rounded-full border-3 border-white border-t-transparent" />
+                  <span className="inline-flex h-5 w-5 items-center justify-center sm:h-6 sm:w-6">
+                    <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent sm:h-6 sm:w-6" />
                   </span>
                   <span>Analyzing Resume…</span>
                 </>
               ) : (
                 <>
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                   <span>Analyze Resume</span>
                 </>
@@ -412,18 +418,18 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
             </span>
           </button>
           {isSubmitting ? (
-            <div className="w-full animate-fade-in-up rounded-3xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-6 text-left shadow-2xl animate-glow sm:p-8">
+            <div className="w-full animate-fade-in-up rounded-3xl border-2 border-primary bg-gradient-to-br from-primary-muted via-neutral-white to-secondary-muted p-6 text-left shadow-2xl animate-glow sm:p-8">
               <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between sm:gap-6">
               <div className="flex items-center gap-4">
-                <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 shadow-lg animate-float">
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-400 to-purple-400 opacity-75 animate-ping" />
-                  <span className="relative h-7 w-7 animate-spin rounded-full border-3 border-white border-t-transparent" />
+                <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary shadow-lg animate-float">
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-br from-primary-light to-secondary-light opacity-75 animate-ping" />
+                  <span className="relative h-7 w-7 animate-spin rounded-full border-3 border-neutral-white border-t-transparent" />
                 </span>
                 <div className="animate-slide-in-left">
-                  <p className="text-xs font-bold uppercase tracking-wide text-indigo-600 animate-pulse-slow">
+                  <p className="text-xs font-bold uppercase tracking-wide text-primary animate-pulse-slow">
                     AI is working<span className="inline-block animate-bounce-slow">...</span>
                   </p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-700">
+                  <p className="mt-1 text-sm leading-relaxed text-neutral-light">
                     Comparing your resume to the job description, scoring keyword coverage, and crafting enhancements.
                   </p>
                 </div>
@@ -432,7 +438,7 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
                 {["Keyword alignment", "Achievement emphasis", "ATS formatting"].map((item, index) => (
                   <span
                     key={item}
-                    className="rounded-full border-2 border-indigo-200 bg-white px-4 py-1.5 text-xs font-bold text-indigo-600 shadow-md animate-fade-in-up"
+                    className="rounded-full border-2 border-primary bg-neutral-white px-4 py-1.5 text-xs font-bold text-primary shadow-md animate-fade-in-up"
                     style={{ animationDelay: `${index * 0.2}s`, animationFillMode: 'both' }}
                   >
                     {item}
@@ -440,7 +446,7 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
                 ))}
               </div>
             </div>
-              <div className="mt-6 grid gap-4 text-sm text-slate-600 md:grid-cols-3 sm:mt-8">
+              <div className="mt-6 grid gap-4 text-sm text-neutral-light md:grid-cols-3 sm:mt-8">
               {[
                 {
                   title: "Skill highlighting",
@@ -460,35 +466,35 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
               ].map((item, index) => (
                 <div 
                   key={item.title} 
-                  className="group rounded-2xl border-2 border-slate-200 bg-white p-4 shadow-md transition-all hover:border-indigo-200 hover:shadow-lg animate-fade-in-up"
+                  className="group rounded-2xl border-2 border-neutral-lightest bg-neutral-white p-4 shadow-md transition-all hover:border-primary hover:shadow-lg animate-fade-in-up"
                   style={{ animationDelay: `${0.6 + index * 0.15}s`, animationFillMode: 'both' }}
                 >
                   <div className="flex items-center gap-2">
-                    <svg className="h-5 w-5 text-indigo-500 animate-pulse-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ animationDelay: `${0.8 + index * 0.15}s` }}>
+                    <svg className="h-5 w-5 text-primary animate-pulse-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ animationDelay: `${0.8 + index * 0.15}s` }}>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                     </svg>
-                    <p className="text-sm font-bold text-slate-900">{item.title}</p>
+                    <p className="text-sm font-bold text-neutral">{item.title}</p>
                   </div>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600">{item.body}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-neutral-light">{item.body}</p>
                 </div>
                 ))}
               </div>
             </div>
           ) : null}
           {status ? (
-            <div className="flex w-full items-center gap-3 rounded-2xl border-2 border-blue-200 bg-blue-50 p-4 text-center shadow-md">
-              <svg className="h-5 w-5 flex-shrink-0 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex w-full items-center gap-3 rounded-2xl border-2 border-primary-muted bg-primary-muted p-4 text-center shadow-md">
+              <svg className="h-5 w-5 flex-shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-sm font-medium leading-relaxed text-blue-800">{status}</p>
+              <p className="text-sm font-medium leading-relaxed text-primary-dark">{status}</p>
             </div>
           ) : null}
           {apiError ? (
-            <div className="flex w-full items-center gap-3 rounded-2xl border-2 border-red-200 bg-red-50 p-4 text-center shadow-md">
-              <svg className="h-5 w-5 flex-shrink-0 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex w-full items-center gap-3 rounded-2xl border-2 border-error-muted bg-error-muted p-4 text-center shadow-md">
+              <svg className="h-5 w-5 flex-shrink-0 text-error" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-sm font-medium leading-relaxed text-red-800">{apiError}</p>
+              <p className="text-sm font-medium leading-relaxed text-error-dark">{apiError}</p>
             </div>
           ) : null}
         </div>
@@ -514,26 +520,26 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
       ) : null}
 
       {isPreviewOpen && analysisResult?.optimizedResume ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 p-2 backdrop-blur-sm sm:p-4">
-          <div className="relative flex h-full w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:h-[90vh] sm:rounded-4xl">
-            <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 sm:px-6 sm:py-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral/70 p-2 backdrop-blur-sm sm:p-4">
+          <div className="relative flex h-full w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-neutral-white shadow-2xl sm:h-[90vh] sm:rounded-4xl">
+            <div className="flex items-center justify-between border-b border-neutral-lightest px-4 py-3 sm:px-6 sm:py-4">
               <div className="min-w-0 flex-1">
-                <p className="text-[10px] font-semibold uppercase tracking-wide text-indigo-500 sm:text-xs">Optimized Resume</p>
-                <h4 className="truncate text-base font-semibold text-slate-900 sm:text-lg">Full Preview</h4>
+                <p className="text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">Optimized Resume</p>
+                <h4 className="truncate text-base font-semibold text-neutral sm:text-lg">Full Preview</h4>
               </div>
               <button
                 type="button"
                 onClick={handleClosePreview}
-                className="ml-2 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 sm:h-10 sm:w-10"
+                className="ml-2 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-neutral-lightest text-neutral-light transition hover:border-neutral-lighter hover:bg-neutral-white sm:h-10 sm:w-10"
               >
                 <span className="sr-only">Close preview</span>
                 <span className="text-lg sm:text-xl">×</span>
               </button>
             </div>
-            <div className="flex-1 overflow-auto bg-slate-100 p-3 sm:p-6">
+            <div className="flex-1 overflow-auto bg-neutral-white p-3 sm:p-6">
               <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:gap-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 sm:text-xs">Templates</span>
+                  <span className="text-[10px] font-semibold uppercase tracking-wide text-neutral-lighter sm:text-xs">Templates</span>
                   <div className="flex flex-wrap gap-1.5 sm:gap-2">
                     {(["modern", "classic", "accent"] as ResumeTemplateKey[]).map((key) => (
                       <button
@@ -542,8 +548,8 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
                         onClick={() => setSelectedTemplate(key)}
                         className={`rounded-full px-2 py-1 text-[10px] font-semibold transition sm:px-3 sm:py-1.5 sm:text-xs ${
                           selectedTemplate === key
-                            ? "bg-indigo-600 text-white shadow"
-                            : "border border-slate-200 text-slate-600 hover:border-indigo-200 hover:text-indigo-600"
+                            ? "bg-primary text-neutral-white shadow"
+                            : "border border-neutral-lightest text-neutral-light hover:border-primary hover:text-primary"
                         }`}
                       >
                         {key === "modern" ? "Modern" : key === "classic" ? "Classic" : "Accent"}
@@ -554,11 +560,11 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
                 <ResumePreview content={analysisResult.optimizedResume} template={selectedTemplate} />
               </div>
             </div>
-            <div className="flex flex-wrap items-center justify-end gap-2 border-t border-slate-200 px-4 py-3 sm:gap-3 sm:px-6 sm:py-4">
+            <div className="flex flex-wrap items-center justify-end gap-2 border-t border-neutral-lightest px-4 py-3 sm:gap-3 sm:px-6 sm:py-4">
               <button
                 type="button"
                 onClick={handleDownloadPdf}
-                className="rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-1.5 text-xs font-semibold text-white shadow transition hover:shadow-md sm:px-5 sm:py-2 sm:text-sm"
+                className="rounded-full bg-gradient-to-r from-primary to-primary-light px-4 py-1.5 text-xs font-semibold text-neutral-white shadow transition hover:shadow-md sm:px-5 sm:py-2 sm:text-sm"
                 title="Opens print dialog to save as PDF with full styling"
               >
                 Save as PDF
@@ -566,14 +572,14 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
               <button
                 type="button"
                 onClick={handleDownloadDoc}
-                className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-indigo-200 hover:text-indigo-600 sm:px-5 sm:py-2 sm:text-sm"
+                className="rounded-full border border-neutral-lightest px-4 py-1.5 text-xs font-semibold text-neutral-light transition hover:border-primary hover:text-primary sm:px-5 sm:py-2 sm:text-sm"
               >
                 Download DOC
               </button>
               <button
                 type="button"
                 onClick={handleClosePreview}
-                className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-blue-200 hover:text-blue-600 sm:px-5 sm:py-2 sm:text-sm"
+                className="rounded-full border border-neutral-lightest px-4 py-1.5 text-xs font-semibold text-neutral-light transition hover:border-primary hover:text-primary sm:px-5 sm:py-2 sm:text-sm"
               >
                 Close
               </button>

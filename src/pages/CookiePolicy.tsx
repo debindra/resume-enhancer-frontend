@@ -1,8 +1,18 @@
+import SEO from "../components/SEO";
+
 export default function CookiePolicy() {
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-slate-900">Cookie Policy</h1>
+    <>
+      <SEO
+        title="Cookie Policy - Resume Enhancer"
+        description="Learn about how Resume Enhancer uses cookies to improve your experience. Information about cookie types and your preferences."
+        keywords="cookie policy, cookies, website cookies, privacy cookies"
+        url="/cookie-policy"
+        noindex={false}
+      />
+      <div className="mx-auto max-w-4xl space-y-8 py-12">
+        <header className="space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">Cookie Policy</h1>
         <p className="text-sm text-slate-500">Last updated: {new Date().toLocaleDateString()}</p>
       </div>
 
@@ -122,6 +132,7 @@ export default function CookiePolicy() {
         </section>
       </div>
     </div>
+    </>
   );
 }
 

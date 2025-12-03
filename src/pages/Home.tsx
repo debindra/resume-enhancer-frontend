@@ -1,4 +1,5 @@
 import AnalyzerForm from "../components/AnalyzerForm";
+import SEO from "../components/SEO";
 
 interface HomeProps {
   isProUser?: boolean;
@@ -7,8 +8,46 @@ interface HomeProps {
 
 export default function Home({ isProUser = false, isLoggedIn = false }: HomeProps) {
   return (
-    <div className="w-full space-y-12 sm:space-y-16">
-      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-indigo-200/40 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 pb-12 pt-0 text-white sm:pb-20">
+    <>
+      <SEO
+        title="AI-Powered Resume Optimization & ATS Scoring"
+        description="Get 3x more interviews with AI-optimized resumes. Upload your resume and job posting to get instant ATS scores, keyword gap analysis, and tailored resume improvements. No credit card required."
+        keywords="resume optimization, ATS score, resume analyzer, AI resume, job application, resume builder, ATS keywords, resume tips, career advice, interview tips"
+        url="/"
+      />
+      {/* Structured Data for Homepage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Resume Enhancer",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "1200"
+            },
+            "description": "AI-powered resume optimization tool that helps job seekers improve their ATS scores and get more interviews.",
+            "url": "https://resume-enhancer.com",
+            "featureList": [
+              "AI-Powered Optimization",
+              "ATS Keyword Gap Detection",
+              "Real-Time ATS Scoring",
+              "Export & Download"
+            ]
+          })
+        }}
+      />
+      <div className="w-full space-y-12 sm:space-y-16">
+      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-primary/40 bg-gradient-to-br from-primary via-primary-light to-accent pb-12 pt-0 text-white sm:pb-20">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -right-10 h-64 w-64 rounded-full bg-white/20 blur-3xl sm:right-[-5%]" />
           <div className="absolute top-1/2 -left-10 h-72 w-72 rounded-full bg-white/10 blur-3xl sm:left-[-3%]" />
@@ -31,7 +70,7 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
               <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
                 <a
                   href="#resume-analyzer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-2.5 text-xs font-semibold text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl sm:px-7 sm:py-3 sm:text-sm"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-2.5 text-xs font-semibold text-neutral-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl sm:px-7 sm:py-3 sm:text-sm"
                 >
                   Start Resume Analysis
                   <span aria-hidden="true">→</span>
@@ -64,14 +103,14 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
       </section>
 
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-        <section id="features" className="space-y-6 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/30 to-white p-6 sm:space-y-8 sm:rounded-3xl sm:p-8 md:p-10">
+        <section id="features" className="space-y-6 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-6 sm:space-y-8 sm:rounded-3xl sm:p-8 md:p-10">
         <div className="space-y-3 sm:space-y-4">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-600">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-600" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             Features
           </span>
-          <h2 className="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl md:text-4xl">Everything you need to optimize your resume</h2>
-          <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+          <h2 className="text-2xl font-bold leading-tight text-neutral sm:text-3xl md:text-4xl">Everything you need to optimize your resume</h2>
+          <p className="text-sm leading-relaxed text-neutral-light sm:text-base">
             Layered AI prompts and coach-made templates work together so you can tailor the right version for every job in
             your pipeline — without losing track of what changed.
           </p>
@@ -95,16 +134,16 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
               description: "Export your optimized resume as PDF or DOC format for easy sharing with recruiters."
             }
           ].map((feature) => (
-            <div key={feature.title} className="group rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:bg-white hover:shadow-xl">
-              <dt className="flex items-center gap-3 text-sm font-bold uppercase tracking-wide text-slate-600 transition group-hover:text-indigo-600">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
+            <div key={feature.title} className="group rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white/50 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:bg-neutral-white hover:shadow-xl">
+              <dt className="flex items-center gap-3 text-sm font-bold uppercase tracking-wide text-neutral-light transition group-hover:text-primary">
+                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-neutral-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                   </svg>
                 </span>
                 {feature.title}
               </dt>
-              <dd className="mt-3 text-sm leading-relaxed text-slate-600">{feature.description}</dd>
+              <dd className="mt-3 text-sm leading-relaxed text-neutral-light">{feature.description}</dd>
             </div>
           ))}
         </dl>
@@ -112,60 +151,60 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
 
       <section id="resume-analyzer" className="space-y-8 pt-8 pb-12 sm:space-y-12 sm:pt-12 sm:pb-16">
         <div className="mx-auto max-w-3xl space-y-4 text-center sm:space-y-5">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-600">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-600" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             Analyzer
           </span>
-          <h2 className="text-2xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-5xl">Upload resume & job context</h2>
-          <p className="text-sm leading-relaxed text-slate-600 sm:text-base md:text-lg">
+          <h2 className="text-2xl font-bold leading-tight text-neutral sm:text-4xl md:text-5xl">Upload resume & job context</h2>
+          <p className="text-sm leading-relaxed text-neutral-light sm:text-base md:text-lg">
             Get started with your resume analysis. Your data stays private until you confirm submission.
           </p>
         </div>
         <AnalyzerForm isProUser={isProUser} isLoggedIn={isLoggedIn} />
       </section>
 
-      <section className="rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/30 to-white p-6 sm:rounded-3xl sm:p-8 md:p-10">
+      <section className="rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-6 sm:rounded-3xl sm:p-8 md:p-10">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
           <div className="space-y-4 sm:space-y-6">
-            <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-600">
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-600" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               Trusted by professionals
             </span>
-            <h2 className="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl md:text-4xl">The modern job search stack</h2>
-            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">
+            <h2 className="text-2xl font-bold leading-tight text-neutral sm:text-3xl md:text-4xl">The modern job search stack</h2>
+            <p className="text-sm leading-relaxed text-neutral-light sm:text-base">
               From recent grads to executive leaders, thousands of candidates rely on Resume Enhancer to ship tailored resumes,
               cover letters, and LinkedIn refreshes in record time.
             </p>
-            <div className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
-              <div className="group flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 p-5 shadow-sm transition-all duration-300 hover:border-indigo-300 hover:shadow-lg">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-lg font-bold text-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
+            <div className="grid gap-4 text-sm text-neutral-light sm:grid-cols-2">
+              <div className="group flex items-center gap-4 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white/50 p-5 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-lg">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-xl font-bold text-neutral-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
                   4.9
                 </span>
                 <div>
-                  <p className="text-sm font-bold text-slate-900">Avg. rating</p>
-                  <p className="text-xs text-slate-500">Across 1,200+ verified users</p>
+                  <p className="text-sm font-bold text-neutral">Avg. rating</p>
+                  <p className="text-xs text-neutral-lighter">Across 1,200+ verified users</p>
                 </div>
               </div>
-              <div className="group flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 p-5 shadow-sm transition-all duration-300 hover:border-indigo-300 hover:shadow-lg">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-lg font-bold text-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
+              <div className="group flex items-center gap-4 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white/50 p-5 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-lg">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-xl font-bold text-neutral-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
                   72%
                 </span>
                 <div>
-                  <p className="text-sm font-bold text-slate-900">Interview rate</p>
-                  <p className="text-xs text-slate-500">Get recruiter responses within 4 weeks</p>
+                  <p className="text-sm font-bold text-neutral">Interview rate</p>
+                  <p className="text-xs text-neutral-lighter">Get recruiter responses within 4 weeks</p>
                 </div>
               </div>
-              <div className="group flex items-center gap-4 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50/50 p-5 shadow-sm transition-all duration-300 hover:border-indigo-300 hover:shadow-lg sm:col-span-2">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-lg font-bold text-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
+              <div className="group flex items-center gap-4 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white/50 p-5 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-lg sm:col-span-2">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-xl font-bold text-neutral-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
                   3x
                 </span>
                 <div>
-                  <p className="text-sm font-bold text-slate-900">More callbacks</p>
-                  <p className="text-xs text-slate-500">Compared to unoptimized resumes</p>
+                  <p className="text-sm font-bold text-neutral">More callbacks</p>
+                  <p className="text-xs text-neutral-lighter">Compared to unoptimized resumes</p>
                 </div>
               </div>
             </div>
-            <div className="mt-8 flex flex-wrap items-center gap-6 text-xs uppercase tracking-[0.3em] text-slate-400">
+            <div className="mt-8 flex flex-wrap items-center gap-6 text-xs uppercase tracking-[0.3em] text-neutral-lighter">
               <span>BloomTech</span>
               <span>Meta Fellows</span>
               <span>Reforge</span>
@@ -203,10 +242,10 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
                 author: "Morgan, Career Coach"
               }
             ].map((testimonial) => (
-              <figure key={testimonial.author} className="group flex h-full flex-col gap-4 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white to-slate-50 p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl">
+              <figure key={testimonial.author} className="group flex h-full flex-col gap-4 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-xl">
                 <div className="flex items-center gap-3">
-                  <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-slate-200 shadow-md transition group-hover:border-indigo-300 group-hover:shadow-lg">
-                    <img src={testimonial.avatar} alt={testimonial.author} className="h-full w-full object-cover" loading="lazy" />
+                  <div className="h-12 w-12 overflow-hidden rounded-full border-2 border-neutral-lightest shadow-md transition group-hover:border-primary group-hover:shadow-lg">
+                    <img src={testimonial.avatar} alt={`Avatar of ${testimonial.author}`} className="h-full w-full object-cover" loading="lazy" />
                   </div>
                   <div>
                     <div className="flex items-center gap-1 text-yellow-400">
@@ -228,62 +267,62 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
                         </svg>
                       ))}
                     </div>
-                    <p className="text-xs font-bold text-slate-600">{testimonial.rating.toFixed(1)} / 5</p>
+                    <p className="text-xs font-bold text-neutral-light">{testimonial.rating.toFixed(1)} / 5</p>
                   </div>
                 </div>
-                <blockquote className="flex-1 text-sm leading-relaxed text-slate-700">
-                  <span className="text-3xl font-serif text-indigo-400">&ldquo;</span>
+                <blockquote className="flex-1 text-sm leading-relaxed text-neutral-light">
+                  <span className="text-3xl font-serif text-primary">&ldquo;</span>
                   {testimonial.quote}
-                  <span className="text-3xl font-serif text-indigo-400">&rdquo;</span>
+                  <span className="text-3xl font-serif text-primary">&rdquo;</span>
                 </blockquote>
-                <figcaption className="text-sm font-bold text-slate-800">{testimonial.author}</figcaption>
+                <figcaption className="text-sm font-bold text-neutral">{testimonial.author}</figcaption>
               </figure>
             ))}
           </div>
         </div>
         </section>
 
-        <section id="how-it-works" className="mt-12 mb-12 space-y-8 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/30 to-white p-6 sm:mb-16 sm:mt-16 sm:space-y-12 sm:rounded-3xl sm:p-8 md:p-10 pt-16 pb-12 sm:pt-20 sm:pb-16">
+        <section id="how-it-works" className="mt-12 mb-12 space-y-8 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-6 sm:mb-16 sm:mt-16 sm:space-y-12 sm:rounded-3xl sm:p-8 md:p-10 pt-16 pb-12 sm:pt-20 sm:pb-16">
         <div className="mx-auto max-w-3xl space-y-4 text-center sm:space-y-6">
-          <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-600">
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-600" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
             How it works
           </span>
-          <h2 className="text-2xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-5xl">Get your ATS score in 3 simple steps</h2>
+          <h2 className="text-2xl font-bold leading-tight text-neutral sm:text-4xl md:text-5xl">Get your ATS score in 3 simple steps</h2>
           <div className="grid gap-8 md:grid-cols-3">
             <div className="space-y-3">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 text-3xl font-bold text-white shadow-lg">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-3xl font-bold text-neutral-white shadow-lg">
                 1
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Upload Your Resume</h3>
-              <p className="text-sm leading-relaxed text-slate-600">PDF, DOCX, or paste text directly</p>
+              <h3 className="text-lg font-semibold text-neutral">Upload Your Resume</h3>
+              <p className="text-sm leading-relaxed text-neutral-light">PDF, DOCX, or paste text directly</p>
             </div>
             <div className="space-y-3">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 text-3xl font-bold text-white shadow-lg">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-3xl font-bold text-neutral-white shadow-lg">
                 2
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Add Job Description</h3>
-              <p className="text-sm leading-relaxed text-slate-600">Paste the job posting or enter job details</p>
+              <h3 className="text-lg font-semibold text-neutral">Add Job Description</h3>
+              <p className="text-sm leading-relaxed text-neutral-light">Paste the job posting or enter job details</p>
             </div>
             <div className="space-y-3">
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 text-3xl font-bold text-white shadow-lg">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light text-3xl font-bold text-neutral-white shadow-lg">
                 3
               </div>
-              <h3 className="text-lg font-semibold text-slate-900">Get Optimized Resume</h3>
-              <p className="text-sm leading-relaxed text-slate-600">AI-powered improvements with real-time ATS score</p>
+              <h3 className="text-lg font-semibold text-neutral">Get Optimized Resume</h3>
+              <p className="text-sm leading-relaxed text-neutral-light">AI-powered improvements with real-time ATS score</p>
             </div>
           </div>
         </div>
         </section>
 
-        <section id="faq" className="mb-12 space-y-6 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-white via-slate-50/30 to-white p-6 sm:mb-16 sm:space-y-8 sm:rounded-3xl sm:p-8 md:p-10 pt-12 sm:pt-16">
+        <section id="faq" className="mb-12 space-y-6 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-6 sm:mb-16 sm:space-y-8 sm:rounded-3xl sm:p-8 md:p-10 pt-12 sm:pt-16">
         <div className="mx-auto max-w-3xl space-y-4 sm:space-y-6">
           <div className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-indigo-600">
-              <span className="h-1.5 w-1.5 rounded-full bg-indigo-600" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               FAQ
             </span>
-            <h2 className="mt-3 text-2xl font-bold leading-tight text-slate-900 sm:mt-4 sm:text-3xl md:text-4xl">Frequently asked questions</h2>
+            <h2 className="mt-3 text-2xl font-bold leading-tight text-neutral sm:mt-4 sm:text-3xl md:text-4xl">Frequently asked questions</h2>
           </div>
           <div className="space-y-4">
             {[
@@ -312,11 +351,11 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
                 answer: "Most resume analyses complete in under 2 minutes. The time depends on the length of your resume and the complexity of the job description."
               }
             ].map((faq, index) => (
-              <details key={index} className="group rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:border-indigo-300 hover:shadow-md">
-                <summary className="flex cursor-pointer items-center justify-between text-lg font-semibold text-slate-900">
+              <details key={index} className="group rounded-2xl border border-neutral-lightest/80 bg-neutral-white p-6 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md">
+                <summary className="flex cursor-pointer items-center justify-between text-lg font-semibold text-neutral">
                   <span>{faq.question}</span>
                   <svg
-                    className="h-5 w-5 text-slate-400 transition-transform group-open:rotate-180"
+                    className="h-5 w-5 text-neutral-lighter transition-transform group-open:rotate-180"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -324,23 +363,23 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-sm leading-relaxed text-slate-600">{faq.answer}</p>
+                <p className="mt-4 text-sm leading-relaxed text-neutral-light">{faq.answer}</p>
               </details>
             ))}
           </div>
         </div>
         </section>
 
-        <section className="mb-12 rounded-2xl border border-slate-200/80 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-6 text-white sm:mb-16 sm:rounded-3xl sm:p-8 md:p-10 pt-12 sm:pt-16">
+        <section className="mb-12 rounded-2xl border border-primary/80 bg-gradient-to-br from-primary via-primary-light to-accent p-6 text-neutral-white sm:mb-16 sm:rounded-3xl sm:p-8 md:p-10 pt-12 sm:pt-16">
         <div className="mx-auto max-w-3xl space-y-4 text-center sm:space-y-6">
           <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl">Ready to optimize your resume?</h2>
-          <p className="text-sm text-white/90 sm:text-base md:text-lg">
+          <p className="text-sm text-neutral-white/90 sm:text-base md:text-lg">
             Get your ATS score and AI-powered improvements in minutes. No credit card required.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
               href="#resume-analyzer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl sm:px-8 sm:py-4 sm:text-base"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-neutral-white shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl sm:px-8 sm:py-4 sm:text-base"
             >
               Start Free Analysis
               <span aria-hidden="true">→</span>
@@ -370,5 +409,6 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
         </section>
       </div>
     </div>
+    </>
   );
 }

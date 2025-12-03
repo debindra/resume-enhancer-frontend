@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 // Blog post slugs mapping
 const blogPostSlugs: Record<string, string> = {
@@ -41,9 +42,17 @@ export default function Blog() {
   ];
 
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-slate-900">Blog</h1>
+    <>
+      <SEO
+        title="Resume Tips & Career Advice Blog"
+        description="Expert tips, insights, and best practices for optimizing your resume, improving your ATS score, and advancing your career. Learn from career coaches and hiring managers."
+        keywords="resume tips, career advice, ATS optimization, job search tips, resume writing, interview preparation, career development"
+        url="/blog"
+        type="website"
+      />
+      <div className="mx-auto max-w-4xl space-y-8 py-12">
+        <header className="space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">Blog</h1>
         <p className="text-lg text-slate-600">
           Tips, insights, and best practices for optimizing your resume and advancing your career.
         </p>
@@ -109,6 +118,7 @@ export default function Blog() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

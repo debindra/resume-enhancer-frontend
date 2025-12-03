@@ -1,8 +1,18 @@
+import SEO from "../components/SEO";
+
 export default function TermsOfService() {
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-slate-900">Terms of Service</h1>
+    <>
+      <SEO
+        title="Terms of Service - Resume Enhancer"
+        description="Read the Terms of Service for Resume Enhancer. Understand your rights and responsibilities when using our AI-powered resume optimization service."
+        keywords="terms of service, user agreement, terms and conditions"
+        url="/terms-of-service"
+        noindex={false}
+      />
+      <div className="mx-auto max-w-4xl space-y-8 py-12">
+        <header className="space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">Terms of Service</h1>
         <p className="text-sm text-slate-500">Last updated: {new Date().toLocaleDateString()}</p>
       </div>
 
@@ -149,6 +159,7 @@ export default function TermsOfService() {
         </section>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,4 +1,5 @@
 import SectionCard from "../components/SectionCard";
+import SEO from "../components/SEO";
 
 export default function ATSInsights() {
   const matchedKeywords = ["roadmap", "stakeholder", "cross-functional"];
@@ -6,7 +7,14 @@ export default function ATSInsights() {
   const formattingFlags = ["Ensure consistent bullet punctuation", "Export to PDF for ATS formatting"];
 
   return (
-    <div className="space-y-6">
+    <>
+      <SEO
+        title="ATS Insights & Score Analysis"
+        description="Understand how applicant tracking systems view your resume. Get detailed ATS score analysis, keyword matching, and formatting recommendations."
+        keywords="ATS score, ATS insights, applicant tracking system, resume scoring, keyword analysis, ATS optimization"
+        url="/ats"
+      />
+      <div className="space-y-6">
       <SectionCard title="ATS Score" description="Understand how applicant tracking systems view your resume.">
         <div className="flex items-baseline gap-3">
           <span className="text-4xl font-bold text-primary">62</span>
@@ -46,5 +54,6 @@ export default function ATSInsights() {
         </ul>
       </SectionCard>
     </div>
+    </>
   );
 }

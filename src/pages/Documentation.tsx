@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 export default function Documentation() {
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-slate-900">Documentation</h1>
+    <>
+      <SEO
+        title="Documentation - How to Use Resume Enhancer"
+        description="Learn how to use Resume Enhancer to optimize your resume and improve your job search. Step-by-step guides, features, and best practices."
+        keywords="resume enhancer documentation, how to use resume optimizer, resume analyzer guide, ATS score tutorial"
+        url="/documentation"
+      />
+      <div className="mx-auto max-w-4xl space-y-8 py-12">
+        <header className="space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">Documentation</h1>
         <p className="text-lg text-slate-600">
           Learn how to use Resume Enhancer to optimize your resume and improve your job search.
         </p>
@@ -116,6 +124,7 @@ export default function Documentation() {
         </section>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,0 +1,22 @@
+# robots.txt for Resume Enhancer
+User-agent: *
+Allow: /
+
+# Disallow admin and API endpoints
+Disallow: /api/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /
+Allow: /blog
+Allow: /documentation
+Allow: /resume/upload
+Allow: /optimize
+Allow: /ats
+
+# Sitemap location
+Sitemap: https://resume-enhancer.com/sitemap.xml
+
+# Crawl delay (optional, adjust as needed)
+Crawl-delay: 1
+

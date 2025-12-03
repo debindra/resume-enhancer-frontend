@@ -4,21 +4,21 @@ import Footer from "./Footer";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden bg-slate-50">
-      <header className="border-b border-slate-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-6">
-          <Link to="/" className="flex items-center gap-2 sm:gap-4">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-base font-semibold text-white shadow-lg sm:h-12 sm:w-12 sm:rounded-2xl sm:text-lg">
+    <div className="flex min-h-screen flex-col overflow-x-hidden bg-neutral-white">
+      <header className="border-b border-neutral-lightest bg-neutral-white/80 backdrop-blur">
+        <nav className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-6" aria-label="Main navigation">
+          <Link to="/" className="flex items-center gap-2 sm:gap-4" aria-label="Resume Enhancer Home">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-base font-semibold text-neutral-white shadow-lg sm:h-12 sm:w-12 sm:rounded-2xl sm:text-lg" aria-hidden="true">
               RE
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-base font-semibold text-slate-900 sm:text-xl">Resume Optimizer & Enhancer</p>
-              <p className="truncate text-xs text-slate-500 sm:text-sm">AI-Powered Career Optimization</p>
+              <p className="truncate text-base font-semibold text-neutral sm:text-xl">Resume Optimizer & Enhancer</p>
+              <p className="truncate text-xs text-neutral-lighter sm:text-sm">AI-Powered Career Optimization</p>
             </div>
           </Link>
-        </div>
+        </nav>
       </header>
-      <main className="flex-1 w-full overflow-x-hidden">{children}</main>
+      <main className="flex-1 w-full overflow-x-hidden" role="main">{children}</main>
       <Footer />
     </div>
   );

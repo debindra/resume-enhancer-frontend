@@ -4,13 +4,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-slate-200 bg-white" role="contentinfo">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:py-12">
         <div className="grid gap-6 sm:gap-8 md:grid-cols-4">
           {/* Brand Section */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-semibold text-white shadow-md">
+            <Link to="/" className="flex items-center gap-3" aria-label="Resume Enhancer Home">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-semibold text-white shadow-md" aria-hidden="true">
                 RE
               </div>
               <span className="text-lg font-semibold text-slate-900">Resume Enhancer</span>
@@ -21,75 +21,75 @@ export default function Footer() {
           </div>
 
           {/* Product Links */}
-          <div>
+          <nav aria-label="Product navigation">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-900">Product</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
-                <a href="/#features" className="transition hover:text-indigo-600">
+                <a href="/#features" className="transition hover:text-indigo-600" aria-label="View features">
                   Features
                 </a>
               </li>
               <li>
-                <a href="/#resume-analyzer" className="transition hover:text-indigo-600">
+                <a href="/#resume-analyzer" className="transition hover:text-indigo-600" aria-label="Try resume analyzer">
                   Analyzer
                 </a>
               </li>
               <li>
-                <a href="/#how-it-works" className="transition hover:text-indigo-600">
+                <a href="/#how-it-works" className="transition hover:text-indigo-600" aria-label="Learn how it works">
                   How It Works
                 </a>
               </li>
               <li>
-                <a href="/#faq" className="transition hover:text-indigo-600">
+                <a href="/#faq" className="transition hover:text-indigo-600" aria-label="View frequently asked questions">
                   FAQ
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Resources Links */}
-          <div>
+          <nav aria-label="Resources navigation">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-900">Resources</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
-                <a href="/#faq" className="transition hover:text-indigo-600">
+                <a href="/#faq" className="transition hover:text-indigo-600" aria-label="Visit help center">
                   Help Center
                 </a>
               </li>
               <li>
-                <Link to="/documentation" className="transition hover:text-indigo-600">
+                <Link to="/documentation" className="transition hover:text-indigo-600" aria-label="View documentation">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className="transition hover:text-indigo-600">
+                <Link to="/blog" className="transition hover:text-indigo-600" aria-label="Read blog">
                   Blog
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Legal Links */}
-          <div>
+          <nav aria-label="Legal navigation">
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-slate-900">Legal</h3>
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
-                <Link to="/privacy-policy" className="transition hover:text-indigo-600">
+                <Link to="/privacy-policy" className="transition hover:text-indigo-600" aria-label="View privacy policy">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms-of-service" className="transition hover:text-indigo-600">
+                <Link to="/terms-of-service" className="transition hover:text-indigo-600" aria-label="View terms of service">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/cookie-policy" className="transition hover:text-indigo-600">
+                <Link to="/cookie-policy" className="transition hover:text-indigo-600" aria-label="View cookie policy">
                   Cookie Policy
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}

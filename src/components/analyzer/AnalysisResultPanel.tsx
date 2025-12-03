@@ -28,11 +28,11 @@ interface AnalysisResultPanelProps {
 const renderTemplateThumbnail = (template: ResumeTemplateKey, isSelected: boolean) => (
   <span
     className={`flex h-14 w-10 flex-col rounded-xl border transition ${
-      isSelected ? "border-indigo-500 shadow-lg shadow-indigo-200" : "border-slate-200 bg-slate-50"
+      isSelected ? "border-primary shadow-lg shadow-primary/20" : "border-neutral-lightest bg-neutral-white"
     }`}
   >
-    <span className="m-1 rounded-sm bg-slate-300" />
-    <span className="mx-1 mt-1 flex-1 rounded-sm bg-white" />
+    <span className="m-1 rounded-sm bg-neutral-lighter" />
+    <span className="mx-1 mt-1 flex-1 rounded-sm bg-neutral-white" />
   </span>
 );
 
@@ -110,21 +110,21 @@ export function AnalysisResultPanel({
                     <p className="text-xs font-semibold text-gray-900 sm:text-sm">ATS Score</p>
                     <p className="mt-0.5 text-[10px] text-gray-500 sm:mt-1 sm:text-xs">Applicant Tracking System Compatibility</p>
                   </div>
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 sm:h-10 sm:w-10">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary sm:h-10 sm:w-10">
                     <svg className="h-4 w-4 text-white sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                     </svg>
                   </div>
                 </div>
                 <div className="mt-3 sm:mt-4">
-                  <p className="text-3xl font-bold text-blue-600 sm:text-4xl md:text-5xl">
+                  <p className="text-3xl font-bold text-primary sm:text-4xl md:text-5xl">
                     {Math.round(Math.max(0, Math.min(100, result.atsScore ?? 0)))}
                     <span className="text-lg text-gray-500 sm:text-xl md:text-2xl">%</span>
                   </p>
                 </div>
                 <div className="mt-3 h-2 w-full rounded-full bg-gray-200 sm:mt-4">
                   <div
-                    className="h-full rounded-full bg-blue-600 transition-all duration-700"
+                    className="h-full rounded-full bg-primary transition-all duration-700"
                     style={{
                       width: `${Math.max(0, Math.min(100, result.atsScore ?? 0))}%`
                     }}
@@ -159,7 +159,7 @@ export function AnalysisResultPanel({
                 </div>
                 <div className="mt-3 h-2 w-full rounded-full bg-gray-200 sm:mt-4">
                   <div
-                    className="h-full rounded-full bg-blue-600 transition-all duration-700"
+                    className="h-full rounded-full bg-primary transition-all duration-700"
                     style={{
                       width: `${Math.max(0, Math.min(100, result.jobMatchScore ?? 0))}%`
                     }}
@@ -304,52 +304,52 @@ export function AnalysisResultPanel({
       )}
 
       <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:rounded-3xl sm:p-6">
+        <div className="rounded-2xl border border-neutral-lightest bg-neutral-white p-5 sm:rounded-3xl sm:p-6">
           <div className="mb-3 sm:mb-4">
-            <span className="text-[10px] font-semibold uppercase tracking-wide text-indigo-500 sm:text-xs">Enhancement Plan</span>
-            <h3 className="mt-1.5 text-base font-semibold text-slate-900 sm:mt-2 sm:text-lg">Recommended updates</h3>
-            <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+            <span className="text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">Enhancement Plan</span>
+            <h3 className="mt-1.5 text-base font-semibold text-neutral sm:mt-2 sm:text-lg">Recommended updates</h3>
+            <p className="mt-1 text-xs text-neutral-lighter sm:text-sm">
               Tailored suggestions based on the target job description and your resume content.
             </p>
           </div>
-          <ul className="space-y-2 text-xs text-slate-600 sm:space-y-3 sm:text-sm">
+          <ul className="space-y-2 text-xs text-neutral-light sm:space-y-3 sm:text-sm">
             {result.insights.length > 0 ? (
               result.insights.map((item, index) => (
                 <li
                   key={`${item}-${index}`}
-                  className="flex gap-2 rounded-2xl border border-indigo-100 bg-gradient-to-r from-indigo-50 via-white to-white p-3 shadow-sm sm:gap-3 sm:rounded-3xl sm:p-4"
+                  className="flex gap-2 rounded-2xl border border-primary-muted bg-gradient-to-r from-primary-muted via-neutral-white to-neutral-white p-3 shadow-sm sm:gap-3 sm:rounded-3xl sm:p-4"
                 >
-                  <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-semibold text-white sm:h-8 sm:w-8 sm:text-xs">
+                  <span className="inline-flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary text-[10px] font-semibold text-neutral-white sm:h-8 sm:w-8 sm:text-xs">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <p className="text-xs leading-relaxed text-slate-700 sm:text-sm">{item}</p>
+                  <p className="text-xs leading-relaxed text-neutral-light sm:text-sm">{item}</p>
                 </li>
               ))
             ) : (
-              <li className="rounded-xl bg-slate-50 p-2.5 text-xs sm:rounded-2xl sm:p-3 sm:text-sm">
+              <li className="rounded-xl bg-neutral-white p-2.5 text-xs sm:rounded-2xl sm:p-3 sm:text-sm">
                 The AI will highlight specific keyword gaps and formatting tips once enough context is provided.
               </li>
             )}
           </ul>
-          <div className="mt-3 rounded-xl bg-gradient-to-br from-indigo-50 to-purple-50 p-3 text-xs text-slate-600 sm:mt-4 sm:rounded-2xl sm:p-4 sm:text-sm">
+          <div className="mt-3 rounded-xl bg-gradient-to-br from-primary-muted to-secondary-muted p-3 text-xs text-neutral-light sm:mt-4 sm:rounded-2xl sm:p-4 sm:text-sm">
             {isProUser && isLoggedIn
               ? "Keep iterating with bulk comparisons and recruiter-ready assets included in your plan."
               : "Create a free account to save versions; upgrade later for automated cover letters and recruiter sharing."}
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-5 sm:gap-5 sm:rounded-3xl sm:p-6">
+        <div className="flex flex-col gap-4 rounded-2xl border border-neutral-lightest bg-neutral-white p-5 sm:gap-5 sm:rounded-3xl sm:p-6">
           <div>
-            <span className="text-[10px] font-semibold uppercase tracking-wide text-indigo-500 sm:text-xs">Enhanced Output</span>
-            <h3 className="mt-1.5 text-base font-semibold text-slate-900 sm:mt-2 sm:text-lg">Optimized resume preview</h3>
-            <p className="mt-1 text-xs text-slate-500 sm:text-sm">
+            <span className="text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">Enhanced Output</span>
+            <h3 className="mt-1.5 text-base font-semibold text-neutral sm:mt-2 sm:text-lg">Optimized resume preview</h3>
+            <p className="mt-1 text-xs text-neutral-lighter sm:text-sm">
               Review the AI-enhanced resume content and download your tailored document. Toggle between original and AI output to validate changes.
             </p>
           </div>
 
           <div className="flex flex-col gap-3 sm:gap-4">
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-400 sm:text-xs">Templates</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-neutral-lighter sm:text-xs">Templates</span>
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {(Object.keys(TEMPLATE_LABELS) as ResumeTemplateKey[]).map((key) => (
                   <button
@@ -358,8 +358,8 @@ export function AnalysisResultPanel({
                     onClick={() => onTemplateChange(key)}
                     className={`flex items-center gap-1.5 rounded-full px-2 py-1 text-[10px] font-semibold transition sm:gap-2 sm:px-3 sm:py-1.5 sm:text-xs ${
                       selectedTemplate === key
-                        ? "bg-indigo-600 text-white shadow"
-                        : "border border-slate-200 text-slate-600 hover:border-indigo-200 hover:text-indigo-600"
+                        ? "bg-primary text-neutral-white shadow"
+                        : "border border-neutral-lightest text-neutral-light hover:border-primary hover:text-primary"
                     }`}
                   >
                     {renderTemplateThumbnail(key, selectedTemplate === key)}
@@ -377,8 +377,8 @@ export function AnalysisResultPanel({
                   type="button"
                   className={`rounded-full px-2.5 py-1 text-[10px] font-semibold capitalize transition sm:px-3 sm:py-1.5 sm:text-xs ${
                     viewMode === mode
-                      ? "bg-slate-900 text-white shadow"
-                      : "border border-slate-200 text-slate-600 hover:border-indigo-200 hover:text-indigo-600"
+                      ? "bg-neutral text-neutral-white shadow"
+                      : "border border-neutral-lightest text-neutral-light hover:border-primary hover:text-primary"
                   }`}
                   onClick={() => onViewModeChange(mode)}
                 >
@@ -394,13 +394,13 @@ export function AnalysisResultPanel({
                 originalPreview
               ) : (
                 <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
-                  <div className="min-w-0 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:rounded-2xl sm:p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500 sm:text-xs">Original</p>
-                    <pre className="mt-1.5 max-w-full overflow-x-auto whitespace-pre-wrap break-words text-xs text-slate-700 sm:mt-2 sm:text-sm">{originalResume}</pre>
+                  <div className="min-w-0 rounded-xl border border-neutral-lightest bg-neutral-white p-3 sm:rounded-2xl sm:p-4">
+                    <p className="text-[10px] font-semibold uppercase tracking-wide text-neutral-lighter sm:text-xs">Original</p>
+                    <pre className="mt-1.5 max-w-full overflow-x-auto whitespace-pre-wrap break-words text-xs text-neutral-light sm:mt-2 sm:text-sm">{originalResume}</pre>
                   </div>
-                  <div className="min-w-0 rounded-xl border border-indigo-200 bg-indigo-50/50 p-3 sm:rounded-2xl sm:p-4">
-                    <p className="text-[10px] font-semibold uppercase tracking-wide text-indigo-600 sm:text-xs">Optimized</p>
-                    <pre className="mt-1.5 max-w-full overflow-x-auto whitespace-pre-wrap break-words text-xs text-slate-700 sm:mt-2 sm:text-sm">{result.optimizedResume}</pre>
+                  <div className="min-w-0 rounded-xl border border-primary bg-primary-muted/50 p-3 sm:rounded-2xl sm:p-4">
+                    <p className="text-[10px] font-semibold uppercase tracking-wide text-primary sm:text-xs">Optimized</p>
+                    <pre className="mt-1.5 max-w-full overflow-x-auto whitespace-pre-wrap break-words text-xs text-neutral-light sm:mt-2 sm:text-sm">{result.optimizedResume}</pre>
                   </div>
                 </div>
               )}
@@ -408,13 +408,13 @@ export function AnalysisResultPanel({
           </div>
 
           {result.linkedinSummary ? (
-            <div className="rounded-xl border border-indigo-100 bg-indigo-50 p-3 text-xs text-indigo-900 sm:rounded-2xl sm:p-4 sm:text-sm">
+            <div className="rounded-xl border border-primary-muted bg-primary-muted p-3 text-xs text-primary-dark sm:rounded-2xl sm:p-4 sm:text-sm">
               <div className="flex items-start justify-between gap-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wide sm:text-xs">LinkedIn Summary Idea</p>
                 <button
                   type="button"
                   onClick={() => handleCopyToClipboard(result.linkedinSummary!, "linkedin")}
-                  className="group relative inline-flex shrink-0 items-center gap-1 rounded-md bg-indigo-600 px-2 py-1 text-[10px] font-medium text-white shadow-sm transition-all hover:bg-indigo-700 hover:shadow-md active:scale-95 sm:gap-1.5 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-xs"
+                  className="group relative inline-flex shrink-0 items-center gap-1 rounded-md bg-primary px-2 py-1 text-[10px] font-medium text-neutral-white shadow-sm transition-all hover:bg-primary-dark hover:shadow-md active:scale-95 sm:gap-1.5 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-xs"
                   title="Copy to clipboard"
                 >
                   {copiedSection === "linkedin" ? (
@@ -438,13 +438,13 @@ export function AnalysisResultPanel({
             </div>
           ) : null}
           {result.coverLetter ? (
-            <div className="rounded-xl border border-pink-100 bg-pink-50 p-3 text-xs text-pink-900 sm:rounded-2xl sm:p-4 sm:text-sm">
+            <div className="rounded-xl border border-accent-muted bg-accent-muted p-3 text-xs text-accent-dark sm:rounded-2xl sm:p-4 sm:text-sm">
               <div className="flex items-start justify-between gap-2">
                 <p className="text-[10px] font-semibold uppercase tracking-wide sm:text-xs">Cover Letter Draft</p>
                 <button
                   type="button"
                   onClick={() => handleCopyToClipboard(result.coverLetter!, "coverLetter")}
-                  className="group relative inline-flex shrink-0 items-center gap-1 rounded-md bg-pink-600 px-2 py-1 text-[10px] font-medium text-white shadow-sm transition-all hover:bg-pink-700 hover:shadow-md active:scale-95 sm:gap-1.5 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-xs"
+                  className="group relative inline-flex shrink-0 items-center gap-1 rounded-md bg-accent px-2 py-1 text-[10px] font-medium text-neutral-white shadow-sm transition-all hover:bg-accent-dark hover:shadow-md active:scale-95 sm:gap-1.5 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-xs"
                   title="Copy to clipboard"
                 >
                   {copiedSection === "coverLetter" ? (
@@ -482,7 +482,7 @@ export function AnalysisResultPanel({
               type="button"
               onClick={onDownloadDoc}
               disabled={!result.optimizedResume}
-              className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-indigo-200 hover:text-indigo-600 disabled:cursor-not-allowed disabled:opacity-60 sm:px-5 sm:py-2 sm:text-sm"
+              className="rounded-full border border-neutral-lightest px-4 py-1.5 text-xs font-semibold text-neutral-light transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60 sm:px-5 sm:py-2 sm:text-sm"
             >
               Download DOC
             </button>
@@ -490,7 +490,7 @@ export function AnalysisResultPanel({
               type="button"
               onClick={onOpenPreview}
               disabled={!result.optimizedResume}
-              className="rounded-full border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:border-blue-200 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-60 sm:px-5 sm:py-2 sm:text-sm"
+              className="rounded-full border border-neutral-lightest px-4 py-1.5 text-xs font-semibold text-neutral-light transition hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-60 sm:px-5 sm:py-2 sm:text-sm"
             >
               View Full Preview
             </button>

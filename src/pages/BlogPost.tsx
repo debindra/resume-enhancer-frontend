@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import BlogImage from "../components/BlogImage";
+import SEO from "../components/SEO";
 
 // Blog post data with human-written content and images
 const blogPosts: Record<string, {
@@ -245,8 +246,56 @@ export default function BlogPost() {
     day: "numeric"
   });
 
+  const siteUrl = process.env.VITE_SITE_URL || "https://resume-enhancer.com";
+  const postUrl = `${siteUrl}/blog/${slug}`;
+  const postImage = post.heroImage;
+
   return (
-    <article className="mx-auto max-w-4xl space-y-8 py-12">
+    <>
+      <SEO
+        title={post.title}
+        description={post.excerpt}
+        keywords={`${post.category}, resume tips, career advice, ATS optimization, ${post.title.toLowerCase()}`}
+        image={postImage}
+        url={`/blog/${slug}`}
+        type="article"
+        author={post.author}
+        publishedTime={new Date(post.date).toISOString()}
+        canonicalUrl={postUrl}
+      />
+      {/* Structured Data for Article */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": post.title,
+            "description": post.excerpt,
+            "image": postImage,
+            "datePublished": new Date(post.date).toISOString(),
+            "dateModified": new Date(post.date).toISOString(),
+            "author": {
+              "@type": "Person",
+              "name": post.author
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Resume Enhancer",
+              "logo": {
+                "@type": "ImageObject",
+                "url": `${siteUrl}/logo.png`
+              }
+            },
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": postUrl
+            },
+            "articleSection": post.category
+          })
+        }}
+      />
+      <article className="mx-auto max-w-4xl space-y-8 py-12" itemScope itemType="https://schema.org/BlogPosting">
       {/* Header */}
       <header className="space-y-6 border-b border-slate-200 pb-8">
         <div className="flex items-center gap-3">
@@ -271,11 +320,11 @@ export default function BlogPost() {
             <span className="text-sm text-slate-500">{post.readTime}</span>
           </div>
           
-          <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
+          <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl" itemProp="headline">
             {post.title}
           </h1>
           
-          <p className="text-xl leading-relaxed text-slate-600">
+          <p className="text-xl leading-relaxed text-slate-600" itemProp="description">
             {post.excerpt}
           </p>
           
@@ -295,9 +344,10 @@ export default function BlogPost() {
       <div className="overflow-hidden rounded-2xl border border-slate-200">
         <img
           src={post.heroImage}
-          alt={post.title}
+          alt={`Hero image for ${post.title} - ${post.excerpt}`}
           className="h-auto w-full object-cover"
           loading="eager"
+          itemProp="image"
         />
       </div>
 
@@ -401,5 +451,6 @@ export default function BlogPost() {
         </div>
       </section>
     </article>
+    </>
   );
 }

@@ -1,8 +1,18 @@
+import SEO from "../components/SEO";
+
 export default function PrivacyPolicy() {
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-slate-900">Privacy Policy</h1>
+    <>
+      <SEO
+        title="Privacy Policy - Resume Enhancer"
+        description="Learn how Resume Enhancer protects your privacy and handles your data. Our commitment to data security and user privacy."
+        keywords="privacy policy, data protection, resume privacy, user privacy"
+        url="/privacy-policy"
+        noindex={false}
+      />
+      <div className="mx-auto max-w-4xl space-y-8 py-12">
+        <header className="space-y-4">
+          <h1 className="text-4xl font-bold text-slate-900">Privacy Policy</h1>
         <p className="text-sm text-slate-500">Last updated: {new Date().toLocaleDateString()}</p>
       </div>
 
@@ -120,6 +130,7 @@ export default function PrivacyPolicy() {
         </section>
       </div>
     </div>
+    </>
   );
 }
 

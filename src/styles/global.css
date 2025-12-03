@@ -11,9 +11,9 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 font-sans overflow-x-hidden;
+  @apply bg-neutral-white text-neutral font-sans overflow-x-hidden;
 }
 
 .button-primary {
-  @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-blue-700 transition;
+  @apply bg-accent text-neutral-white px-4 py-2 rounded-md hover:bg-accent-dark transition;
 }
