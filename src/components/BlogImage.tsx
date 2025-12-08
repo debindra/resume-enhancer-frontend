@@ -25,3 +25,4 @@ export default function BlogImage({ src, alt, caption, className = "" }: BlogIma
   );
 }
 
+

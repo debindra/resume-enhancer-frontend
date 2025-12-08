@@ -9,11 +9,11 @@ export default function Footer() {
         <div className="grid gap-6 sm:gap-8 md:grid-cols-4">
           {/* Brand Section */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-3" aria-label="Resume Enhancer Home">
+            <Link to="/" className="flex items-center gap-3" aria-label="CareerLift AI Home">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-semibold text-white shadow-md" aria-hidden="true">
-                RE
+                CL
               </div>
-              <span className="text-lg font-semibold text-slate-900">Resume Enhancer</span>
+              <span className="text-lg font-semibold text-slate-900">CareerLift AI</span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-600">
               AI-powered resume optimization to help you land your dream job.
@@ -96,7 +96,7 @@ export default function Footer() {
         <div className="mt-12 border-t border-slate-200 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-slate-600">
-              © {currentYear} Resume Enhancer. All rights reserved.
+              © {currentYear} CareerLift AI. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-2 text-sm text-slate-600">

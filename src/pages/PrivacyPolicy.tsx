@@ -4,8 +4,8 @@ export default function PrivacyPolicy() {
   return (
     <>
       <SEO
-        title="Privacy Policy - Resume Enhancer"
-        description="Learn how Resume Enhancer protects your privacy and handles your data. Our commitment to data security and user privacy."
+        title="Privacy Policy - CareerLift AI"
+        description="Learn how CareerLift AI protects your privacy and handles your data. Our commitment to data security and user privacy."
         keywords="privacy policy, data protection, resume privacy, user privacy"
         url="/privacy-policy"
         noindex={false}
@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
         <section>
           <h2 className="text-2xl font-semibold text-slate-900">1. Introduction</h2>
           <p>
-            Resume Enhancer ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our resume optimization service.
+            CareerLift AI ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our resume optimization service.
           </p>
         </section>
 

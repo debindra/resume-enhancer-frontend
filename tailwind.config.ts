@@ -47,7 +47,7 @@ const config: Config = {
         'shimmer': 'shimmer 2s linear infinite',
         'float': 'float 3s ease-in-out infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
-        'fade-in-up': 'fadeInUp 0.6s ease-out',
+        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
         'slide-in-left': 'slideInLeft 0.5s ease-out',
         'bounce-slow': 'bounce 2s infinite',
         'border-rotate': 'borderRotate 3s linear infinite',

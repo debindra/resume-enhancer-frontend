@@ -98,7 +98,7 @@ const blogPosts: Record<string, {
       { type: 'text', content: "Go through your resume and swap out keywords to match the job description. If they say 'stakeholder management,' use that instead of 'client relations.' If they say 'agile,' use 'agile' not 'flexible.'" },
       { type: 'image', content: '', imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop", imageAlt: "Person editing resume on computer", imageCaption: "Small keyword adjustments can make a big difference in ATS matching" },
       { type: 'heading', content: "How AI Can Help (Without Making You Sound Like a Robot)" },
-      { type: 'text', content: "I'll be honest—I was skeptical about AI resume tools at first. But after trying them, I see their value. Tools like Resume Enhancer can:" },
+      { type: 'text', content: "I'll be honest—I was skeptical about AI resume tools at first. But after trying them, I see their value. Tools like CareerLift AI can:" },
       { type: 'list', content: "• Quickly identify keyword gaps\n• Suggest relevant content improvements\n• Show you your ATS score\n• Save you time on the formatting stuff" },
       { type: 'text', content: "The key is using AI as a starting point, not the final product. Always review and personalize. Add your voice. Make it human." },
       { type: 'heading', content: "Common Mistakes I See" },
@@ -150,7 +150,7 @@ const blogPosts: Record<string, {
       { type: 'text', content: "• Missing contact information (yes, really)\n• Using weird file formats (.pages files drive me crazy)\n• Headers and footers (ATS can't always read them)\n• Text boxes or columns\n• Missing dates on work experience\n• Vague bullet points with no impact" },
       { type: 'heading', content: "How to Test Your Resume" },
       { type: 'text', content: "Before you submit, test it. Use an ATS-friendly resume builder or an online ATS simulator. See how it parses. Check if your information shows up correctly." },
-      { type: 'text', content: "Better yet, use a tool like Resume Enhancer that can analyze your resume and give you an actual ATS score. It'll show you exactly where you're losing points." },
+      { type: 'text', content: "Better yet, use a tool like CareerLift AI that can analyze your resume and give you an actual ATS score. It'll show you exactly where you're losing points." },
       { type: 'heading', content: "The Bottom Line" },
       { type: 'text', content: "The ATS isn't your enemy—it's just a filter. Understand how it works, play by its rules, and you'll get through. Then focus on making your resume compelling for the human who reads it next." },
       { type: 'text', content: "Remember: the goal isn't to trick the ATS. It's to make sure your resume accurately represents your qualifications in a way both the ATS and humans can understand." },
@@ -281,7 +281,7 @@ export default function BlogPost() {
             },
             "publisher": {
               "@type": "Organization",
-              "name": "Resume Enhancer",
+              "name": "CareerLift AI",
               "logo": {
                 "@type": "ImageObject",
                 "url": `${siteUrl}/logo.png`

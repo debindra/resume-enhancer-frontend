@@ -4,8 +4,8 @@ export default function TermsOfService() {
   return (
     <>
       <SEO
-        title="Terms of Service - Resume Enhancer"
-        description="Read the Terms of Service for Resume Enhancer. Understand your rights and responsibilities when using our AI-powered resume optimization service."
+        title="Terms of Service - CareerLift AI"
+        description="Read the Terms of Service for CareerLift AI. Understand your rights and responsibilities when using our AI-powered resume optimization service."
         keywords="terms of service, user agreement, terms and conditions"
         url="/terms-of-service"
         noindex={false}
@@ -20,14 +20,14 @@ export default function TermsOfService() {
         <section>
           <h2 className="text-2xl font-semibold text-slate-900">1. Acceptance of Terms</h2>
           <p>
-            By accessing and using Resume Enhancer ("the Service"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our Service.
+            By accessing and using CareerLift AI ("the Service"), you accept and agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our Service.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-semibold text-slate-900">2. Description of Service</h2>
           <p>
-            Resume Enhancer is an AI-powered platform that provides resume optimization, ATS scoring, and career-related services. We use artificial intelligence to analyze and improve resumes based on job descriptions.
+            CareerLift AI is an AI-powered platform that provides resume optimization, ATS scoring, and career-related services. We use artificial intelligence to analyze and improve resumes based on job descriptions.
           </p>
         </section>
 
@@ -64,7 +64,7 @@ export default function TermsOfService() {
 
           <h3 className="text-xl font-semibold text-slate-900 mt-4">5.2 Our Content</h3>
           <p>
-            All content, features, and functionality of the Service are owned by Resume Enhancer and are protected by copyright, trademark, and other intellectual property laws.
+            All content, features, and functionality of the Service are owned by CareerLift AI and are protected by copyright, trademark, and other intellectual property laws.
           </p>
         </section>
 

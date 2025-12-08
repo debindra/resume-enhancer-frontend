@@ -1,4 +1,4 @@
-# robots.txt for Resume Enhancer
+# robots.txt for CareerLift AI
 User-agent: *
 Allow: /
 

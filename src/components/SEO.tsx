@@ -15,7 +15,7 @@ interface SEOProps {
   nofollow?: boolean;
 }
 
-const defaultTitle = "Resume Enhancer - AI-Powered Resume Optimization & ATS Scoring";
+const defaultTitle = "CareerLift AI - AI-Powered Resume Optimization & ATS Scoring";
 const defaultDescription = "Get 3x more interviews with AI-optimized resumes. Upload your resume and job posting to get instant ATS scores, keyword gap analysis, and tailored resume improvements. Powered by OpenAI.";
 const defaultImage = "/og-image.jpg";
 const siteUrl = process.env.VITE_SITE_URL || "https://resume-enhancer.com";
@@ -34,7 +34,7 @@ export default function SEO({
   noindex = false,
   nofollow = false
 }: SEOProps) {
-  const fullTitle = title ? `${title} | Resume Enhancer` : defaultTitle;
+  const fullTitle = title ? `${title} | CareerLift AI` : defaultTitle;
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const fullImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
 
@@ -56,7 +56,7 @@ export default function SEO({
     // Basic meta tags
     updateMetaTag("description", description);
     updateMetaTag("keywords", keywords);
-    updateMetaTag("author", author || "Resume Enhancer");
+    updateMetaTag("author", author || "CareerLift AI");
 
     // Open Graph tags
     updateMetaTag("og:title", fullTitle, "property");
@@ -64,7 +64,7 @@ export default function SEO({
     updateMetaTag("og:image", fullImage, "property");
     updateMetaTag("og:url", fullUrl, "property");
     updateMetaTag("og:type", type, "property");
-    updateMetaTag("og:site_name", "Resume Enhancer", "property");
+    updateMetaTag("og:site_name", "CareerLift AI", "property");
 
     // Twitter Card tags
     updateMetaTag("twitter:card", "summary_large_image");

@@ -1,30 +1,30 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Resume Enhancer",
-  description: "Cookie Policy for Resume Enhancer - Learn about how we use cookies.",
+  title: "Cookie Policy | CareerLift AI",
+  description: "Cookie Policy for CareerLift AI - Learn about how we use cookies.",
 };
 
 export default function CookiePolicy() {
   return (
-    <div className="mx-auto max-w-4xl space-y-8 py-12">
-      <div className="space-y-4">
-        <h1 className="text-4xl font-bold text-slate-900">Cookie Policy</h1>
-        <p className="text-sm text-slate-500">Last updated: {new Date().toLocaleDateString()}</p>
+    <div className="mx-auto w-full max-w-4xl space-y-6 px-4 py-8 sm:space-y-8 sm:px-6 sm:py-12">
+      <div className="space-y-3 sm:space-y-4">
+        <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">Cookie Policy</h1>
+        <p className="text-xs text-slate-500 sm:text-sm">Last updated: {new Date().toLocaleDateString()}</p>
       </div>
 
-      <div className="prose prose-slate max-w-none space-y-6 text-slate-700">
+      <div className="prose prose-slate max-w-none space-y-6 text-sm text-slate-700 sm:text-base">
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">1. What Are Cookies</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">1. What Are Cookies</h2>
           <p>
             Cookies are small text files that are placed on your device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">2. How We Use Cookies</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">2. How We Use Cookies</h2>
           <p>
-            Resume Enhancer uses cookies to:
+            CareerLift AI uses cookies to:
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Remember your preferences and settings</li>
@@ -36,31 +36,31 @@ export default function CookiePolicy() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">3. Types of Cookies We Use</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">3. Types of Cookies We Use</h2>
           
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">3.1 Essential Cookies</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mt-4 sm:text-xl">3.1 Essential Cookies</h3>
           <p>
             These cookies are necessary for the Service to function properly. They enable core functionality such as security, network management, and accessibility.
           </p>
 
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">3.2 Functional Cookies</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mt-4 sm:text-xl">3.2 Functional Cookies</h3>
           <p>
             These cookies allow the Service to remember choices you make (such as language preferences) and provide enhanced, personalized features.
           </p>
 
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">3.3 Analytics Cookies</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mt-4 sm:text-xl">3.3 Analytics Cookies</h3>
           <p>
             These cookies help us understand how visitors interact with our Service by collecting and reporting information anonymously. This helps us improve our Service.
           </p>
 
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">3.4 Performance Cookies</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mt-4 sm:text-xl">3.4 Performance Cookies</h3>
           <p>
             These cookies collect information about how you use our Service, such as which pages you visit most often, to help us optimize performance.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">4. Third-Party Cookies</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">4. Third-Party Cookies</h2>
           <p>
             We may use third-party services that set cookies on your device, including:
           </p>
@@ -75,24 +75,24 @@ export default function CookiePolicy() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">5. Managing Cookies</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">5. Managing Cookies</h2>
           <p>
             You can control and manage cookies in various ways:
           </p>
           
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">5.1 Browser Settings</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mt-4 sm:text-xl">5.1 Browser Settings</h3>
           <p>
             Most browsers allow you to refuse or accept cookies. You can also delete cookies that have already been set. However, blocking or deleting cookies may impact your ability to use our Service.
           </p>
 
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">5.2 Cookie Preferences</h3>
+          <h3 className="text-lg font-semibold text-slate-900 mt-4 sm:text-xl">5.2 Cookie Preferences</h3>
           <p>
             You can manage your cookie preferences through our cookie settings panel (if available) or by adjusting your browser settings.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">6. Cookie Duration</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">6. Cookie Duration</h2>
           <ul className="list-disc pl-6 space-y-2">
             <li><strong>Session Cookies:</strong> Temporary cookies that expire when you close your browser</li>
             <li><strong>Persistent Cookies:</strong> Remain on your device for a set period or until you delete them</li>
@@ -100,14 +100,14 @@ export default function CookiePolicy() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">7. Changes to This Policy</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">7. Changes to This Policy</h2>
           <p>
             We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">8. More Information</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">8. More Information</h2>
           <p>
             For more information about cookies and how to manage them, visit:
           </p>
@@ -118,7 +118,7 @@ export default function CookiePolicy() {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-slate-900">9. Contact Us</h2>
+          <h2 className="text-xl font-semibold text-slate-900 sm:text-2xl">9. Contact Us</h2>
           <p>
             If you have questions about our use of cookies, please contact us at:
           </p>

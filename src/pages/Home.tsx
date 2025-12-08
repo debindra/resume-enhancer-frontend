@@ -22,7 +22,7 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Resume Enhancer",
+            "name": "CareerLift AI",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web",
             "offers": {
@@ -46,8 +46,8 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
           })
         }}
       />
-      <div className="w-full space-y-12 sm:space-y-16">
-      <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-b border-primary/40 bg-gradient-to-br from-primary via-primary-light to-accent pb-12 pt-0 text-white sm:pb-20">
+      <div className="w-full space-y-12 sm:space-y-16 overflow-x-hidden">
+      <section className="relative w-full overflow-hidden border-b border-primary/40 bg-gradient-to-br from-primary via-primary-light to-accent pb-12 pt-0 text-white sm:pb-20">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -right-10 h-64 w-64 rounded-full bg-white/20 blur-3xl sm:right-[-5%]" />
           <div className="absolute top-1/2 -left-10 h-72 w-72 rounded-full bg-white/10 blur-3xl sm:left-[-3%]" />
@@ -55,7 +55,7 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
         </div>
         <div className="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-4 pb-8 pt-10 text-center sm:gap-10 sm:px-6 sm:pb-10 sm:pt-14 lg:px-12 lg:pt-16">
           <div className="flex flex-wrap items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-white/70 sm:gap-3 sm:text-[11px] sm:tracking-[0.35em] md:text-xs">
-            <span className="rounded-full border border-white/40 px-2.5 py-0.5 sm:px-3 sm:py-1">Resume Enhancer</span>
+            <span className="rounded-full border border-white/40 px-2.5 py-0.5 sm:px-3 sm:py-1">CareerLift AI</span>
             <span className="rounded-full border border-white/40 px-2.5 py-0.5 sm:px-3 sm:py-1">Powered by OpenAI</span>
             <span className="rounded-full border border-white/40 px-2.5 py-0.5 sm:px-3 sm:py-1">Career Copilot</span>
           </div>
@@ -172,7 +172,7 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
             </span>
             <h2 className="text-2xl font-bold leading-tight text-neutral sm:text-3xl md:text-4xl">The modern job search stack</h2>
             <p className="text-sm leading-relaxed text-neutral-light sm:text-base">
-              From recent grads to executive leaders, thousands of candidates rely on Resume Enhancer to ship tailored resumes,
+              From recent grads to executive leaders, thousands of candidates rely on CareerLift AI to ship tailored resumes,
               cover letters, and LinkedIn refreshes in record time.
             </p>
             <div className="grid gap-4 text-sm text-neutral-light sm:grid-cols-2">
@@ -238,7 +238,7 @@ export default function Home({ isProUser = false, isLoggedIn = false }: HomeProp
                 avatar: "https://i.pravatar.cc/112?img=22",
                 rating: 5,
                 quote:
-                  "Resume Enhancer gave our bootcamp grads tangible improvements — higher ATS scores and real interview conversions.",
+                  "CareerLift AI gave our bootcamp grads tangible improvements — higher ATS scores and real interview conversions.",
                 author: "Morgan, Career Coach"
               }
             ].map((testimonial) => (

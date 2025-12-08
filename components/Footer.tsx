@@ -5,15 +5,15 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-slate-200 bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 md:py-12">
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-4">
+      <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8 md:py-10 lg:py-12">
+        <div className="grid gap-6 sm:grid-cols-2 sm:gap-8 md:grid-cols-4">
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-500 text-sm font-semibold text-white shadow-md">
-                RE
+                CL
               </div>
-              <span className="text-lg font-semibold text-slate-900">Resume Enhancer</span>
+              <span className="text-lg font-semibold text-slate-900">CareerLift AI</span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-600">
               AI-powered resume optimization to help you land your dream job.
@@ -93,14 +93,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-slate-200 pt-8">
+        <div className="mt-8 border-t border-slate-200 pt-6 sm:mt-10 sm:pt-8 md:mt-12">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-slate-600">
-              © {currentYear} Resume Enhancer. All rights reserved.
+            <p className="text-xs text-slate-600 sm:text-sm">
+              © {currentYear} CareerLift AI. All rights reserved.
             </p>
-            <div className="flex items-center gap-6">
-              <span className="flex items-center gap-2 text-sm text-slate-600">
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <span className="flex items-center gap-2 text-xs text-slate-600 sm:text-sm">
+                <svg className="h-3.5 w-3.5 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 Powered by OpenAI

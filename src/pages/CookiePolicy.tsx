@@ -4,8 +4,8 @@ export default function CookiePolicy() {
   return (
     <>
       <SEO
-        title="Cookie Policy - Resume Enhancer"
-        description="Learn about how Resume Enhancer uses cookies to improve your experience. Information about cookie types and your preferences."
+        title="Cookie Policy - CareerLift AI"
+        description="Learn about how CareerLift AI uses cookies to improve your experience. Information about cookie types and your preferences."
         keywords="cookie policy, cookies, website cookies, privacy cookies"
         url="/cookie-policy"
         noindex={false}
@@ -27,7 +27,7 @@ export default function CookiePolicy() {
         <section>
           <h2 className="text-2xl font-semibold text-slate-900">2. How We Use Cookies</h2>
           <p>
-            Resume Enhancer uses cookies to:
+            CareerLift AI uses cookies to:
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>Remember your preferences and settings</li>

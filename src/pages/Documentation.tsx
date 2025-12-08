@@ -5,8 +5,8 @@ export default function Documentation() {
   return (
     <>
       <SEO
-        title="Documentation - How to Use Resume Enhancer"
-        description="Learn how to use Resume Enhancer to optimize your resume and improve your job search. Step-by-step guides, features, and best practices."
+        title="Documentation - How to Use CareerLift AI"
+        description="Learn how to use CareerLift AI to optimize your resume and improve your job search. Step-by-step guides, features, and best practices."
         keywords="resume enhancer documentation, how to use resume optimizer, resume analyzer guide, ATS score tutorial"
         url="/documentation"
       />
@@ -14,7 +14,7 @@ export default function Documentation() {
         <header className="space-y-4">
           <h1 className="text-4xl font-bold text-slate-900">Documentation</h1>
         <p className="text-lg text-slate-600">
-          Learn how to use Resume Enhancer to optimize your resume and improve your job search.
+          Learn how to use CareerLift AI to optimize your resume and improve your job search.
         </p>
       </div>
 
