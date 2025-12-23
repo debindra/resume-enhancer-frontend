@@ -11,7 +11,7 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signUp: (email: string, password: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
-  signInWithProvider: (provider: 'google' | 'github' | 'linkedin') => Promise<void>;
+  signInWithProvider: (provider: 'google' | 'github' | 'linkedin_oidc') => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -72,15 +72,48 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Error signing out:', error);
+      }
+    } catch (err) {
+      console.error('Unexpected error during sign out:', err);
+    } finally {
+      // Always clear local auth state so the UI reliably updates
+      setSession(null);
+      setUser(null);
+    }
   };
 
-  const signInWithProvider = async (provider: 'google' | 'github' | 'linkedin') => {
+  const signInWithProvider = async (provider: 'google' | 'github' | 'linkedin_oidc') => {
+    // Check if user already has a valid session
+    const { data: { session: currentSession } } = await supabase.auth.getSession();
+    if (currentSession?.user) {
+      // User is already logged in, no need to trigger OAuth
+      return;
+    }
+
+    const options: {
+      redirectTo: string;
+      queryParams?: Record<string, string>;
+    } = {
+      redirectTo: `${window.location.origin}/auth/callback`,
+    };
+
+    // Customize Google OAuth behavior
+    // Note: App name "CareerLift AI" must be configured in Google Cloud Console OAuth consent screen
+    if (provider === 'google') {
+      options.queryParams = {
+        access_type: 'offline',
+        // Only prompt for account selection if user is not already authenticated
+        // This allows Google to use cached sessions when available
+      };
+    }
+
     await supabase.auth.signInWithOAuth({
       provider,
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
+      options,
     });
   };
 

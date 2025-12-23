@@ -2,8 +2,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog | CareerLift AI",
-  description: "Tips, insights, and best practices for optimizing your resume and advancing your career.",
+  title: "Resume Optimization Tips & Career Advice Blog | CareerLift AI",
+  description: "Expert resume tips, ATS optimization strategies, and career advice. Learn how to get 3x more interviews with AI-powered resume optimization.",
+  openGraph: {
+    title: "Resume Optimization Tips & Career Advice Blog | CareerLift AI",
+    description: "Expert resume tips, ATS optimization strategies, and career advice. Learn how to get 3x more interviews with AI-powered resume optimization.",
+    type: "website",
+  },
 };
 
 // Blog post slugs mapping
@@ -49,8 +54,8 @@ export default function Blog() {
   return (
     <div className="mx-auto w-full max-w-4xl space-y-8 px-4 py-8 sm:px-6 sm:py-12">
       <div className="space-y-4">
-        <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl md:text-5xl">Blog</h1>
-        <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+        <h1 className="text-3xl font-bold text-neutral sm:text-4xl md:text-5xl">Blog</h1>
+        <p className="text-base leading-relaxed text-neutral-light sm:text-lg">
           Tips, insights, and best practices for optimizing your resume and advancing your career.
         </p>
       </div>
@@ -60,10 +65,10 @@ export default function Blog() {
           <Link
             key={index}
             href={`/blog/${blogPostSlugs[post.title] || post.title.toLowerCase().replace(/\s+/g, '-')}`}
-            className="group block overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:border-indigo-300 hover:shadow-lg"
+            className="group block overflow-hidden rounded-2xl border border-neutral-lightest bg-neutral-white shadow-sm transition-all hover:border-primary hover:shadow-lg"
           >
             <div className="grid gap-0 md:grid-cols-2">
-              <div className="aspect-video overflow-hidden bg-slate-100 md:aspect-auto">
+              <div className="aspect-video overflow-hidden bg-neutral-lightest md:aspect-auto">
                 <img
                   src={post.image}
                   alt={post.title}
@@ -73,10 +78,10 @@ export default function Blog() {
               </div>
               <div className="flex flex-col justify-center p-6 sm:p-8">
                 <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
-                  <span className="rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-semibold text-indigo-600 sm:px-3">
+                  <span className="rounded-full bg-primary-muted px-2.5 py-1 text-xs font-semibold text-primary sm:px-3">
                     {post.category}
                   </span>
-                  <span className="text-xs text-slate-500 sm:text-sm">
+                  <span className="text-xs text-neutral-lighter sm:text-sm">
                     {new Date(post.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -84,11 +89,11 @@ export default function Blog() {
                     })}
                   </span>
                 </div>
-                <h2 className="mb-3 text-xl font-semibold leading-tight text-slate-900 group-hover:text-indigo-600 transition sm:text-2xl">
+                <h2 className="mb-3 text-xl font-semibold leading-tight text-neutral group-hover:text-primary transition sm:text-2xl">
                   {post.title}
                 </h2>
-                <p className="mb-4 text-sm leading-relaxed text-slate-600 sm:text-base">{post.excerpt}</p>
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 transition group-hover:gap-3">
+                <p className="mb-4 text-sm leading-relaxed text-neutral-light sm:text-base">{post.excerpt}</p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition group-hover:gap-3">
                   Read more
                   <span aria-hidden="true">→</span>
                 </span>
@@ -98,18 +103,21 @@ export default function Blog() {
         ))}
       </div>
 
-      <div className="rounded-2xl border border-indigo-200 bg-indigo-50 p-6 text-center sm:p-8">
-        <h2 className="mb-2 text-xl font-semibold text-indigo-900 sm:text-2xl">Stay Updated</h2>
-        <p className="mb-6 text-sm text-indigo-800 sm:text-base">
+      <div className="rounded-2xl border border-primary-muted bg-primary-muted p-6 text-center sm:p-8">
+        <h2 className="mb-2 text-xl font-semibold text-primary sm:text-2xl">Stay Updated</h2>
+        <p className="mb-4 text-sm text-primary-dark sm:text-base">
           Subscribe to our newsletter for the latest resume optimization tips and career advice.
+        </p>
+        <p className="mb-6 text-sm text-primary-dark sm:text-base">
+          Need step-by-step guidance? Check out our <Link href="/documentation" className="font-semibold text-primary underline">documentation</Link> for detailed instructions.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full rounded-lg border border-indigo-300 px-4 py-2 text-sm text-slate-900 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:w-auto sm:text-base"
+            className="w-full rounded-lg border border-primary px-4 py-2 text-sm text-neutral focus:border-primary-dark focus:outline-none focus:ring-2 focus:ring-primary sm:w-auto sm:text-base"
           />
-          <button className="w-full rounded-lg bg-indigo-600 px-6 py-2 text-sm font-semibold text-white transition hover:bg-indigo-700 sm:w-auto sm:text-base">
+          <button className="w-full rounded-lg bg-primary px-6 py-2 text-sm font-semibold text-neutral-white transition hover:bg-primary-dark sm:w-auto sm:text-base">
             Subscribe
           </button>
         </div>

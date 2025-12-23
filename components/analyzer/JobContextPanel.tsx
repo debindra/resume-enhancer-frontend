@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import type { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import type { DemoPayload } from "./demoData";
 import type { JobEntryMode, UploadFormValues } from "./types";
@@ -23,6 +24,12 @@ export function JobContextPanel({
   onLoadDemo,
   demoPayloads
 }: JobContextPanelProps) {
+  // Force mode to "manual" if it's set to "url" (URL tab is disabled)
+  useEffect(() => {
+    if (mode === "url") {
+      onModeChange("manual");
+    }
+  }, [mode, onModeChange]);
   return (
     <section className="rounded-t-xl border border-neutral-lightest/50 bg-neutral-white/80 p-5 sm:rounded-t-2xl sm:p-6">
       <div className="space-y-1.5 sm:space-y-2">
@@ -30,13 +37,14 @@ export function JobContextPanel({
           <span className="h-1.5 w-1.5 rounded-full bg-primary" />
           Job Details
         </span>
-        <h2 className="text-lg font-bold text-neutral sm:text-xl">Provide job posting URL or description</h2>
+        <h2 className="text-lg font-bold text-neutral sm:text-xl">Provide job posting description</h2>
         <p className="text-xs leading-relaxed text-neutral-light sm:text-sm">
           Set the context so the analyzer can tailor recommendations to the specific role.
         </p>
       </div>
 
-      <div className="mt-4 flex gap-1.5 rounded-full bg-gradient-to-r from-neutral-lightest to-neutral-white p-1 text-xs font-bold shadow-inner sm:mt-6 sm:gap-2 sm:p-1.5 sm:text-sm">
+      {/* URL tab disabled for now - only manual input is available */}
+      {/* <div className="mt-4 flex gap-1.5 rounded-full bg-gradient-to-r from-neutral-lightest to-neutral-white p-1 text-xs font-bold shadow-inner sm:mt-6 sm:gap-2 sm:p-1.5 sm:text-sm">
         <button
           type="button"
           className={`flex-1 rounded-full px-3 py-2 text-xs transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm ${mode === "url" ? "bg-gradient-to-r from-primary to-primary-light text-neutral-white shadow-lg" : "text-neutral-lighter hover:bg-neutral-white/60 hover:text-neutral-light"}`}
@@ -53,10 +61,24 @@ export function JobContextPanel({
         >
           Manual
         </button>
-      </div>
+      </div> */}
 
-      {mode === "url" ? (
+      {/* Always show manual input - URL mode disabled */}
+      {false && mode === "url" ? (
         <div className="mt-4 space-y-4 sm:mt-6 sm:space-y-5">
+          <div className="space-y-2 sm:space-y-3">
+            <label htmlFor="role" className="text-[10px] font-bold uppercase tracking-wide text-neutral-lighter sm:text-xs">
+              Target Role
+            </label>
+            <input
+              id="role"
+              {...register("role")}
+              type="text"
+              className="w-full rounded-xl border-2 border-neutral-lightest bg-neutral-white p-3 text-xs font-medium text-neutral-light shadow-sm placeholder:text-neutral-lighter transition focus:border-primary focus:bg-neutral-white focus:outline-none focus:ring-4 focus:ring-primary-muted sm:rounded-2xl sm:p-4 sm:text-sm"
+              placeholder="e.g., Software Engineer, Product Manager, Data Scientist"
+              disabled={disabled}
+            />
+          </div>
           <div className="space-y-2 sm:space-y-3">
             <label htmlFor="jobUrl" className="text-[10px] font-bold uppercase tracking-wide text-neutral-lighter sm:text-xs">
               Job Posting URL
@@ -101,18 +123,33 @@ export function JobContextPanel({
           </div>
         </div>
       ) : (
-        <div className="mt-4 space-y-2 sm:mt-6 sm:space-y-3">
-          <label htmlFor="jobDescription" className="text-[10px] font-bold uppercase tracking-wide text-neutral-lighter sm:text-xs">
-            Job Description
-          </label>
-          <textarea
-            id="jobDescription"
-            {...register("jobDescription")}
-            rows={10}
-            className="w-full rounded-xl border-2 border-neutral-lightest bg-neutral-white p-3 text-xs leading-relaxed text-neutral-light shadow-sm placeholder:text-neutral-lighter transition focus:border-primary focus:bg-neutral-white focus:outline-none focus:ring-4 focus:ring-primary-muted sm:rounded-2xl sm:p-4 sm:text-sm sm:leading-relaxed"
-            placeholder="Paste the key responsibilities, skills, and qualifications for the target role."
-            disabled={disabled}
-          />
+        <div className="mt-4 space-y-4 sm:mt-6 sm:space-y-5">
+          <div className="space-y-2 sm:space-y-3">
+            <label htmlFor="role" className="text-[10px] font-bold uppercase tracking-wide text-neutral-lighter sm:text-xs">
+              Target Role
+            </label>
+            <input
+              id="role"
+              {...register("role")}
+              type="text"
+              className="w-full rounded-xl border-2 border-neutral-lightest bg-neutral-white p-3 text-xs font-medium text-neutral-light shadow-sm placeholder:text-neutral-lighter transition focus:border-primary focus:bg-neutral-white focus:outline-none focus:ring-4 focus:ring-primary-muted sm:rounded-2xl sm:p-4 sm:text-sm"
+              placeholder="e.g., Software Engineer, Product Manager, Data Scientist"
+              disabled={disabled}
+            />
+          </div>
+          <div className="space-y-2 sm:space-y-3">
+            <label htmlFor="jobDescription" className="text-[10px] font-bold uppercase tracking-wide text-neutral-lighter sm:text-xs">
+              Job Description
+            </label>
+            <textarea
+              id="jobDescription"
+              {...register("jobDescription")}
+              rows={10}
+              className="w-full rounded-xl border-2 border-neutral-lightest bg-neutral-white p-3 text-xs leading-relaxed text-neutral-light shadow-sm placeholder:text-neutral-lighter transition focus:border-primary focus:bg-neutral-white focus:outline-none focus:ring-4 focus:ring-primary-muted sm:rounded-2xl sm:p-4 sm:text-sm sm:leading-relaxed"
+              placeholder="Paste the key responsibilities, skills, and qualifications for the target role."
+              disabled={disabled}
+            />
+          </div>
         </div>
       )}
     </section>

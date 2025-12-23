@@ -8,15 +8,15 @@ interface SectionCardProps extends PropsWithChildren {
 
 export default function SectionCard({ title, description, action, children }: SectionCardProps) {
   return (
-    <section className="mb-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="mb-6 rounded-2xl border border-neutral-lightest bg-neutral-white p-6 shadow-sm">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
-          {description ? <p className="text-sm text-slate-600">{description}</p> : null}
+        <h2 className="text-lg font-semibold text-neutral">{title}</h2>
+        {description ? <p className="text-sm text-neutral-light">{description}</p> : null}
         </div>
         {action}
       </div>
-      <div className="mt-4 space-y-4 text-sm text-slate-700">{children}</div>
+      <div className="mt-4 space-y-4 text-sm text-neutral-light">{children}</div>
     </section>
   );
 }

@@ -52,7 +52,6 @@ export function AnalysisResultPanel({
   isLoggedIn
 }: AnalysisResultPanelProps) {
   const [copiedSection, setCopiedSection] = useState<string | null>(null);
-  const [copiedKeyword, setCopiedKeyword] = useState<string | null>(null);
 
   const optimizedPreview = useMemo(
     () => <ResumePreview content={result.optimizedResume} template={selectedTemplate} />,
@@ -74,15 +73,6 @@ export function AnalysisResultPanel({
     }
   };
 
-  const handleCopyKeyword = async (keyword: string) => {
-    try {
-      await navigator.clipboard.writeText(keyword);
-      setCopiedKeyword(keyword);
-      setTimeout(() => setCopiedKeyword(null), 2000);
-    } catch (err) {
-      console.error("Failed to copy keyword:", err);
-    }
-  };
 
   const getATSScoreFeedback = (score: number): string => {
     if (score >= 85) return "Excellent! Your resume is highly ATS-compatible.";
@@ -106,11 +96,11 @@ export function AnalysisResultPanel({
           <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
             {/* ATS Score Card */}
             {typeof result.atsScore === "number" && (
-              <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5 sm:rounded-3xl sm:p-6">
+            <div className="rounded-2xl border border-neutral-lightest bg-neutral-white p-5 sm:rounded-3xl sm:p-6">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 sm:text-sm">ATS Score</p>
-                    <p className="mt-0.5 text-[10px] text-gray-500 sm:mt-1 sm:text-xs">Applicant Tracking System Compatibility</p>
+                    <p className="text-xs font-semibold text-neutral sm:text-sm">ATS Score</p>
+                    <p className="mt-0.5 text-[10px] text-neutral-lighter sm:mt-1 sm:text-xs">Applicant Tracking System Compatibility</p>
                   </div>
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary sm:h-10 sm:w-10">
                     <svg className="h-4 w-4 text-white sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -121,10 +111,10 @@ export function AnalysisResultPanel({
                 <div className="mt-3 sm:mt-4">
                   <p className="text-3xl font-bold text-primary sm:text-4xl md:text-5xl">
                     {Math.round(Math.max(0, Math.min(100, result.atsScore ?? 0)))}
-                    <span className="text-lg text-gray-500 sm:text-xl md:text-2xl">%</span>
+                    <span className="text-lg text-neutral-lighter sm:text-xl md:text-2xl">%</span>
                   </p>
                 </div>
-                <div className="mt-3 h-2 w-full rounded-full bg-gray-200 sm:mt-4">
+                <div className="mt-3 h-2 w-full rounded-full bg-neutral-lightest sm:mt-4">
                   <div
                     className="h-full rounded-full bg-primary transition-all duration-700"
                     style={{
@@ -132,7 +122,7 @@ export function AnalysisResultPanel({
                     }}
                   />
                 </div>
-                <p className="mt-3 text-[10px] text-gray-600 sm:mt-4 sm:text-xs">
+                <p className="mt-3 text-[10px] text-neutral-light sm:mt-4 sm:text-xs">
                   <span className="mr-1">👍</span>
                   {getATSScoreFeedback(result.atsScore ?? 0)}
                 </p>
@@ -141,25 +131,25 @@ export function AnalysisResultPanel({
 
             {/* Job Match Score Card */}
             {typeof result.jobMatchScore === "number" && (
-              <div className="rounded-2xl border border-gray-200 bg-green-50 p-5 sm:rounded-3xl sm:p-6">
+              <div className="rounded-2xl border border-secondary-muted bg-secondary-muted/60 p-5 sm:rounded-3xl sm:p-6">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-semibold text-gray-900 sm:text-sm">Job Match Score</p>
-                    <p className="mt-0.5 text-[10px] text-gray-500 sm:mt-1 sm:text-xs">How well you match the job requirements</p>
+                    <p className="text-xs font-semibold text-neutral sm:text-sm">Job Match Score</p>
+                    <p className="mt-0.5 text-[10px] text-neutral-lighter sm:mt-1 sm:text-xs">How well you match the job requirements</p>
                   </div>
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal-500 sm:h-10 sm:w-10">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary sm:h-10 sm:w-10">
                     <svg className="h-4 w-4 text-white sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
                   </div>
                 </div>
                 <div className="mt-3 sm:mt-4">
-                  <p className="text-3xl font-bold text-teal-600 sm:text-4xl md:text-5xl">
+                  <p className="text-3xl font-bold text-secondary-dark sm:text-4xl md:text-5xl">
                     {Math.round(Math.max(0, Math.min(100, result.jobMatchScore ?? 0)))}
-                    <span className="text-lg text-gray-500 sm:text-xl md:text-2xl">%</span>
+                    <span className="text-lg text-neutral-lighter sm:text-xl md:text-2xl">%</span>
                   </p>
                 </div>
-                <div className="mt-3 h-2 w-full rounded-full bg-gray-200 sm:mt-4">
+                <div className="mt-3 h-2 w-full rounded-full bg-neutral-lightest sm:mt-4">
                   <div
                     className="h-full rounded-full bg-primary transition-all duration-700"
                     style={{
@@ -167,7 +157,7 @@ export function AnalysisResultPanel({
                     }}
                   />
                 </div>
-                <p className="mt-3 text-[10px] text-gray-600 sm:mt-4 sm:text-xs">
+                <p className="mt-3 text-[10px] text-neutral-light sm:mt-4 sm:text-xs">
                   <span className="mr-1">🎯</span>
                   {getJobMatchFeedback(result.jobMatchScore ?? 0)}
                 </p>
@@ -177,98 +167,23 @@ export function AnalysisResultPanel({
         </div>
       )}
 
-      {/* Keyword Analysis Section */}
-      {(result.matchedKeywords?.length > 0 || result.missingKeywords?.length > 0) && (
-        <div className="w-full space-y-5 sm:space-y-6">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 sm:text-xl">Keyword Analysis</h3>
-            <p className="mt-0.5 text-xs text-gray-500 sm:mt-1 sm:text-sm">Keywords found and missing from your resume</p>
-          </div>
-
-          {/* Found and Missing Keywords */}
-          <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
-            {/* Found Keywords */}
-            {result.matchedKeywords && result.matchedKeywords.length > 0 && (
-              <div className="rounded-xl border border-green-200 bg-green-50 p-5 sm:rounded-2xl sm:p-6">
-                <div className="mb-3 flex items-center gap-2 sm:mb-4">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green-500 sm:h-8 sm:w-8">
-                    <svg className="h-3.5 w-3.5 text-white sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h4 className="text-sm font-semibold text-gray-900 sm:text-base">
-                    Found Keywords ({result.matchedKeywords.length})
-                  </h4>
-                </div>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {result.matchedKeywords.map((keyword) => (
-                    <span
-                      key={keyword}
-                      className="rounded-md border border-green-300 bg-white px-2 py-1 text-xs font-medium text-gray-700 sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-sm"
-                    >
-                      {keyword}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Missing Keywords */}
-            {result.missingKeywords && result.missingKeywords.length > 0 && (
-              <div className="rounded-xl border border-orange-200 bg-orange-50 p-5 sm:rounded-2xl sm:p-6">
-                <div className="mb-3 flex items-center gap-2 sm:mb-4">
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-orange-500 sm:h-8 sm:w-8">
-                    <svg className="h-3.5 w-3.5 text-white sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                  </div>
-                  <h4 className="text-sm font-semibold text-gray-900 sm:text-base">
-                    Missing Keywords - Add These! ({result.missingKeywords.length})
-                  </h4>
-                </div>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {result.missingKeywords.map((keyword) => (
-                    <button
-                      key={keyword}
-                      type="button"
-                      onClick={() => handleCopyKeyword(keyword)}
-                      className={`rounded-md border px-2 py-1 text-xs font-medium transition sm:rounded-lg sm:px-3 sm:py-1.5 sm:text-sm ${
-                        copiedKeyword === keyword
-                          ? "border-green-500 bg-green-100 text-green-700"
-                          : "border-orange-300 bg-white text-gray-700 hover:border-orange-400 hover:bg-orange-100"
-                      }`}
-                    >
-                      {keyword}
-                    </button>
-                  ))}
-                </div>
-                <p className="mt-3 flex items-center gap-1 text-[10px] text-gray-600 sm:mt-4 sm:text-xs">
-                  <svg className="h-3 w-3 shrink-0 sm:h-4 sm:w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  </svg>
-                  Click any keyword to copy it
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Strengths and Areas for Improvement */}
-          <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
+      {/* Strengths and Areas for Improvement */}
+      <div className="grid gap-5 sm:gap-6 md:grid-cols-2">
             {/* Strengths */}
             {result.strengths && result.strengths.length > 0 && (
-              <div className="rounded-2xl border border-green-200 bg-white p-6">
+              <div className="rounded-2xl border border-secondary-muted bg-neutral-white p-6">
                 <div className="mb-4 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary">
                     <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h4 className="font-semibold text-gray-900">Strengths</h4>
+                  <h4 className="font-semibold text-neutral">Strengths</h4>
                 </div>
                 <ul className="space-y-2">
                   {result.strengths.map((strength, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                      <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <li key={index} className="flex items-start gap-2 text-sm text-neutral-light">
+                      <svg className="mt-0.5 h-4 w-4 flex-shrink-0 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                       <span>{strength}</span>
@@ -302,8 +217,6 @@ export function AnalysisResultPanel({
               </div>
             )}
           </div>
-        </div>
-      )}
 
       <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
         <div className="rounded-2xl border border-neutral-lightest bg-neutral-white p-5 sm:rounded-3xl sm:p-6">
@@ -334,9 +247,11 @@ export function AnalysisResultPanel({
             )}
           </ul>
           <div className="mt-3 rounded-xl bg-gradient-to-br from-primary-muted to-secondary-muted p-3 text-xs text-neutral-light sm:mt-4 sm:rounded-2xl sm:p-4 sm:text-sm">
-            {isProUser && isLoggedIn
+            {!isLoggedIn
+              ? "Create a free account to save versions; upgrade later for automated cover letters and recruiter sharing."
+              : isProUser
               ? "Keep iterating with bulk comparisons and recruiter-ready assets included in your plan."
-              : "Create a free account to save versions; upgrade later for automated cover letters and recruiter sharing."}
+              : "You're on the free plan. Your recent optimizations are linked to your account—upgrade later for automated cover letters and recruiter sharing."}
           </div>
         </div>
 

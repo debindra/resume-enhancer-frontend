@@ -4,12 +4,15 @@ import type { PropsWithChildren } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Footer from "./Footer";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import LoginModal from "./auth/LoginModal";
 import SignupModal from "./auth/SignupModal";
+import Logo from "./Logo";
 
 function LayoutContent({ children }: PropsWithChildren) {
+  const router = useRouter();
   const { user, loading, signOut } = useAuth();
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
@@ -17,27 +20,53 @@ function LayoutContent({ children }: PropsWithChildren) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const userMenuDropdownRef = useRef<HTMLDivElement>(null);
+  const desktopUserMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileUserMenuButtonRef = useRef<HTMLButtonElement>(null);
   const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
     { href: "/#features", label: "Features" },
     { href: "/#resume-analyzer", label: "Analyzer" },
-    { href: "/documentation", label: "Documentation" },
-    { href: "/blog", label: "Blog" },
+    { href: "/pricing", label: "Pricing" },
   ];
+
 
   // Close mobile menu when clicking outside or pressing ESC
   useEffect(() => {
+    if (!mobileMenuOpen && !userMenuOpen) {
+      return;
+    }
+
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
+      
       // Don't close if clicking the hamburger button itself
-      if (hamburgerButtonRef.current && hamburgerButtonRef.current.contains(target)) {
+      if (hamburgerButtonRef.current?.contains(target)) {
         return;
       }
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(target)) {
+      
+      // Don't close if clicking the user menu button
+      if (desktopUserMenuButtonRef.current?.contains(target) || 
+          mobileUserMenuButtonRef.current?.contains(target)) {
+        return;
+      }
+      
+      // Check if click is inside the user menu dropdown
+      if (userMenuDropdownRef.current?.contains(target)) {
+        return;
+      }
+      
+      // Check if click is inside mobile menu
+      if (mobileMenuRef.current?.contains(target)) {
+        return;
+      }
+      
+      // Close menus if click is outside
+      if (mobileMenuOpen) {
         setMobileMenuOpen(false);
       }
-      if (userMenuRef.current && !userMenuRef.current.contains(target)) {
+      if (userMenuOpen) {
         setUserMenuOpen(false);
       }
     };
@@ -49,50 +78,30 @@ function LayoutContent({ children }: PropsWithChildren) {
       }
     };
 
-    if (mobileMenuOpen || userMenuOpen) {
+    // Use capture phase and delay to avoid interfering with button clicks
+    const timeoutId = setTimeout(() => {
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleEscapeKey);
-      return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
-        document.removeEventListener('keydown', handleEscapeKey);
-      };
-    }
+    }, 150);
+    
+    document.addEventListener('keydown', handleEscapeKey);
+    return () => {
+      clearTimeout(timeoutId);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
+    };
   }, [mobileMenuOpen, userMenuOpen]);
 
   return (
     <div className="flex min-h-screen flex-col bg-neutral-white overflow-x-hidden">
-      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-neutral-lightest bg-neutral-white shadow-sm overflow-x-hidden">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-neutral-lightest bg-neutral-white shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
           <div className="flex items-center justify-between gap-4">
-            <Link 
-              href="/" 
-              className="flex items-center gap-2 sm:gap-4 shrink-0" 
-              aria-label="CareerLift AI Home"
+            <div
               onClick={() => setMobileMenuOpen(false)}
+              className="shrink-0"
             >
-              {/* Mobile Logo */}
-              <div className="flex h-10 shrink-0 items-center justify-center sm:hidden">
-                <Image
-                  src="/logo-1.png"
-                  alt="CareerLift AI Logo"
-                  width={48}
-                  height={48}
-                  className="h-full w-auto object-contain"
-                  priority
-                />
-              </div>
-              {/* Desktop Full Logo */}
-              <div className="hidden sm:block h-12 shrink-0">
-                <Image
-                  src="/logo-full-1.png"
-                  alt="CareerLift AI Logo"
-                  width={150}
-                  height={48}
-                  className="h-full w-auto object-contain"
-                  priority
-                />
-              </div>
-            </Link>
+              <Logo withLink variant="header" />
+            </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-4 lg:gap-6" aria-label="Main navigation">
@@ -118,28 +127,59 @@ function LayoutContent({ children }: PropsWithChildren) {
                       </Link>
                       <div className="relative" ref={userMenuRef}>
                         <button 
-                          onClick={() => setUserMenuOpen(!userMenuOpen)}
-                          className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-light transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                          type="button"
+                          ref={desktopUserMenuButtonRef}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setUserMenuOpen(prev => !prev);
+                          }}
+                          className="relative flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium text-neutral-light transition hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer"
                         >
                           <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white text-xs font-semibold">
                             {user.email?.[0]?.toUpperCase() || 'U'}
                           </div>
                         </button>
                         {userMenuOpen && (
-                          <div className="absolute right-0 mt-2 w-48 rounded-lg border border-neutral-lightest bg-neutral-white shadow-lg z-50">
-                              <div className="p-2">
-                                <p className="px-3 py-2 text-sm text-neutral font-semibold truncate">{user.email}</p>
-                                <button
-                                  onClick={() => {
-                                    signOut();
-                                    setUserMenuOpen(false);
-                                  }}
-                                  className="w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition"
-                                >
-                                  Sign out
-                                </button>
-                              </div>
+                          <div 
+                            ref={userMenuDropdownRef}
+                            className="absolute right-0 mt-2 w-48 rounded-lg border border-neutral-lightest bg-neutral-white shadow-xl z-40 animate-scale-in"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <div className="p-2">
+                              <p className="px-3 py-2 text-sm text-neutral font-semibold truncate border-b border-neutral-lightest">{user.email}</p>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setUserMenuOpen(false);
+                                  router.push("/dashboard");
+                                }}
+                                className="block w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
+                              >
+                                Dashboard
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setUserMenuOpen(false);
+                                  router.push("/pricing");
+                                }}
+                                className="block w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
+                              >
+                                Pricing
+                              </button>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  signOut();
+                                  setUserMenuOpen(false);
+                                }}
+                                className="w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
+                              >
+                                Sign out
+                              </button>
                             </div>
+                          </div>
                         )}
                       </div>
                     </>
@@ -192,48 +232,75 @@ function LayoutContent({ children }: PropsWithChildren) {
               {!loading && user && (
                 <div className="relative" ref={userMenuRef}>
                   <button 
-                    onClick={() => {
-                      setUserMenuOpen(!userMenuOpen);
+                    type="button"
+                    ref={mobileUserMenuButtonRef}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      setUserMenuOpen(prev => !prev);
                       setMobileMenuOpen(false);
                     }}
-                    className="flex items-center rounded-lg p-1.5 text-neutral-light transition hover:text-primary"
+                    className="relative flex items-center rounded-lg p-1.5 text-neutral-light transition hover:text-primary cursor-pointer"
                   >
                     <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white text-xs font-semibold">
                       {user.email?.[0]?.toUpperCase() || 'U'}
                     </div>
                   </button>
                   {userMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-lg border border-neutral-lightest bg-neutral-white shadow-lg z-50 animate-scale-in">
-                        <div className="p-2">
-                          <p className="px-3 py-2 text-sm text-neutral font-semibold truncate border-b border-neutral-lightest">{user.email}</p>
-                          <Link
-                            href="/dashboard"
-                            onClick={() => setUserMenuOpen(false)}
-                            className="block w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
-                          >
-                            Dashboard
-                          </Link>
-                          <button
-                            onClick={() => {
-                              signOut();
-                              setUserMenuOpen(false);
-                            }}
-                            className="w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
-                          >
-                            Sign out
-                          </button>
-                        </div>
+                    <div 
+                      ref={userMenuDropdownRef}
+                      className="absolute right-0 mt-2 w-48 rounded-lg border border-neutral-lightest bg-neutral-white shadow-xl z-40 animate-scale-in"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <div className="p-2">
+                        <p className="px-3 py-2 text-sm text-neutral font-semibold truncate border-b border-neutral-lightest">{user.email}</p>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setUserMenuOpen(false);
+                            router.push("/dashboard");
+                          }}
+                          className="block w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
+                        >
+                          Dashboard
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setUserMenuOpen(false);
+                            router.push("/pricing");
+                          }}
+                          className="block w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
+                        >
+                          Pricing
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            signOut();
+                            setUserMenuOpen(false);
+                          }}
+                          className="w-full text-left px-3 py-2 text-sm text-neutral-light hover:bg-neutral-lightest rounded transition mt-1"
+                        >
+                          Sign out
+                        </button>
                       </div>
+                    </div>
                   )}
                 </div>
               )}
               <button
                 ref={hamburgerButtonRef}
                 onClick={(e) => {
+                  e.preventDefault();
                   e.stopPropagation();
-                  setMobileMenuOpen(!mobileMenuOpen);
+                  console.log('Hamburger button clicked');
+                  setMobileMenuOpen(prev => {
+                    console.log('Setting mobileMenuOpen to:', !prev);
+                    return !prev;
+                  });
                 }}
-                className="p-2 -mr-2 text-neutral-light hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded z-10"
+                className="p-2 -mr-2 text-neutral-light hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded cursor-pointer relative z-50"
                 aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileMenuOpen}
                 type="button"
@@ -253,7 +320,7 @@ function LayoutContent({ children }: PropsWithChildren) {
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div ref={mobileMenuRef} className="md:hidden border-t border-neutral-lightest mt-3 pt-4 pb-4 animate-fade-in">
+            <div ref={mobileMenuRef} className="md:hidden border-t border-neutral-lightest mt-3 pt-4 pb-4 animate-fade-in relative z-50">
               <nav className="flex flex-col gap-1" aria-label="Mobile navigation">
                 {navLinks.map((link) => (
                   <Link
@@ -279,7 +346,7 @@ function LayoutContent({ children }: PropsWithChildren) {
           )}
         </div>
       </header>
-      <main className="flex-1 w-full pt-16 sm:pt-20 md:pt-24 overflow-x-hidden">{children}</main>
+      <main className="relative z-0 flex-1 w-full pt-14 sm:pt-16 md:pt-20 overflow-x-hidden">{children}</main>
       <Footer />
       
       <LoginModal
@@ -298,6 +365,7 @@ function LayoutContent({ children }: PropsWithChildren) {
           setShowLogin(true);
         }}
       />
+      
     </div>
   );
 }

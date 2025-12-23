@@ -257,11 +257,11 @@ export default async function BlogPost({ params }: PageProps) {
   return (
     <article className="mx-auto w-full max-w-4xl space-y-6 px-4 py-8 sm:space-y-8 sm:px-6 sm:py-12">
       {/* Header */}
-      <header className="space-y-4 border-b border-slate-200 pb-6 sm:space-y-6 sm:pb-8">
+      <header className="space-y-4 border-b border-neutral-lightest pb-6 sm:space-y-6 sm:pb-8">
         <div className="flex items-center gap-3">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 transition hover:text-indigo-700"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary transition hover:text-primary-dark"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -272,36 +272,36 @@ export default async function BlogPost({ params }: PageProps) {
         
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-600">
+            <span className="rounded-full bg-primary-muted px-3 py-1 text-xs font-semibold text-primary">
               {post.category}
             </span>
-            <span className="text-sm text-slate-500">{formattedDate}</span>
-            <span className="text-sm text-slate-500">•</span>
-            <span className="text-sm text-slate-500">{post.readTime}</span>
+            <span className="text-sm text-neutral-lighter">{formattedDate}</span>
+            <span className="text-sm text-neutral-lighter">•</span>
+            <span className="text-sm text-neutral-lighter">{post.readTime}</span>
           </div>
           
-          <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl md:text-5xl">
+          <h1 className="text-3xl font-bold leading-tight text-neutral sm:text-4xl md:text-5xl">
             {post.title}
           </h1>
           
-          <p className="text-lg leading-relaxed text-slate-600 sm:text-xl">
+          <p className="text-lg leading-relaxed text-neutral-light sm:text-xl">
             {post.excerpt}
           </p>
           
           <div className="flex items-center gap-4 pt-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-sm font-semibold text-white">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-light text-sm font-semibold text-neutral-white">
               {post.author.split(' ').map(n => n[0]).join('')}
             </div>
             <div>
-              <p className="font-semibold text-slate-900">{post.author}</p>
-              <p className="text-sm text-slate-500">Author</p>
+              <p className="font-semibold text-neutral">{post.author}</p>
+              <p className="text-sm text-neutral-lighter">Author</p>
             </div>
           </div>
         </div>
       </header>
 
       {/* Hero Image */}
-      <div className="overflow-hidden rounded-2xl border border-slate-200">
+      <div className="overflow-hidden rounded-2xl border border-neutral-lightest">
         <img
           src={post.heroImage}
           alt={post.title}
@@ -311,11 +311,11 @@ export default async function BlogPost({ params }: PageProps) {
       </div>
 
       {/* Content */}
-      <div className="prose prose-slate max-w-none space-y-6 text-sm text-slate-700 sm:prose-lg sm:text-base">
+      <div className="prose max-w-none space-y-6 text-sm text-neutral-light sm:prose-lg sm:text-base">
         {post.content.map((item, index) => {
           if (item.type === 'heading') {
             return (
-              <h2 key={index} className="mt-8 mb-4 text-2xl font-bold text-slate-900 first:mt-0 sm:mt-12 sm:mb-6 sm:text-3xl">
+              <h2 key={index} className="mt-8 mb-4 text-2xl font-bold text-neutral first:mt-0 sm:mt-12 sm:mb-6 sm:text-3xl">
                 {item.content}
               </h2>
             );
@@ -324,7 +324,7 @@ export default async function BlogPost({ params }: PageProps) {
             return (
               <ul key={index} className="my-4 space-y-2 pl-6 sm:my-6">
                 {items.map((listItem, idx) => (
-                  <li key={idx} className="text-slate-700 leading-relaxed">
+                  <li key={idx} className="text-neutral-light leading-relaxed">
                     {listItem.replace(/^•\s*/, '')}
                   </li>
                 ))}
@@ -341,7 +341,7 @@ export default async function BlogPost({ params }: PageProps) {
             );
           } else {
             return (
-              <p key={index} className="leading-relaxed text-slate-700 text-base sm:text-lg">
+              <p key={index} className="leading-relaxed text-neutral-light text-base sm:text-lg">
                 {item.content}
               </p>
             );
@@ -350,22 +350,22 @@ export default async function BlogPost({ params }: PageProps) {
       </div>
 
       {/* CTA Section */}
-      <div className="rounded-2xl border border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 p-6 sm:p-8">
-        <h2 className="mb-4 text-xl font-semibold text-slate-900 sm:text-2xl">Ready to Optimize Your Resume?</h2>
-        <p className="mb-6 text-sm text-slate-700 sm:text-base">
+      <div className="rounded-2xl border border-primary-muted bg-primary-muted p-6 sm:p-8">
+        <h2 className="mb-4 text-xl font-semibold text-primary sm:text-2xl">Ready to Optimize Your Resume?</h2>
+        <p className="mb-6 text-sm text-primary-dark sm:text-base">
           Put these tips into practice with our AI-powered resume analyzer. Get your ATS score and personalized improvement suggestions.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
             href="/#resume-analyzer"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 sm:w-auto sm:px-6 sm:py-3"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-neutral-white transition hover:bg-accent-dark sm:w-auto sm:px-6 sm:py-3"
           >
             Try Resume Analyzer
             <span aria-hidden="true">→</span>
           </Link>
           <Link
             href="/blog"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-50 sm:w-auto sm:px-6 sm:py-3"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-neutral-lightest bg-neutral-white px-5 py-2.5 text-sm font-semibold text-neutral transition hover:bg-neutral-lightest sm:w-auto sm:px-6 sm:py-3"
           >
             Read More Articles
           </Link>
@@ -373,8 +373,8 @@ export default async function BlogPost({ params }: PageProps) {
       </div>
 
       {/* Related Posts */}
-      <section className="border-t border-slate-200 pt-6 sm:pt-8">
-        <h2 className="mb-4 text-xl font-semibold text-slate-900 sm:mb-6 sm:text-2xl">Related Articles</h2>
+      <section className="border-t border-neutral-lightest pt-6 sm:pt-8">
+        <h2 className="mb-4 text-xl font-semibold text-neutral sm:mb-6 sm:text-2xl">Related Articles</h2>
         <div className="grid gap-6 md:grid-cols-2">
           {Object.entries(blogPosts)
             .filter(([key]) => key !== slug)
@@ -383,9 +383,9 @@ export default async function BlogPost({ params }: PageProps) {
               <Link
                 key={key}
                 href={`/blog/${key}`}
-                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:border-indigo-300 hover:shadow-md"
+                className="group overflow-hidden rounded-xl border border-neutral-lightest bg-neutral-white transition-all hover:border-primary hover:shadow-md"
               >
-                <div className="aspect-video overflow-hidden bg-slate-100">
+                <div className="aspect-video overflow-hidden bg-neutral-lightest">
                   <img
                     src={relatedPost.heroImage}
                     alt={relatedPost.title}
@@ -395,15 +395,15 @@ export default async function BlogPost({ params }: PageProps) {
                 </div>
                 <div className="p-6">
                   <div className="mb-2 flex items-center gap-2">
-                    <span className="rounded-full bg-indigo-100 px-2 py-1 text-xs font-semibold text-indigo-600">
+                    <span className="rounded-full bg-primary-muted px-2 py-1 text-xs font-semibold text-primary">
                       {relatedPost.category}
                     </span>
-                    <span className="text-xs text-slate-500">{relatedPost.readTime}</span>
+                    <span className="text-xs text-neutral-lighter">{relatedPost.readTime}</span>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold text-slate-900 group-hover:text-indigo-600 transition">
+                  <h3 className="mb-2 text-lg font-semibold text-neutral group-hover:text-primary transition">
                     {relatedPost.title}
                   </h3>
-                  <p className="text-sm text-slate-600 line-clamp-2">{relatedPost.excerpt}</p>
+                  <p className="text-sm text-neutral-light line-clamp-2">{relatedPost.excerpt}</p>
                 </div>
               </Link>
             ))}

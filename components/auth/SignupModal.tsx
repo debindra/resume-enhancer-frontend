@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import Logo from '../Logo';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -14,8 +15,6 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -44,8 +43,6 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
       setError(null);
       setEmailError(null);
       setSuccess(false);
-      setShowPassword(false);
-      setShowConfirmPassword(false);
     }
   }, [isOpen]);
 
@@ -80,9 +77,9 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
       return { strength: 2, label: 'Fair', color: 'orange' };
     }
     if (/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(pwd)) {
-      return { strength: 4, label: 'Very Strong', color: 'green' };
+      return { strength: 4, label: 'Very Strong', color: 'secondary' };
     }
-    return { strength: 3, label: 'Strong', color: 'green' };
+    return { strength: 3, label: 'Strong', color: 'secondary' };
   };
 
   const passwordStrength = getPasswordStrength(password);
@@ -133,7 +130,7 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
   if (success) {
     return (
       <div 
-        className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
         onClick={(e) => e.target === e.currentTarget && onClose()}
       >
         <div className="relative rounded-3xl border border-neutral-lightest bg-gradient-to-br from-neutral-white to-neutral-white/95 shadow-2xl animate-scale-in w-[65%] max-w-2xl min-w-[400px]">
@@ -149,8 +146,8 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
             </svg>
           </button>
           <div className="p-8 sm:p-10 text-center flex flex-col items-center">
-            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-green-100 to-green-50 animate-scale-in shadow-lg">
-              <svg className="h-10 w-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary-muted to-secondary-muted/60 animate-scale-in shadow-lg">
+              <svg className="h-10 w-10 text-secondary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -173,7 +170,7 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div className="relative rounded-3xl border border-neutral-lightest bg-gradient-to-br from-neutral-white to-neutral-white/95 shadow-2xl animate-scale-in max-h-[90vh] w-[65%] max-w-2xl min-w-[400px] overflow-y-auto">
@@ -190,17 +187,15 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
         </button>
 
         <div className="p-8 sm:p-10 flex flex-col items-center">
-          {/* Logo/Icon */}
-          {/* <div className="flex justify-center mb-6">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-primary-light shadow-lg">
-              <span className="text-2xl font-bold text-neutral-white">CL</span>
-            </div>
-          </div> */}
-
-          {/* Header */}
+          {/* Logo/Header */}
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold text-neutral sm:text-4xl mb-2">Create your account</h2>
-            <p className="text-base text-neutral-light">Get started with CareerLift AI for free</p>
+            <Logo variant="modal" className="mb-4" />
+            <h2 className="text-3xl font-bold text-neutral sm:text-4xl mb-2">
+              Create your account
+            </h2>
+            <p className="text-base text-neutral-light">
+              Get started with CareerLift AI for free
+            </p>
           </div>
 
           {/* Error Message */}
@@ -215,10 +210,14 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
-            <div>
-              {/* <label htmlFor="signup-name" className="block text-sm font-semibold text-neutral mb-2.5 text-left">
-                Full Name <span className="text-neutral-lighter font-normal">(optional)</span>
-              </label> */}
+            {/* Name */}
+            <div className="space-y-2">
+              <label
+                htmlFor="signup-name"
+                className="block text-sm font-semibold text-neutral text-left"
+              >
+                Full name <span className="text-neutral-lighter font-normal">(optional)</span>
+              </label>
               <div className="relative">
                 <input
                   id="signup-name"
@@ -226,16 +225,20 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   autoComplete="name"
-                  className="w-full rounded-xl border-2 border-neutral-lightest bg-neutral-white p-2 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none"
+                  className="w-full rounded-xl border-2 border-neutral-lightest bg-neutral-white px-4 py-3 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none"
                   placeholder="John Doe"
                 />
               </div>
             </div>
 
-            <div>
-              {/* <label htmlFor="signup-email" className="block text-sm font-semibold text-neutral mb-2.5 text-left">
+            {/* Email */}
+            <div className="space-y-2">
+              <label
+                htmlFor="signup-email"
+                className="block text-sm font-semibold text-neutral text-left"
+              >
                 Email address
-              </label> */}
+              </label>
               <div className="relative">
                 <input
                   id="signup-email"
@@ -245,9 +248,9 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                   onBlur={handleEmailBlur}
                   required
                   autoComplete="email"
-                  className={`w-full rounded-xl border-2 bg-neutral-white p-2 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none ${
+                  className={`w-full rounded-xl border-2 bg-neutral-white px-4 py-3 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none ${
                     emailError
-                      ? 'border-red-300 focus:border-red-500'
+                      ? 'border-red-300 focus:border-red-500 bg-red-50/30'
                       : 'border-neutral-lightest focus:border-primary'
                   }`}
                   placeholder="you@example.com"
@@ -256,26 +259,46 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                 />
               </div>
               {emailError && (
-                <p id="signup-email-error" className="mt-1.5 text-xs font-medium text-red-600 flex items-center gap-1">
-                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <p
+                  id="signup-email-error"
+                  className="mt-1.5 text-xs font-medium text-red-600 flex items-center gap-1"
+                >
+                  <svg
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                   {emailError}
                 </p>
               )}
             </div>
 
-            <div>
+            {/* Password */}
+            <div className="space-y-2">
+              <label
+                htmlFor="signup-password"
+                className="block text-sm font-semibold text-neutral text-left"
+              >
+                Password
+              </label>
               <div className="relative">
                 <input
                   id="signup-password"
-                  type={showPassword ? 'text' : 'password'}
+                  type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={8}
                   autoComplete="new-password"
-                  className={`w-full rounded-xl border-2 pr-12 p-2 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none ${
+                  className={`w-full rounded-xl border-2 px-4 py-3 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none ${
                     password && password.length < 8
                       ? 'border-red-300 focus:border-red-500 bg-red-50/30'
                       : password && password.length >= 8
@@ -284,25 +307,8 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                   }`}
                   placeholder="At least 8 characters"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-neutral-lighter hover:text-neutral transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded p-1.5 z-10 pointer-events-auto"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? (
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.007m0 0L21 21" />
-                    </svg>
-                  ) : (
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  )}
-                </button>
               </div>
-                {password.length > 0 && (
+              {password.length > 0 && (
                 <div className="mt-2.5 space-y-2">
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-2 bg-neutral-lightest rounded-full overflow-hidden">
@@ -312,7 +318,7 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                             ? 'bg-red-500'
                             : passwordStrength.color === 'orange'
                             ? 'bg-orange-500'
-                            : 'bg-green-500'
+                            : 'bg-secondary'
                         }`}
                         style={{ width: `${(passwordStrength.strength / 4) * 100}%` }}
                       ></div>
@@ -323,38 +329,64 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                           ? 'text-red-600'
                           : passwordStrength.color === 'orange'
                           ? 'text-orange-600'
-                          : 'text-green-600'
+                          : 'text-secondary-dark'
                       }`}
                     >
                       {passwordStrength.label}
                     </span>
                   </div>
                   <div className="text-xs text-neutral-light space-y-1">
-                    <div className={`flex items-center gap-1.5 ${password.length >= 8 ? 'text-green-600' : 'text-neutral-lighter'}`}>
-                      <svg className={`h-3.5 w-3.5 ${password.length >= 8 ? 'text-green-500' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div
+                      className={`flex items-center gap-1.5 ${
+                        password.length >= 8 ? 'text-secondary-dark' : 'text-neutral-lighter'
+                      }`}
+                    >
+                      <svg
+                        className={`h-3.5 w-3.5 ${password.length >= 8 ? 'text-secondary' : ''}`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
                         {password.length >= 8 ? (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
                         ) : (
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         )}
                       </svg>
                       At least 8 characters
                     </div>
                   </div>
-              </div>
+                </div>
               )}
             </div>
 
-            <div>
+            {/* Confirm Password */}
+            <div className="space-y-2">
+              <label
+                htmlFor="confirm-password"
+                className="block text-sm font-semibold text-neutral text-left"
+              >
+                Confirm password
+              </label>
               <div className="relative">
                 <input
                   id="confirm-password"
-                  type={showConfirmPassword ? 'text' : 'password'}
+                  type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   autoComplete="new-password"
-                  className={`w-full rounded-xl border-2 pr-12 p-2 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none ${
+                  className={`w-full rounded-xl border-2 px-4 py-3 text-base text-neutral placeholder:text-neutral-lighter transition-all focus:outline-none focus:ring-4 focus:ring-primary/10 hover:border-primary/50 appearance-none ${
                     confirmPassword && password !== confirmPassword
                       ? 'border-red-300 focus:border-red-500 bg-red-50/30'
                       : confirmPassword && password === confirmPassword && password.length >= 8
@@ -363,37 +395,40 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
                   }`}
                   placeholder="Re-enter your password"
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center text-neutral-lighter hover:text-neutral transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded p-1.5 z-10 pointer-events-auto"
-                  aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showConfirmPassword ? (
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.007m0 0L21 21" />
-                    </svg>
-                  ) : (
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                    </svg>
-                  )}
-                </button>
               </div>
               {confirmPassword && (
                 <div className="mt-1.5">
                   {password !== confirmPassword ? (
                     <p className="text-xs font-medium text-red-600 flex items-center gap-1">
-                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Passwords do not match
-                </p>
+                      <svg
+                        className="h-3.5 w-3.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      Passwords do not match
+                    </p>
                   ) : (
                     <p className="text-xs font-medium text-green-600 flex items-center gap-1">
-                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <svg
+                        className="h-3.5 w-3.5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                       Passwords match
                     </p>
@@ -402,17 +437,35 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
               )}
             </div>
 
+            {/* Submit */}
             <div>
               <button
                 type="submit"
-                disabled={loading || password.length < 8 || password !== confirmPassword || !!emailError || !email}
-                className="w-full rounded-xl bg-gradient-to-r from-primary to-primary-light p-2 text-base font-semibold text-neutral-white shadow-lg transition-all hover:from-primary-dark hover:to-primary hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-primary/20 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-lg disabled:hover:from-primary disabled:hover:to-primary-light"
+                disabled={
+                  loading ||
+                  password.length < 8 ||
+                  password !== confirmPassword ||
+                  !!emailError ||
+                  !email
+                }
+                className="w-full rounded-xl bg-gradient-to-r from-accent to-accent-light px-6 py-4 text-base font-semibold text-neutral-white shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-lg disabled:hover:bg-accent"
               >
                 {loading ? (
-                  <span className="flex items-center justify-center gap-2">
+                  <span className="flex items-center justify-center gap-3">
                     <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
                     </svg>
                     Creating account...
                   </span>
@@ -460,7 +513,7 @@ export default function SignupModal({ isOpen, onClose, onSwitchToLogin }: Signup
 
             <button
               type="button"
-              onClick={() => signInWithProvider('linkedin')}
+              onClick={() => signInWithProvider('linkedin_oidc')}
               className="flex-1 flex items-center justify-center rounded-xl border-2 border-neutral-lightest bg-neutral-white p-3 font-medium text-neutral transition-all hover:border-primary/50 hover:bg-neutral-lightest hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-primary/10"
               aria-label="Continue with LinkedIn"
             >

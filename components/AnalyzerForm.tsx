@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { AnalyzerOptionsPanel } from "./analyzer/AnalyzerOptionsPanel";
 import { AnalysisResultPanel } from "./analyzer/AnalysisResultPanel";
@@ -10,7 +10,9 @@ import { ResumePreview } from "./analyzer/ResumePreview";
 import { createDocBlob, createPdfBlob, type ResumeTemplateKey } from "./analyzer/exportUtils";
 import { demoPayloads, type DemoPayload } from "./analyzer/demoData";
 import type { AnalysisResult, JobEntryMode, UploadFormValues } from "./analyzer/types";
-import { analyzeResume, deleteAnalyzerSession, extractResumeFile } from "@/services/analyzerClient";
+import { analyzeResume, consumeOptimizationCredit, deleteAnalyzerSession, extractResumeFile, saveOptimization } from "@/services/analyzerClient";
+import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/lib/supabase/client";
 
 interface AnalyzerFormProps {
   isProUser?: boolean;
@@ -21,10 +23,12 @@ type ViewMode = "optimized" | "original" | "compare";
 
 export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: AnalyzerFormProps) {
   const { register, handleSubmit, setValue, watch, resetField } = useForm<UploadFormValues>({
-    defaultValues: { resumeText: "", jobUrl: "", jobDescription: "" }
+    defaultValues: { resumeText: "", jobUrl: "", jobDescription: "", role: "" }
   });
 
-  const [mode, setMode] = useState<JobEntryMode>("url");
+  const { session } = useAuth();
+
+  const [mode, setMode] = useState<JobEntryMode>("manual");
   const [status, setStatus] = useState<string | null>(null);
   const [apiError, setApiError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,8 +48,10 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
   const [targetRole, setTargetRole] = useState("");
   const [shouldDeleteAfter, setShouldDeleteAfter] = useState(true);
   const [privacyAcknowledged, setPrivacyAcknowledged] = useState(false);
+  const [creditBalance, setCreditBalance] = useState<{ remaining: number; total: number } | null>(null);
 
   const resumeTextValue = watch("resumeText");
+  const roleValue = watch("role");
 
   const handleClearResume = useCallback(() => {
     resetField("resumeText");
@@ -56,15 +62,47 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
     setOriginalResume("");
   }, [resetField]);
 
+  const loadCreditBalance = useCallback(async () => {
+    if (!isLoggedIn || !session?.access_token) return;
+
+    try {
+      const { data: { session: freshSession } } = await supabase.auth.getSession();
+      if (!freshSession?.access_token) return;
+
+      const response = await fetch('/api/billing/balance', {
+        headers: {
+          Authorization: `Bearer ${freshSession.access_token}`,
+        },
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        const balance = await response.json();
+        setCreditBalance(balance);
+      }
+    } catch (error) {
+      console.error('Error loading credit balance:', error);
+    }
+  }, [isLoggedIn, session]);
+
+  useEffect(() => {
+    if (isLoggedIn && session) {
+      loadCreditBalance();
+    }
+  }, [isLoggedIn, session, loadCreditBalance]);
+
   const handleLoadDemo = useCallback(
     (payload: DemoPayload) => {
       setValue("resumeText", payload.resume);
       setValue("jobDescription", payload.jobDescription);
       setValue("jobUrl", payload.jobUrl ?? "");
-      setMode(payload.jobUrl ? "url" : "manual");
+      const roleFromTitle = payload.title.split("•")[0]?.trim() ?? payload.title;
+      setValue("role", roleFromTitle);
+      // URL mode disabled - always use manual
+      setMode("manual");
       setUploadedResumeText(payload.resume);
       setStatus(`Loaded demo set: ${payload.title}. Make tweaks and run analysis.`);
-      setTargetRole(payload.title.split("•")[0]?.trim() ?? payload.title);
+      setTargetRole(roleFromTitle);
       setApiError(null);
       setAnalysisResult(null);
       setViewMode("optimized");
@@ -215,6 +253,7 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
 
       const trimmedJobUrl = values.jobUrl.trim();
       const trimmedJobDescription = values.jobDescription.trim();
+      const trimmedRole = values.role.trim();
 
       if (mode === "url" && !trimmedJobUrl && !trimmedJobDescription) {
         setStatus("Add a job posting URL or paste the description so the AI has context.");
@@ -232,34 +271,98 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
       }
 
       setIsSubmitting(true);
-      setStatus("Analyzing resume with AI…");
+      setStatus("Checking credits and analyzing resume with AI…");
       setViewMode("optimized");
 
-      const computedTargetRole = targetRole || guessTargetRole(trimmedJobDescription);
+      const computedTargetRole = trimmedRole || targetRole || guessTargetRole(trimmedJobDescription);
       setOriginalResume(resumeTextContent);
 
       try {
-        const response = await analyzeResume({
-          resumeText: resumeTextContent,
-          jobDescription: trimmedJobDescription || undefined,
-          jobUrl: mode === "url" && trimmedJobUrl ? trimmedJobUrl : undefined,
-          options: {
-            includeCoverLetter,
-            includeLinkedIn,
-            includeMetrics,
-            tone,
-            targetRole: computedTargetRole
+        // Get fresh session to ensure we have a valid access token (if logged in)
+        let freshAccessToken: string | undefined;
+        if (isLoggedIn) {
+          const { data: { session: freshSession } } = await supabase.auth.getSession();
+          if (!freshSession?.access_token) {
+            setApiError("Please sign in to use this feature.");
+            setStatus("Authentication required.");
+            return;
+          }
+          freshAccessToken = freshSession.access_token;
+
+          // Consume a credit for logged-in users before running the analysis
+          try {
+            await consumeOptimizationCredit(freshAccessToken);
+            // Update credit balance after consuming
+            if (creditBalance) {
+              setCreditBalance(prev => prev ? { ...prev, remaining: prev.remaining - 1 } : null);
+            } else {
+              // Refresh balance if we don't have it yet
+              await loadCreditBalance();
+            }
+          } catch (creditError) {
+            const message =
+              creditError instanceof Error ? creditError.message : "Unable to use a credit for this analysis.";
+            setApiError(message);
+            setStatus("You don't have enough credits to run this analysis.");
+            return;
+          }
+        }
+
+        setStatus("Analyzing resume with AI…");
+
+        const response = await analyzeResume(
+          {
+            resumeText: resumeTextContent,
+            jobDescription: trimmedJobDescription || undefined,
+            jobUrl: mode === "url" && trimmedJobUrl ? trimmedJobUrl : undefined,
+            options: {
+              includeCoverLetter,
+              includeLinkedIn,
+              includeMetrics,
+              tone,
+              targetRole: computedTargetRole
+            },
+            sessionToken
           },
-          sessionToken
-        });
+          freshAccessToken
+        );
 
         setAnalysisResult(response.result);
-        setStatus(
-          isProUser && isLoggedIn
-            ? "Analysis complete. Preview your AI-enhanced resume below."
-            : "Analysis complete. Preview your AI-enhanced resume below and download instantly. Create an account later to save versions."
-        );
+
+        if (isLoggedIn) {
+          setStatus(
+            isProUser
+              ? "Analysis complete. Preview your AI-enhanced resume below. Your Pro plan keeps everything in sync across versions."
+              : "Analysis complete. Preview your AI-enhanced resume below. Your results are linked to your account and can be revisited from your dashboard."
+          );
+        } else {
+          setStatus(
+            "Analysis complete. Preview your AI-enhanced resume below and download instantly. Create an account later to save versions."
+          );
+        }
         setSessionToken(response.sessionToken);
+
+        // Save optimization to database if user is logged in
+        if (isLoggedIn && response.result.atsScore !== undefined && freshAccessToken) {
+          try {
+            await saveOptimization(
+              {
+                resume_name: computedTargetRole || "Resume",
+                job_title: trimmedJobDescription?.substring(0, 255) || "Job Application",
+                ats_score: response.result.atsScore,
+                original_resume_text: resumeTextContent,
+                optimized_resume_text: response.result.optimizedResume,
+                job_description: trimmedJobDescription || undefined,
+                insights: response.result.insights,
+              },
+              freshAccessToken
+            );
+            console.log("[Analyzer] Optimization saved successfully");
+          } catch (saveError) {
+            // Non-critical error - log but don't fail the analysis
+            console.error("[Analyzer] Failed to save optimization:", saveError);
+          }
+        }
 
         if (shouldDeleteAfter && response.sessionToken) {
           await deleteAnalyzerSession(response.sessionToken);
@@ -287,7 +390,9 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
       isProUser,
       isLoggedIn,
       sessionToken,
-      shouldDeleteAfter
+      shouldDeleteAfter,
+      creditBalance,
+      loadCreditBalance
     ]
   );
 
@@ -334,12 +439,15 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
           includeLinkedIn={includeLinkedIn}
           includeMetrics={includeMetrics}
           tone={tone}
-          targetRole={targetRole}
+          targetRole={roleValue || targetRole}
           onToggleCoverLetter={() => setIncludeCoverLetter((value) => !value)}
           onToggleLinkedIn={() => setIncludeLinkedIn((value) => !value)}
           onToggleMetrics={() => setIncludeMetrics((value) => !value)}
           onToneChange={setTone}
-          onTargetRoleChange={setTargetRole}
+          onTargetRoleChange={(role) => {
+            setTargetRole(role);
+            setValue("role", role);
+          }}
         />
 
          <div className="rounded-b-xl border border-emerald-200/60 bg-emerald-50/50 p-5 sm:rounded-b-2xl sm:p-6">
@@ -414,7 +522,10 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
                   <svg className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
-                  <span>Analyze Resume</span>
+                  <span>
+                    Analyze Resume
+                    {isLoggedIn && creditBalance !== null && ` (${creditBalance.remaining} ${creditBalance.remaining === 1 ? 'credit' : 'credits'})`}
+                  </span>
                 </>
               )}
             </span>
@@ -522,7 +633,7 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
       ) : null}
 
       {isPreviewOpen && analysisResult?.optimizedResume ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral/70 p-2 backdrop-blur-sm sm:p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-neutral/70 p-2 backdrop-blur-sm sm:p-4">
           <div className="relative flex h-full w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-neutral-white shadow-2xl sm:h-[90vh] sm:rounded-4xl">
             <div className="flex items-center justify-between border-b border-neutral-lightest px-4 py-3 sm:px-6 sm:py-4">
               <div className="min-w-0 flex-1">

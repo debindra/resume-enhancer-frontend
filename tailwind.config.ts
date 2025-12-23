@@ -10,10 +10,10 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: "#007FFF", // Cerulean Blue
-          dark: "#0066CC",
-          light: "#3399FF",
-          muted: "#E6F2FF"
+          DEFAULT: "#2C9ACE", // Brand Blue
+          dark: "#1F6F94",
+          light: "#6ABBE3",
+          muted: "#E3F2FB"
         },
         accent: {
           DEFAULT: "#FF6347", // Vibrant Orange
@@ -22,10 +22,10 @@ const config: Config = {
           muted: "#FFE5E0"
         },
         secondary: {
-          DEFAULT: "#76FF03", // Bright Lime Green
-          dark: "#5ECC02",
-          light: "#94FF33",
-          muted: "#E8FFCC"
+          DEFAULT: "#BEDC37", // Brand Green
+          dark: "#8AA32A",
+          light: "#D8EC7A",
+          muted: "#F3F8CF"
         },
         neutral: {
           DEFAULT: "#333333", // Dark Gray

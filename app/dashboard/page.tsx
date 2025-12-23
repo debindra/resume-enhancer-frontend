@@ -3,14 +3,17 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { getDashboard, type DashboardStats, type RecentOptimization } from '@/services/dashboardClient';
+import SubscriptionStatus from '@/components/SubscriptionStatus';
 
 export default function DashboardPage() {
-  const { user, loading: authLoading } = useAuth();
+  const { user, session, loading: authLoading, signOut } = useAuth();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [recentOptimizations, setRecentOptimizations] = useState<RecentOptimization[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (!authLoading && user) {
@@ -25,31 +28,13 @@ export default function DashboardPage() {
     try {
       setLoading(true);
       setError(null);
-      const data = await getDashboard();
+      const data = await getDashboard(session?.access_token);
       setStats(data.stats);
       setRecentOptimizations(data.recent_optimizations);
     } catch (err: any) {
       console.error('Failed to load dashboard data:', err);
       setError(err.message || 'Failed to load dashboard data');
-      // Fallback to mock data for development
-      setStats({
-        total_optimizations: 12,
-        this_month_optimizations: 5,
-        average_score_improvement: 15.3,
-        best_ats_score: 92,
-        credits_remaining: 12,
-        credits_total: 15,
-        tier: 'plus',
-      });
-      setRecentOptimizations([
-        {
-          id: '1',
-          resume_name: 'Software Engineer Resume',
-          job_title: 'Senior Full Stack Developer',
-          ats_score: 88,
-          created_at: new Date().toISOString(),
-        },
-      ]);
+      // No mock data fallback - show error state instead
     } finally {
       setLoading(false);
     }
@@ -73,7 +58,7 @@ export default function DashboardPage() {
   const tierColors: Record<string, string> = {
     freemium: 'bg-neutral-lightest text-neutral',
     plus: 'bg-blue-100 text-blue-700',
-    pro: 'bg-purple-100 text-purple-700',
+    pro: 'bg-primary-muted text-primary',
     recruiter: 'bg-amber-100 text-amber-700',
   };
 
@@ -81,8 +66,21 @@ export default function DashboardPage() {
     <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral sm:text-4xl">Dashboard</h1>
-        <p className="mt-2 text-neutral-light">Welcome back, {user.email}</p>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-neutral sm:text-4xl">Dashboard</h1>
+            <p className="mt-2 text-neutral-light">Welcome back, {user.email}</p>
+          </div>
+          <button
+            onClick={() => signOut()}
+            className="self-start sm:self-auto inline-flex items-center gap-2 rounded-lg border border-neutral-lightest bg-neutral-white px-4 py-2 text-sm font-medium text-neutral-light transition-colors hover:bg-neutral-lightest hover:text-neutral focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Sign Out
+          </button>
+        </div>
       </div>
 
       {error && (
@@ -129,6 +127,11 @@ export default function DashboardPage() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Subscription Status & Billing Management */}
+      <div className="mb-8">
+        <SubscriptionStatus userId={user.id} />
       </div>
 
       {/* Quick Stats */}
@@ -216,7 +219,19 @@ export default function DashboardPage() {
                         {new Date(opt.created_at).toLocaleDateString()}
                       </td>
                       <td className="py-3 text-right sm:py-4">
-                        <button className="text-xs font-semibold text-primary hover:text-primary-dark sm:text-sm">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            router.push(
+                              `/dashboard/optimizations/${opt.id}` +
+                                `?resume_name=${encodeURIComponent(opt.resume_name)}` +
+                                `&job_title=${encodeURIComponent(opt.job_title)}` +
+                                `&ats_score=${encodeURIComponent(String(opt.ats_score))}` +
+                                `&created_at=${encodeURIComponent(opt.created_at)}`
+                            )
+                          }
+                          className="text-xs font-semibold text-primary hover:text-primary-dark sm:text-sm"
+                        >
                           View
                         </button>
                       </td>

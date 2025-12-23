@@ -8,7 +8,7 @@ interface BlogImageProps {
 export default function BlogImage({ src, alt, caption, className = "" }: BlogImageProps) {
   return (
     <figure className={`my-8 ${className}`}>
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+      <div className="overflow-hidden rounded-xl border border-neutral-lightest bg-neutral-lightest">
         <img
           src={src}
           alt={alt}
@@ -17,7 +17,7 @@ export default function BlogImage({ src, alt, caption, className = "" }: BlogIma
         />
       </div>
       {caption && (
-        <figcaption className="mt-3 text-center text-sm italic text-slate-500">
+        <figcaption className="mt-3 text-center text-sm italic text-neutral-lighter">
           {caption}
         </figcaption>
       )}

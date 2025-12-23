@@ -48,6 +48,77 @@ body {
   opacity: 0;
 }
 
+/* Animation delay utilities */
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-700 { animation-delay: 700ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+.animation-delay-900 { animation-delay: 900ms; }
+.animation-delay-1000 { animation-delay: 1000ms; }
+
+/* Animation fill modes */
+.animate-fill-forwards { animation-fill-mode: forwards; }
+.animate-fill-backwards { animation-fill-mode: backwards; }
+.animate-fill-both { animation-fill-mode: both; }
+
+/* Animation timing functions */
+.animate-ease { animation-timing-function: ease; }
+.animate-ease-in { animation-timing-function: ease-in; }
+.animate-ease-out { animation-timing-function: ease-out; }
+.animate-ease-in-out { animation-timing-function: ease-in-out; }
+.animate-linear { animation-timing-function: linear; }
+
+/* Scroll indicator pulse animation */
+@keyframes scrollIndicatorPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(5px);
+  }
+}
+
+.animate-scroll-indicator {
+  animation: scrollIndicatorPulse 2s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-slide-in-left,
+  .animate-float,
+  .animate-bounce-slow,
+  .animate-gradient-shift,
+  .animate-shimmer,
+  .animate-button-glow,
+  .animate-icon-pulse,
+  .animate-pulse-slow,
+  .animate-scroll-indicator {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .animation-delay-100,
+  .animation-delay-200,
+  .animation-delay-300,
+  .animation-delay-400,
+  .animation-delay-500,
+  .animation-delay-600,
+  .animation-delay-700,
+  .animation-delay-800,
+  .animation-delay-900,
+  .animation-delay-1000 {
+    animation-delay: 0ms !important;
+  }
+}
+
 /* Modal animations */
 @keyframes fadeIn {
   from {
@@ -75,5 +146,22 @@ body {
 
 .animate-scale-in {
   animation: scaleIn 0.2s ease-out;
+}
+
+/* Section styling */
+.section-divider {
+  @apply border-t border-neutral-lightest/50;
+}
+
+.section-padding {
+  @apply py-12 sm:py-16;
+}
+
+.container-padding {
+  @apply px-4 sm:px-6;
+}
+
+.max-content-width {
+  @apply max-w-6xl mx-auto;
 }
 

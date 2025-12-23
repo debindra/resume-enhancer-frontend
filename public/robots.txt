@@ -1,22 +1,22 @@
 # robots.txt for CareerLift AI
+# https://resume-enhancer.com/robots.txt
+
 User-agent: *
 Allow: /
 
 # Disallow admin and API endpoints
 Disallow: /api/
 Disallow: /admin/
+Disallow: /_next/
+Disallow: /dashboard/api/
 
-# Allow important pages
-Allow: /
-Allow: /blog
-Allow: /documentation
-Allow: /resume/upload
-Allow: /optimize
-Allow: /ats
+# Allow important resources
+Allow: /api/public/
+Allow: /_next/static/
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1
 
 # Sitemap location
 Sitemap: https://resume-enhancer.com/sitemap.xml
-
-# Crawl delay (optional, adjust as needed)
-Crawl-delay: 1
 

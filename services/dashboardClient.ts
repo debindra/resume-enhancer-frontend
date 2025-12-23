@@ -1,7 +1,12 @@
-import axios from 'axios';
-import { supabase } from '@/lib/supabase/client';
+// Use Next.js API routes instead of FastAPI backend
+// Next.js API routes handle authentication via cookies automatically
+const API_BASE_URL = '/api';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+interface ErrorResponse {
+  error?: string;
+  message?: string;
+  [key: string]: unknown;
+}
 
 export interface DashboardStats {
   total_optimizations: number;
@@ -26,34 +31,123 @@ export interface DashboardData {
   recent_optimizations: RecentOptimization[];
 }
 
-async function getAuthHeaders() {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session?.access_token) {
-    throw new Error('Not authenticated');
+async function handleResponse<T>(response: Response, url: string): Promise<T> {
+  if (!response.ok) {
+    const status = response.status;
+    const statusText = response.statusText;
+    let errorMessage = 'Unable to fetch dashboard data.';
+    let errorDetails: ErrorResponse | null = null;
+
+    try {
+      const errorText = await response.text();
+      if (errorText) {
+        try {
+          const errorJson = JSON.parse(errorText);
+          errorDetails = errorJson;
+          if (errorJson?.error) {
+            errorMessage = typeof errorJson.error === 'string' ? errorJson.error : errorJson.error.message || 'Unknown error';
+          } else if (errorJson?.message) {
+            errorMessage = errorJson.message;
+          } else {
+            errorMessage = errorText;
+          }
+        } catch {
+          errorMessage = errorText || `Server returned ${status} ${statusText}`;
+        }
+      } else {
+        errorMessage = `Server returned ${status} ${statusText}`;
+      }
+    } catch (readError) {
+      console.error('[Dashboard] Failed to read error response:', {
+        error: readError,
+        status,
+        statusText,
+        url,
+      });
+      errorMessage = `Unable to fetch dashboard data. Server returned ${status} ${statusText}.`;
+    }
+
+    const error = new Error(errorMessage) as Error & { status?: number; statusText?: string; details?: ErrorResponse | null };
+    error.status = status;
+    error.statusText = statusText;
+    error.details = errorDetails;
+    throw error;
   }
-  return {
-    Authorization: `Bearer ${session.access_token}`,
-  };
+
+  try {
+    return await response.json();
+  } catch (parseError) {
+    console.error('[Dashboard] Failed to parse response as JSON:', {
+      error: parseError,
+      url,
+      status: response.status,
+    });
+    throw new Error('Invalid response format from server');
+  }
 }
 
 export async function getDashboardStats(): Promise<DashboardStats> {
-  const headers = await getAuthHeaders();
-  const response = await axios.get(`${API_BASE_URL}/dashboard/stats`, { headers });
-  return response.data;
+  const url = `${API_BASE_URL}/dashboard/stats`;
+  let response: Response;
+
+  try {
+    response = await fetch(url, {
+      credentials: 'include', // Ensure cookies are sent
+    });
+  } catch (networkError) {
+    console.error('[Dashboard] Network error during fetch:', {
+      error: networkError,
+      url,
+      message: networkError instanceof Error ? networkError.message : String(networkError),
+    });
+    throw new Error('Network error: Unable to connect to the server');
+  }
+
+  return handleResponse<DashboardStats>(response, url);
 }
 
 export async function getRecentOptimizations(limit = 10): Promise<RecentOptimization[]> {
-  const headers = await getAuthHeaders();
-  const response = await axios.get(`${API_BASE_URL}/dashboard/optimizations`, {
-    headers,
-    params: { limit },
-  });
-  return response.data;
+  const url = `${API_BASE_URL}/dashboard/optimizations?limit=${limit}`;
+  let response: Response;
+
+  try {
+    response = await fetch(url, {
+      credentials: 'include', // Ensure cookies are sent
+    });
+  } catch (networkError) {
+    console.error('[Dashboard] Network error during fetch:', {
+      error: networkError,
+      url,
+      message: networkError instanceof Error ? networkError.message : String(networkError),
+    });
+    throw new Error('Network error: Unable to connect to the server');
+  }
+
+  return handleResponse<RecentOptimization[]>(response, url);
 }
 
-export async function getDashboard(): Promise<DashboardData> {
-  const headers = await getAuthHeaders();
-  const response = await axios.get(`${API_BASE_URL}/dashboard`, { headers });
-  return response.data;
+export async function getDashboard(accessToken?: string): Promise<DashboardData> {
+  const url = `${API_BASE_URL}/dashboard`;
+  let response: Response;
+
+  try {
+    response = await fetch(url, {
+      credentials: 'include', // Ensure cookies are sent
+      headers: accessToken
+        ? {
+            Authorization: `Bearer ${accessToken}`,
+          }
+        : undefined,
+    });
+  } catch (networkError) {
+    console.error('[Dashboard] Network error during fetch:', {
+      error: networkError,
+      url,
+      message: networkError instanceof Error ? networkError.message : String(networkError),
+    });
+    throw new Error('Network error: Unable to connect to the server');
+  }
+
+  return handleResponse<DashboardData>(response, url);
 }
 
