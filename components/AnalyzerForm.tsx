@@ -46,12 +46,17 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
   const [includeMetrics, setIncludeMetrics] = useState(true);
   const [tone, setTone] = useState("professional");
   const [targetRole, setTargetRole] = useState("");
-  const [shouldDeleteAfter, setShouldDeleteAfter] = useState(true);
+  const shouldDeleteAfter = true; // Auto-delete enabled by default
   const [privacyAcknowledged, setPrivacyAcknowledged] = useState(false);
   const [creditBalance, setCreditBalance] = useState<{ remaining: number; total: number } | null>(null);
 
   const resumeTextValue = watch("resumeText");
   const roleValue = watch("role");
+  const jobDescriptionValue = watch("jobDescription");
+  
+  // Check form completion for step indicator
+  const hasResume = Boolean(resumeTextValue?.trim() || uploadedResumeText?.trim());
+  const hasJobDesc = Boolean(jobDescriptionValue?.trim());
 
   const handleClearResume = useCallback(() => {
     resetField("resumeText");
@@ -396,26 +401,53 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
     ]
   );
 
-  const handleDataDeletion = useCallback(async () => {
-    if (!sessionToken) {
-      setStatus("No active session data to delete.");
-      return;
-    }
-    try {
-      await deleteAnalyzerSession(sessionToken);
-      setSessionToken(undefined);
-      setStatus("We removed your session data from our servers.");
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Unable to delete session data right now.";
-      setApiError(message);
-    }
-  }, [sessionToken]);
 
   return (
       <div className="mx-auto w-full max-w-6xl">
-        <div className="rounded-3xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-6 sm:rounded-[2rem] sm:p-8">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 sm:space-y-4">
-        <div className="grid gap-4 sm:gap-5 lg:grid-cols-2">
+        <div className="rounded-2xl border border-neutral-lightest/50 bg-white p-4 sm:p-6 lg:p-8">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+          {/* Minimal Step Indicator */}
+          <div className="mb-4 flex items-center justify-center gap-2 sm:mb-6 sm:gap-3">
+            {[
+              { num: 1, label: "Resume", complete: hasResume },
+              { num: 2, label: "Job", complete: hasJobDesc },
+              { num: 3, label: "Review", complete: privacyAcknowledged }
+            ].map((step, idx) => (
+              <div key={step.num} className="flex items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className={`h-6 w-6 rounded-full border transition-all sm:h-7 sm:w-7 ${
+                    step.complete ? 'border-primary bg-primary text-white' : 'border-neutral-300 bg-white'
+                  }`}>
+                    <span className="flex h-full w-full items-center justify-center text-[10px] font-medium sm:text-xs">{step.num}</span>
+                  </div>
+                  <span className={`hidden text-xs sm:block ${step.complete ? 'text-neutral' : 'text-neutral-400'}`}>
+                    {step.label}
+                  </span>
+                </div>
+                {idx < 2 && (
+                  <div className={`h-px w-6 transition-all sm:w-8 md:w-12 ${
+                    step.complete ? 'bg-primary' : 'bg-neutral-200'
+                  }`} />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Subtle Credit Balance - Only show if low */}
+          {isLoggedIn && creditBalance !== null && creditBalance.remaining <= 3 && (
+            <div className="mb-4 flex flex-col items-center justify-between gap-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2.5 sm:flex-row sm:gap-0 sm:px-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-neutral sm:text-sm">Credits: {creditBalance.remaining}</span>
+              </div>
+              {creditBalance.remaining === 0 && (
+                <a href="/pricing" className="text-xs font-medium text-primary hover:underline">
+                  Upgrade
+                </a>
+              )}
+            </div>
+          )}
+
+        <div className="grid gap-4 sm:gap-6 lg:grid-cols-2 lg:items-stretch">
           <ResumeInputPanel
             register={register}
             resumeFileName={resumeFileName}
@@ -423,6 +455,7 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
             onClearUpload={handleClearResume}
             sampleResumes={sampleResumes}
             onLoadDemo={handleResumeSample}
+            resumeTextValue={resumeTextValue || uploadedResumeText || ""}
           />
           <JobContextPanel
             mode={mode}
@@ -431,6 +464,8 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
             setValue={setValue}
             onLoadDemo={handleLoadDemo}
             demoPayloads={demoPayloads}
+            jobDescriptionValue={jobDescriptionValue || ""}
+            roleValue={roleValue || ""}
           />
         </div>
 
@@ -450,88 +485,38 @@ export default function AnalyzerForm({ isProUser = false, isLoggedIn = false }: 
           }}
         />
 
-         <div className="rounded-b-xl border border-emerald-200/60 bg-emerald-50/50 p-5 sm:rounded-b-2xl sm:p-6">
-          <div className="grid gap-5 md:grid-cols-[1fr_auto] md:items-start">
-            <div className="space-y-3 sm:space-y-4">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-md sm:h-10 sm:w-10 sm:rounded-xl">
-                  <svg className="h-4 w-4 sm:h-5 sm:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <strong className="text-base font-bold text-neutral sm:text-lg">Privacy & Security</strong>
-              </div>
-              <p className="text-xs leading-relaxed text-neutral-light sm:text-sm">
-                We process your resume and job description through our secure API proxy. Files are encrypted in transit and purged after
-                analysis when you toggle auto-deletion. We never share your content with third parties.
-              </p>
-              <label className="flex items-start gap-2.5 rounded-xl border-2 border-secondary-muted bg-neutral-white p-3 text-xs text-neutral-light shadow-sm transition hover:border-secondary hover:bg-secondary-muted/30 sm:gap-3 sm:rounded-2xl sm:p-4 sm:text-sm">
-                <input
-                  type="checkbox"
-                  checked={privacyAcknowledged}
-                  onChange={(event) => setPrivacyAcknowledged(event.target.checked)}
-                  className="mt-0.5 h-4 w-4 shrink-0 rounded border-secondary text-secondary-dark focus:ring-2 focus:ring-secondary focus:ring-offset-2 sm:h-5 sm:w-5"
-                />
-                <span className="font-medium">I understand the privacy policy and consent to processing for this analysis.</span>
-              </label>
-            </div>
-            <div className="flex flex-row items-center gap-3 md:flex-col md:items-end md:gap-4">
-              <label className="flex cursor-pointer items-center gap-3 rounded-xl border-2 border-neutral-lightest bg-neutral-white px-4 py-3 shadow-sm transition hover:border-primary hover:shadow-md sm:gap-4 sm:rounded-2xl sm:px-5 sm:py-4 md:flex-col md:items-end">
-                <span className="text-[10px] font-bold uppercase tracking-wide text-neutral-light sm:text-xs">Auto-delete after run</span>
-                <input
-                  type="checkbox"
-                  checked={shouldDeleteAfter}
-                  onChange={(event) => setShouldDeleteAfter(event.target.checked)}
-                  className="h-4 w-4 rounded border-neutral-lighter text-primary focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:h-5 sm:w-5"
-                />
-              </label>
-              <button
-                type="button"
-                onClick={handleDataDeletion}
-                className="whitespace-nowrap rounded-full border-2 border-error-muted bg-neutral-white px-4 py-2 text-[10px] font-bold text-error shadow-sm transition-all hover:border-error hover:bg-error-muted hover:shadow-md sm:px-5 sm:py-2.5 sm:text-xs md:w-full"
-              >
-                Delete session data now
-              </button>
-            </div>
-          </div>
+        {/* Minimal Privacy Section */}
+        <div className="rounded-lg border border-neutral-200 bg-neutral-50/50 p-3 sm:p-4">
+          <label className="flex cursor-pointer items-start gap-2 sm:gap-3">
+            <input
+              type="checkbox"
+              checked={privacyAcknowledged}
+              onChange={(event) => setPrivacyAcknowledged(event.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 rounded border-neutral-300 text-primary focus:ring-2 focus:ring-primary"
+              required
+            />
+            <span className="text-xs text-neutral-600 sm:text-sm">
+              I agree to the <a href="/privacy" className="text-primary underline" target="_blank" rel="noopener noreferrer">privacy policy</a>
+            </span>
+          </label>
         </div>
 
-        <div className="flex flex-col items-center gap-5 sm:gap-6 pb-4 sm:pb-6">
+        {/* Submit Button */}
+        <div className="space-y-2 sm:space-y-3">
           <button
             type="submit"
-            disabled={isSubmitting}
-            className="group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-gradient-to-r from-accent to-accent-light px-6 py-3 text-sm font-semibold text-neutral-white shadow-lg animate-pulse transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-accent/30 hover:animate-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:animate-none disabled:hover:scale-100 sm:px-10 sm:py-4 sm:text-lg"
+            disabled={isSubmitting || !privacyAcknowledged || !hasResume || !hasJobDesc}
+            className="w-full rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-accent-dark hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed sm:px-6 sm:py-3.5 sm:text-base"
           >
-            {/* Subtle animated border */}
-            <span className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-accent via-primary to-accent bg-[length:200%_100%] animate-gradient-shift opacity-75 -z-10" />
-            
-            {/* Clean shimmer on hover */}
-            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
-            
-            {/* Content */}
-            <span className="relative flex items-center gap-3">
-              {isSubmitting ? (
-                <>
-                  <span className="inline-flex h-5 w-5 items-center justify-center sm:h-6 sm:w-6">
-                    <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent sm:h-6 sm:w-6" />
-                  </span>
-                  <span>Analyzing Resume…</span>
-                </>
-              ) : (
-                <>
-                  <svg className="h-5 w-5 transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                  <span>
-                    Analyze Resume
-                    {isLoggedIn && creditBalance !== null && ` (${creditBalance.remaining} ${creditBalance.remaining === 1 ? 'credit' : 'credits'})`}
-                  </span>
-                </>
-              )}
-            </span>
+            {isSubmitting ? "Analyzing..." : "Analyze Resume"}
           </button>
+          {(!hasResume || !hasJobDesc || !privacyAcknowledged) && !isSubmitting && (
+            <p className="text-center text-xs text-neutral-400">
+              Complete all fields to continue
+            </p>
+          )}
           {isSubmitting ? (
-            <div className="w-full animate-fade-in-up rounded-3xl border-2 border-primary bg-gradient-to-br from-primary-muted via-neutral-white to-secondary-muted p-6 text-left shadow-2xl animate-glow sm:p-8">
+            <div className="w-full rounded-3xl border-2 border-primary bg-gradient-to-br from-primary-muted via-neutral-white to-secondary-muted p-6 text-left shadow-2xl sm:p-8">
               <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between sm:gap-6">
               <div className="flex items-center gap-4">
                 <span className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary shadow-lg animate-float">

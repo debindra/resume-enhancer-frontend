@@ -1,6 +1,6 @@
 import HomeAnalyzerSection from "@/components/HomeAnalyzerSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import TestimonialAvatar from "@/components/TestimonialAvatar";
+import { HowItWorksDemo } from "@/components/HowItWorksDemo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -72,10 +72,21 @@ export default function Home() {
               AI-optimized resumes that pass ATS filters.<br />
               <span className="text-lg sm:text-xl">Results in 2 minutes. No credit card required.</span>
             </p>
+            {/* <div className="mx-auto mb-8 max-w-2xl animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
+              <div className="inline-flex items-center gap-2 rounded-full bg-neutral-lightest/50 px-4 py-2 text-sm text-neutral-light">
+                <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>
+                  <strong className="text-neutral">ATS</strong> (Applicant Tracking System) is software used by employers to filter resumes. 
+                  A higher ATS score means your resume is more likely to pass automated screening and reach human recruiters.
+                </span>
+              </div>
+            </div> */}
             <div className="mb-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <a
                 href="#resume-analyzer"
-                className="group relative rounded-full bg-primary px-10 py-4 text-lg font-medium text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20"
+                className="group relative rounded-full bg-accent px-10 py-4 text-lg font-medium text-white shadow-lg shadow-accent/30 transition-all duration-300 hover:bg-accent-dark hover:shadow-xl hover:shadow-accent/40 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-accent/20"
                 aria-label="Start free resume analysis"
               >
                 Start Free Analysis
@@ -109,8 +120,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="border-t border-neutral-lightest/50"></div>
+
+      {/* Why Optimize Section - Problem/Solution */}
+      <section className="relative bg-gradient-to-b from-neutral-lightest/30 via-neutral-lightest/20 to-neutral-white py-16 sm:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="mb-6 text-3xl font-light tracking-tight text-neutral sm:text-4xl md:text-5xl">
+              Why 75% of resumes never reach a human
+            </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-lg text-neutral-light sm:text-xl">
+              Most companies use ATS software that automatically filters resumes before recruiters see them. 
+              If your resume doesn't match the job description's keywords and format, it gets rejected—even if you're qualified.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-3">
+            <div className="group relative rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 sm:p-8 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg" title="Based on industry research showing that most resumes are filtered out by ATS systems before reaching human recruiters">
+              <div className="mb-4 flex justify-center">
+                <div className="rounded-full bg-primary/10 p-3 group-hover:bg-primary/20 transition-colors">
+                  <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="mb-3 text-5xl font-light text-primary">75%</div>
+              <p className="text-sm text-neutral-light sm:text-base">of resumes are rejected by ATS before human review</p>
+            </div>
+            <div className="group relative rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 sm:p-8 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg" title="Industry average from recruiter surveys on time spent reviewing individual resumes">
+              <div className="mb-4 flex justify-center">
+                <div className="rounded-full bg-primary/10 p-3 group-hover:bg-primary/20 transition-colors">
+                  <svg className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="mb-3 text-5xl font-light text-primary">6 seconds</div>
+              <p className="text-sm text-neutral-light sm:text-base">average time a recruiter spends on each resume</p>
+            </div>
+            <div className="group relative rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 sm:p-8 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg" title="Users report significantly more interview callbacks after optimizing their resumes with ATS-focused improvements">
+              <div className="mb-4 flex justify-center">
+                <div className="rounded-full bg-secondary-muted p-3 group-hover:bg-secondary/20 transition-colors">
+                  <svg className="h-8 w-8 text-secondary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.94" />
+                  </svg>
+                </div>
+              </div>
+              <div className="mb-3 text-5xl font-light text-primary">3x</div>
+              <p className="text-sm text-neutral-light sm:text-base">more interviews with an optimized resume</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section Divider */}
+      <div className="border-t border-neutral-lightest/50"></div>
+
       {/* Resume Analyzer Section */}
-      <section id="resume-analyzer" className="mb-20 sm:mb-24 md:mb-32 pt-12 sm:pt-16 md:pt-20">
+      <section id="resume-analyzer" className="relative bg-gradient-to-b from-neutral-white to-neutral-lightest/20 py-12 sm:py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
@@ -121,12 +188,56 @@ export default function Home() {
                 Get started with your resume analysis. Your data stays private until you confirm submission.
               </p>
             </div>
+            
+            {/* What You'll Get Preview */}
+            {/* <div className="mb-12 mx-auto max-w-3xl rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-6 sm:p-8">
+              <h3 className="mb-6 text-center text-xl font-medium text-neutral sm:text-2xl">What you'll get:</h3>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="flex items-start gap-3">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-neutral">Your ATS score</p>
+                    <p className="text-sm text-neutral-light">Detailed breakdown showing how well your resume matches the job</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-neutral">AI-optimized resume</p>
+                    <p className="text-sm text-neutral-light">Improved version with highlighted changes and explanations</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-neutral">Missing keywords identified</p>
+                    <p className="text-sm text-neutral-light">See exactly which keywords from the job posting are missing</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <p className="font-medium text-neutral">Actionable suggestions</p>
+                    <p className="text-sm text-neutral-light">Specific improvements to increase your interview chances</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+             */}
             <HomeAnalyzerSection />
           </div>
         </section>
 
         {/* Trusted Section - Refined */}
-        <section className="mb-20 sm:mb-24 md:mb-32">
+        {/* <section className="mb-20 sm:mb-24 md:mb-32">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
               <div>
@@ -230,11 +341,14 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        {/* How It Works Section - Simplified & Elegant */}
-        <section id="how-it-works" className="mb-20 sm:mb-24 md:mb-32">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      {/* Section Divider */}
+      <div className="border-t border-neutral-lightest/50"></div>
+
+        {/* How It Works Section - Animated Demo */}
+        <section id="how-it-works" className="relative bg-gradient-to-b from-neutral-lightest/20 to-neutral-white py-12 sm:py-16 md:py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 sm:mb-20">
               <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
                 Simple. Powerful.<br />
@@ -244,53 +358,13 @@ export default function Home() {
                 Three steps to a resume that gets interviews
               </p>
             </div>
-            <div className="grid gap-12 md:grid-cols-3 md:gap-8 lg:gap-12">
-              {[
-                {
-                  step: "01",
-                  title: "Upload",
-                  description: "Upload your resume and paste the job description",
-                  icon: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                },
-                {
-                  step: "02",
-                  title: "Analyze",
-                  description: "AI analyzes keyword gaps and calculates your ATS score",
-                  icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                },
-                {
-                  step: "03",
-                  title: "Optimize",
-                  description: "Get an optimized resume with AI-powered improvements",
-                  icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                }
-              ].map((item, index) => (
-                <div key={item.step} className="group text-center animate-fade-in-up" style={{ animationDelay: `${index * 0.15}s` }}>
-                  <div className="mb-6 flex justify-center">
-                    <div className="relative">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-2xl font-light text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
-                        {item.step}
-                      </div>
-                      <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                    </div>
-                  </div>
-                  <div className="mb-4 flex justify-center">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-lightest/50 text-primary transition-colors duration-300 group-hover:bg-primary/10">
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
-                      </svg>
-                    </div>
-                  </div>
-                  <h3 className="mb-3 text-2xl font-medium text-neutral">{item.title}</h3>
-                  <p className="text-neutral-light leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
+
+            <HowItWorksDemo />
           </div>
         </section>
 
         {/* Features Section - Clean & Minimal */}
-        <section id="features" className="mb-20 sm:mb-24 md:mb-32">
+        {/* <section id="features" className="mb-20 sm:mb-24 md:mb-32">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
@@ -306,26 +380,31 @@ export default function Home() {
                 {
                   title: "AI-Powered Optimization",
                   description: "LLM-powered resume optimization tailored to specific job descriptions.",
+                  benefit: "Get resume improvements that match exactly what employers are looking for",
                   icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
                 },
                 {
                   title: "ATS Keyword Detection",
-                  description: "Identify missing keywords with exact locations compared to job postings.",
+                  description: "See exactly which keywords from the job posting are missing in your resume, and where to add them for maximum impact.",
+                  benefit: "Increase your ATS score by 20-30% by adding the right keywords",
                   icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
                 },
                 {
                   title: "Real-Time ATS Scoring",
                   description: "Instant ATS score feedback with keyword matching and job match analysis.",
+                  benefit: "Know exactly how your resume performs before you submit it",
                   icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                 },
                 {
                   title: "Cover Letter Optimization",
                   description: "AI-powered cover letter optimization to match your resume and job requirements.",
+                  benefit: "Create compelling cover letters that complement your optimized resume",
                   icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 },
                 {
                   title: "Export & Download",
                   description: "Export optimized resumes and cover letters as PDF or DOC format.",
+                  benefit: "Download professional documents ready to submit to any job application",
                   icon: "M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 }
               ].map((feature, index) => (
@@ -340,182 +419,99 @@ export default function Home() {
                     </svg>
                   </div>
                   <h3 className="mb-3 text-xl font-medium text-neutral">{feature.title}</h3>
-                  <p className="text-neutral-light leading-relaxed">{feature.description}</p>
+                  <p className="mb-2 text-neutral-light leading-relaxed">{feature.description}</p>
+                  {feature.benefit && (
+                    <p className="text-sm font-medium text-primary">{feature.benefit}</p>
+                  )}
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
-          {/* Pricing Section - Elegant & Minimal */}
-        <section id="pricing" className="mb-20 sm:mb-24 md:mb-32">
+      {/* Section Divider */}
+      <div className="border-t border-neutral-lightest/50"></div>
+
+          {/* Pricing Section - Simplified */}
+        <section id="pricing" className="relative bg-gradient-to-b from-primary/5 via-neutral-white to-neutral-lightest/30 py-16 sm:py-20 md:py-24">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-16 text-center">
+            <div className="mb-12 text-center">
               <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
                 Simple pricing.<br />
                 <span className="text-primary">All features included.</span>
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-light sm:text-xl">
-                Same features, different credit allocation
+                More credits = more optimizations
               </p>
             </div>
             
-            <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto mb-16">
+            <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto mb-8">
               {/* Freemium Tier */}
-              <div className="group relative rounded-3xl border border-neutral-lightest/50 bg-neutral-white p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-xl">
-                <div className="mb-8">
+              <div className="group relative rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-xl">
+                <div className="mb-6">
                   <h3 className="mb-2 text-2xl font-medium text-neutral">Freemium</h3>
                   <div className="mb-4 flex items-baseline gap-2">
                     <span className="text-6xl font-light text-neutral">$0</span>
                     <span className="text-neutral-lighter">/month</span>
                   </div>
-                  <p className="text-neutral-light">Perfect for trying the product</p>
                 </div>
                 
-                <div className="mb-10 space-y-5">
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral">3 credits per month</p>
-                      <p className="text-sm text-neutral-lighter">Enough for 3 optimizations</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral">All features included</p>
-                      <p className="text-sm text-neutral-lighter">Resume, cover letters, LinkedIn, ATS scan</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral">Resume history & versioning</p>
-                      <p className="text-sm text-neutral-lighter">Track all your optimizations</p>
-                    </div>
-                  </div>
+                <div className="mb-8 space-y-3">
+                  <p className="text-sm text-neutral-600">3 credits per month</p>
+                  <p className="text-sm text-neutral-600">All features included</p>
                 </div>
                 
                 <a
                   href="#resume-analyzer"
-                  className="block w-full rounded-full border-2 border-neutral-lightest bg-neutral-white py-3.5 text-center font-medium text-neutral transition-all duration-300 hover:border-neutral-light hover:shadow-md"
+                  className="block w-full rounded-lg border-2 border-neutral-lightest bg-neutral-white py-2.5 text-center font-medium text-neutral transition-all duration-300 hover:border-neutral-light hover:shadow-md"
                 >
                   Start Free
                 </a>
               </div>
 
               {/* Pro Tier */}
-              <div className="group relative rounded-3xl border-2 border-primary bg-neutral-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+              <div className="group relative rounded-2xl border-2 border-primary bg-neutral-white p-6 shadow-lg transition-all duration-300 hover:shadow-2xl">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-white">
-                    Most Popular
+                    Popular
                   </span>
                 </div>
                 
-                <div className="mb-8">
+                <div className="mb-6">
                   <h3 className="mb-2 text-2xl font-medium text-neutral">Pro</h3>
                   <div className="mb-2 flex items-baseline gap-2">
                     <span className="text-6xl font-light text-neutral">$29</span>
                     <span className="text-neutral-lighter">/month</span>
                   </div>
                   <p className="mb-1 text-sm font-medium text-primary">or $24/month billed annually</p>
-                  <p className="text-neutral-light">Best for active job seekers</p>
                 </div>
                 
-                <div className="mb-10 space-y-5">
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral">30 credits per month</p>
-                      <p className="text-sm text-neutral-lighter">10x more than freemium</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral">All features included</p>
-                      <p className="text-sm text-neutral-lighter">Same features, more credits</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <div>
-                      <p className="font-medium text-neutral">Priority support</p>
-                      <p className="text-sm text-neutral-lighter">Faster response times</p>
-                    </div>
-                  </div>
+                <div className="mb-8 space-y-3">
+                  <p className="text-sm text-neutral-600">30 credits per month</p>
+                  <p className="text-sm text-neutral-600">All features + Priority support</p>
                 </div>
                 
                 <a
                   href="/pricing"
-                  className="block w-full rounded-full bg-primary py-3.5 text-center font-medium text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/40"
+                  className="block w-full rounded-lg bg-accent py-2.5 text-center font-medium text-white shadow-lg shadow-accent/30 transition-all duration-300 hover:bg-accent-dark hover:shadow-xl hover:shadow-accent/40"
                 >
                   Upgrade to Pro
                 </a>
               </div>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="mb-12 flex flex-wrap items-center justify-center gap-8 text-sm text-neutral-lighter">
-              <span className="flex items-center gap-2">
-                <svg className="h-4 w-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                Secure payment via Stripe
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                Cancel anytime
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                No hidden fees
-              </span>
-            </div>
-
-            {/* Credit Costs Table - Simplified */}
-            <div className="mx-auto max-w-2xl">
-              <div className="rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-8">
-                <h3 className="mb-6 text-center text-xl font-medium text-neutral">Credit Costs</h3>
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {[
-                    { name: "Resume Optimization", cost: "1 credit" },
-                    { name: "Cover Letter", cost: "1 credit" },
-                    { name: "LinkedIn Enhancement", cost: "1 credit" },
-                    { name: "ATS Deep Scan", cost: "1 credit" }
-                  ].map((item) => (
-                    <div key={item.name} className="flex items-center justify-between rounded-lg border border-neutral-lightest/30 bg-neutral-lightest/30 p-4">
-                      <span className="text-neutral">{item.name}</span>
-                      <span className="font-medium text-primary">{item.cost}</span>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-6 text-center text-sm text-neutral-lighter">
-                  All features cost the same. The only difference is how many credits you get each month.
-                </p>
-              </div>
-            </div>
+            {/* Simple Trust Note */}
+            <p className="text-center text-sm text-neutral-400">
+              Secure payments • Cancel anytime • No hidden fees
+            </p>
           </div>
         </section>
 
+      {/* Section Divider */}
+      <div className="border-t border-neutral-lightest/50"></div>
+
         {/* FAQ Section - Clean & Minimal */}
-        <section id="faq" className="mb-20 sm:mb-24 md:mb-32">
+        <section id="faq" className="relative bg-gradient-to-b from-neutral-lightest/30 to-neutral-white py-12 sm:py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
@@ -525,6 +521,22 @@ export default function Home() {
             </div>
             <div className="space-y-3">
             {[
+              {
+                question: "What is ATS and why does it matter?",
+                answer: "ATS (Applicant Tracking System) is software used by most employers to automatically filter resumes before recruiters see them. If your resume doesn't match the job description's keywords and format, it gets rejected—even if you're qualified. Our tool helps you optimize your resume to pass these filters and reach human recruiters."
+              },
+              {
+                question: "Do I need to upload a job description?",
+                answer: "While it's optional, we highly recommend it. Providing a job description allows us to tailor optimizations specifically to that role, identify missing keywords, and significantly improve your ATS score. Without it, we can still optimize your resume, but the improvements will be more general."
+              },
+              {
+                question: "What makes this different from other resume builders?",
+                answer: "Unlike generic resume builders, CareerLift AI analyzes your resume against specific job descriptions using AI. We don't just format your resume—we optimize it with the exact keywords and phrasing that employers are looking for, giving you a real ATS score so you know how likely you are to pass automated screening."
+              },
+              {
+                question: "Can I use this for multiple job applications?",
+                answer: "Absolutely! Each optimization is tailored to a specific job description. You can optimize your resume for as many different roles as you want. Many users create separate optimized versions for different types of positions (e.g., product vs. strategy roles) and switch between them depending on the application."
+              },
               {
                 question: "Is my data secure?",
                 answer: "Yes, your resume data is processed securely and is not stored without your explicit consent. We use industry-standard encryption and privacy practices."
@@ -538,12 +550,20 @@ export default function Home() {
                 answer: "Yes, you can review all AI-suggested changes before accepting them. The optimized resume is fully editable, and you maintain full control over the final version."
               },
               {
+                question: "What if I don't like the AI suggestions?",
+                answer: "You have complete control. You can review all changes before accepting them, edit any suggestions, or reject specific improvements. The AI provides recommendations, but you decide what to keep. You can also regenerate optimizations with different settings if needed."
+              },
+              {
                 question: "What file formats are supported?",
                 answer: "We support PDF, DOCX, and TXT file uploads. You can also paste your resume text directly into the analyzer."
               },
               {
                 question: "Do I need to create an account?",
                 answer: "No account is required to get started. You can try the resume analyzer immediately. Sign up later if you want to save your resume history and access additional features."
+              },
+              {
+                question: "How do credits work?",
+                answer: "One credit equals one complete optimization. Each optimization includes resume analysis, AI improvements, ATS scoring, and export functionality. All features cost 1 credit: Resume Optimization, Cover Letter, LinkedIn Enhancement, and ATS Deep Scan. The Freemium plan includes 3 credits per month, while the Pro plan includes 30 credits per month. All features are included in every plan—the only difference is how many credits you get each month."
               },
               {
                 question: "How long does the analysis take?",
@@ -575,7 +595,7 @@ export default function Home() {
         </section>
 
         {/* Final CTA Section - Impactful */}
-        <section className="mb-20 sm:mb-24 md:mb-32">
+        {/* <section className="mb-20 sm:mb-24 md:mb-32">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary-dark px-8 py-16 text-center sm:px-12 sm:py-20 md:py-24">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary-dark/90" />
@@ -623,10 +643,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Additional Resources Section - Refined */}
-        <section className="mb-20 sm:mb-24 md:mb-32">
+        {/* <section className="mb-20 sm:mb-24 md:mb-32">
           <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <h2 className="mb-6 text-4xl font-light tracking-tight text-neutral sm:text-5xl">
               More career resources
@@ -651,7 +671,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </section>
+        </section> */}
 
       {/* Scroll to Top Button */}
       <ScrollToTopButton />

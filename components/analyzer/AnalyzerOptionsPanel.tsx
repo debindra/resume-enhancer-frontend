@@ -28,86 +28,80 @@ export function AnalyzerOptionsPanel({
   disabled = false
 }: AnalyzerOptionsPanelProps) {
   return (
-    <section className="border border-neutral-lightest/50 bg-neutral-white/80 p-5 sm:p-6">
-      <div className="space-y-1.5 sm:space-y-2">
-        <span className="inline-flex items-center gap-2 rounded-full bg-secondary-muted px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-secondary-dark sm:px-3 sm:py-1.5 sm:text-xs">
-          <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
-          AI Options
-        </span>
-        <h2 className="text-lg font-bold text-neutral sm:text-xl">Fine-tune the outputs</h2>
-      </div>
-
-      <div className="mt-4 space-y-4 sm:mt-6 sm:space-y-5">
-        <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+    <details className="group">
+      <summary className="cursor-pointer py-2 text-sm font-medium text-neutral-600 hover:text-neutral [&::-webkit-details-marker]:hidden">
+        Advanced Options
+        <svg className="ml-2 inline h-4 w-4 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div className="mt-4 space-y-4 border-t border-neutral-200 pt-3 sm:pt-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <button
             type="button"
             onClick={onToggleMetrics}
-            className={`group rounded-xl border-2 px-4 py-3 text-left transition-all duration-300 sm:rounded-2xl sm:px-5 sm:py-4 ${
+            className={`rounded-lg border px-3 py-2.5 text-left transition sm:px-4 sm:py-3 ${
               includeMetrics
-                ? "border-primary bg-gradient-to-br from-primary-muted to-secondary-muted text-primary-dark shadow-lg"
-                : "border-neutral-lightest bg-neutral-white text-neutral-light shadow-sm hover:border-primary hover:bg-primary-muted/50 hover:text-primary hover:shadow-md"
+                ? "border-primary bg-primary/5 text-primary"
+                : "border-neutral-300 hover:border-primary/50"
             }`}
             disabled={disabled}
           >
             <div className="flex items-center gap-2">
-              <div className={`h-1.5 w-1.5 rounded-full transition-all sm:h-2 sm:w-2 ${includeMetrics ? "bg-primary" : "bg-neutral-lighter"}`} />
-              <p className="text-xs font-bold sm:text-sm">Metric enhancer</p>
+              <div className={`h-2 w-2 rounded-full ${includeMetrics ? "bg-primary" : "bg-neutral-300"}`} />
+              <p className="text-xs font-medium sm:text-sm">Metric enhancer</p>
             </div>
-            <p className="mt-1.5 text-[10px] leading-relaxed text-neutral-lighter sm:mt-2 sm:text-xs">Keep or remove AI-suggested KPIs in your resume.</p>
+            <p className="mt-1 text-[10px] text-neutral-500 sm:text-xs">Keep or remove AI-suggested KPIs</p>
           </button>
           <button
             type="button"
             onClick={onToggleLinkedIn}
-            className={`group rounded-xl border-2 px-4 py-3 text-left transition-all duration-300 sm:rounded-2xl sm:px-5 sm:py-4 ${
+            className={`rounded-lg border px-3 py-2.5 text-left transition sm:px-4 sm:py-3 ${
               includeLinkedIn
-                ? "border-primary bg-gradient-to-br from-primary-muted to-secondary-muted text-primary-dark shadow-lg"
-                : "border-neutral-lightest bg-neutral-white text-neutral-light shadow-sm hover:border-primary hover:bg-primary-muted/50 hover:text-primary hover:shadow-md"
+                ? "border-primary bg-primary/5 text-primary"
+                : "border-neutral-300 hover:border-primary/50"
             }`}
             disabled={disabled}
           >
             <div className="flex items-center gap-2">
-              <div className={`h-1.5 w-1.5 rounded-full transition-all sm:h-2 sm:w-2 ${includeLinkedIn ? "bg-primary" : "bg-neutral-lighter"}`} />
-              <p className="text-xs font-bold sm:text-sm">LinkedIn summary</p>
+              <div className={`h-2 w-2 rounded-full ${includeLinkedIn ? "bg-primary" : "bg-neutral-300"}`} />
+              <p className="text-xs font-medium sm:text-sm">LinkedIn summary</p>
             </div>
-            <p className="mt-1.5 text-[10px] leading-relaxed text-neutral-lighter sm:mt-2 sm:text-xs">Generate a short bio aligned to this application.</p>
+            <p className="mt-1 text-[10px] text-neutral-500 sm:text-xs">Generate a short bio</p>
           </button>
           <button
             type="button"
             onClick={onToggleCoverLetter}
-            className={`group rounded-xl border-2 px-4 py-3 text-left transition-all duration-300 sm:rounded-2xl sm:px-5 sm:py-4 ${
+            className={`rounded-lg border px-3 py-2.5 text-left transition sm:px-4 sm:py-3 ${
               includeCoverLetter
-                ? "border-primary bg-gradient-to-br from-primary-muted to-secondary-muted text-primary-dark shadow-lg"
-                : "border-neutral-lightest bg-neutral-white text-neutral-light shadow-sm hover:border-primary hover:bg-primary-muted/50 hover:text-primary hover:shadow-md"
+                ? "border-primary bg-primary/5 text-primary"
+                : "border-neutral-300 hover:border-primary/50"
             }`}
             disabled={disabled}
           >
             <div className="flex items-center gap-2">
-              <div className={`h-1.5 w-1.5 rounded-full transition-all sm:h-2 sm:w-2 ${includeCoverLetter ? "bg-primary" : "bg-neutral-lighter"}`} />
-              <p className="text-xs font-bold sm:text-sm">Cover letter</p>
+              <div className={`h-2 w-2 rounded-full ${includeCoverLetter ? "bg-primary" : "bg-neutral-300"}`} />
+              <p className="text-xs font-medium sm:text-sm">Cover letter</p>
             </div>
-            <p className="mt-1.5 text-[10px] leading-relaxed text-neutral-lighter sm:mt-2 sm:text-xs">Add a tailored 250-word letter referencing the job.</p>
+            <p className="mt-1 text-[10px] text-neutral-500 sm:text-xs">Add a tailored letter</p>
           </button>
         </div>
 
-        <div className="flex items-center gap-3">
-          <label className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-wide text-neutral-lighter sm:text-xs">Tone:</span>
-            <select
-              value={tone}
-              onChange={(event) => onToneChange(event.target.value)}
-              className="appearance-none rounded-xl border-2 border-neutral-lightest bg-neutral-white bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23666%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpolyline points=%226 9 12 15 18 9%22%3E%3C/polyline%3E%3C/svg%3E')] bg-[length:16px_16px] bg-[right_8px_center] bg-no-repeat px-3 py-2 text-xs font-medium text-neutral-light shadow-sm transition focus:border-primary focus:bg-neutral-white focus:outline-none focus:ring-2 focus:ring-primary-muted sm:rounded-lg sm:px-3 sm:py-2 sm:text-sm sm:pr-10"
-              disabled={disabled}
-            >
-              {["Professional", "Executive", "Dynamic", "Conversational"].map((option) => (
-                <option key={option} value={option.toLowerCase()}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
+        <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
+          <label className="text-xs text-neutral-600 sm:text-sm">Tone:</label>
+          <select
+            value={tone}
+            onChange={(e) => onToneChange(e.target.value)}
+            className="w-full rounded-lg border border-neutral-300 px-2.5 py-1.5 text-sm focus:border-primary focus:outline-none sm:w-auto sm:px-3"
+            disabled={disabled}
+          >
+            {["Professional", "Executive", "Dynamic", "Conversational"].map((option) => (
+              <option key={option} value={option.toLowerCase()}>{option}</option>
+            ))}
+          </select>
         </div>
       </div>
-    </section>
+    </details>
   );
 }
 

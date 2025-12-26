@@ -21,11 +21,6 @@ export default function Footer() {
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-neutral">Product</h3>
             <ul className="space-y-2 text-sm text-neutral-light">
               <li>
-                <a href="/#features" className="transition hover:text-primary">
-                  Features
-                </a>
-              </li>
-              <li>
                 <a href="/#resume-analyzer" className="transition hover:text-primary">
                   Analyzer
                 </a>

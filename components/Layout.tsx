@@ -26,7 +26,6 @@ function LayoutContent({ children }: PropsWithChildren) {
   const hamburgerButtonRef = useRef<HTMLButtonElement>(null);
 
   const navLinks = [
-    { href: "/#features", label: "Features" },
     { href: "/#resume-analyzer", label: "Analyzer" },
     { href: "/pricing", label: "Pricing" },
   ];
