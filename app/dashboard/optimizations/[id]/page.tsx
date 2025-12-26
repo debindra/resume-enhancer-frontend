@@ -14,18 +14,18 @@ export default function OptimizationDetailPage() {
   const hasBasicData = !!atsScore || !!createdAt || !!resumeName || !!jobTitle;
 
   return (
-    <div className="mx-auto min-h-screen w-full max-w-3xl px-4 py-10 sm:px-6">
+    <div className="mx-auto min-h-screen w-full max-w-3xl px-4 py-8 sm:px-6">
       <button
         type="button"
         onClick={() => router.back()}
-        className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark"
+        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-dark"
       >
         ← Back to dashboard
       </button>
 
       {!hasBasicData ? (
-        <div className="rounded-2xl border border-neutral-lightest bg-neutral-white p-6">
-          <h1 className="text-lg font-bold text-neutral">Optimization details unavailable</h1>
+        <div className="rounded-lg border border-neutral-200 bg-white p-4 sm:p-6">
+          <h1 className="text-base font-medium text-neutral sm:text-lg">Optimization details unavailable</h1>
           <p className="mt-2 text-sm text-neutral-light">
             This page works best when opened from your dashboard&apos;s Recent Optimizations list so we can include
             summary details in the link. Please return to the dashboard and click &quot;View&quot; again.
@@ -35,7 +35,7 @@ export default function OptimizationDetailPage() {
         <>
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wide text-neutral-lighter">Optimization Detail</p>
-            <h1 className="mt-1 text-2xl font-bold text-neutral sm:text-3xl">{resumeName}</h1>
+            <h1 className="mt-1 text-xl font-medium text-neutral sm:text-2xl">{resumeName}</h1>
             <p className="mt-1 text-sm text-neutral-light">
               Job title: <span className="font-medium text-neutral">{jobTitle}</span>
             </p>
@@ -46,14 +46,14 @@ export default function OptimizationDetailPage() {
 
           <div className="mb-6 flex items-center gap-3">
             {atsScore && (
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+              <span className="inline-flex items-center rounded-lg bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 ATS Score: {atsScore}
               </span>
             )}
           </div>
 
-          <div className="rounded-2xl border border-neutral-lightest bg-gradient-to-br from-neutral-white to-neutral-white/60 p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-neutral">Full optimization details</h2>
+          <div className="rounded-lg border border-neutral-200 bg-white p-4 sm:p-6">
+            <h2 className="text-base font-medium text-neutral sm:text-lg">Full optimization details</h2>
             <p className="mt-2 text-sm text-neutral-light">
               This page currently shows a summary of your optimization (resume name, job title, score, and date).
               We don&apos;t yet display the full optimized resume text here, but you can re-run an analysis from the
