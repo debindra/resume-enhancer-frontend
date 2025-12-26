@@ -54,56 +54,53 @@ export default function Home() {
         }}
       />
       <div className="w-full overflow-x-hidden">
-      {/* Hero Section */}
-      <section className="relative bg-primary text-white py-10 sm:py-12 md:py-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary-dark/90" />
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+      {/* Hero Section - Steve Jobs Inspired: Simplicity, Elegance, Focus */}
+      <section className="relative bg-gradient-to-b from-neutral-white to-neutral-white py-20 sm:py-28 md:py-32 lg:py-40">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="mb-6">
-              <span className="inline-block rounded-full bg-white/10 px-3 py-1 text-sm font-semibold backdrop-blur-sm">
+            <div className="mb-8 animate-fade-in-up">
+              <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-primary uppercase">
                 Powered by AI
               </span>
             </div>
-            <h1 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl">
-              Get 3x More Interviews
-              <span className="block text-accent">with AI-Optimized Resumes</span>
+            <h1 className="mb-8 text-5xl font-light leading-[1.1] tracking-tight text-neutral sm:text-6xl md:text-7xl lg:text-8xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              Get 3x More
+              <span className="block mt-2 font-normal text-primary">Interviews</span>
             </h1>
-            <p className="mx-auto mb-8 max-w-2xl text-lg text-white/90">
-              Upload your resume and job description. Our AI analyzes keyword gaps,
-              calculates your ATS score, and optimizes your resume—all in 2 minutes.
+            <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-neutral-light sm:text-2xl md:leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              AI-optimized resumes that pass ATS filters.<br />
+              <span className="text-lg sm:text-xl">Results in 2 minutes. No credit card required.</span>
             </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <div className="mb-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
               <a
                 href="#resume-analyzer"
-                className="rounded-lg bg-accent px-8 py-3 text-lg font-semibold text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+                className="group relative rounded-full bg-primary px-10 py-4 text-lg font-medium text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20"
                 aria-label="Start free resume analysis"
               >
                 Start Free Analysis
+                <svg className="ml-2 inline-block h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </a>
               <a
-                href="#features"
-                className="rounded-lg border-2 border-white/30 bg-white/10 px-8 py-3 text-lg font-semibold backdrop-blur-sm hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
-                aria-label="View features section"
+                href="#how-it-works"
+                className="rounded-full border-2 border-neutral-lightest bg-neutral-white px-10 py-4 text-lg font-medium text-neutral transition-all duration-300 hover:border-neutral-light hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-neutral-lightest"
+                aria-label="Learn how it works"
               >
-                View Features
+                See How It Works
               </a>
             </div>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-white/80">
+            <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-neutral-lighter animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <span className="flex items-center gap-2">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <svg className="h-4 w-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 No credit card required
               </span>
               <span className="flex items-center gap-2">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Try it free
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 Results in 2 minutes
               </span>
@@ -112,414 +109,421 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-content-width container-padding section-padding">
-        {/* Resume Analyzer Section */}
-        <section id="resume-analyzer" className="mb-12 sm:mb-16">
-          <div className="mb-8 text-center">
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">AI Resume Analyzer & ATS Score Checker</h2>
-            <p className="mx-auto max-w-2xl text-neutral-light">
-              Get started with your resume analysis. Your data stays private until you confirm submission.
-            </p>
+      {/* Resume Analyzer Section */}
+      <section id="resume-analyzer" className="mb-20 sm:mb-24 md:mb-32 pt-12 sm:pt-16 md:pt-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
+                Analyze your resume.<br />
+                <span className="text-primary">Get your ATS score.</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-light sm:text-xl">
+                Get started with your resume analysis. Your data stays private until you confirm submission.
+              </p>
+            </div>
+            <HomeAnalyzerSection />
           </div>
-          <HomeAnalyzerSection />
         </section>
 
-        {/* Trusted Section */}
-        <section className="mb-12 sm:mb-16">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-            <div>
-              <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Trusted by Job Seekers & Career Professionals</h2>
-              <p className="mb-6 text-neutral-light">
-                From recent grads to executive leaders, thousands of candidates rely on CareerLift AI for comprehensive job search assistance.
-              </p>
-              <div className="grid gap-4 sm:grid-cols-2">
+        {/* Trusted Section - Refined */}
+        <section className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+              <div>
+                <h2 className="mb-6 text-4xl font-light tracking-tight text-neutral sm:text-5xl">
+                  Trusted by thousands.<br />
+                  <span className="text-primary">Loved by job seekers.</span>
+                </h2>
+                <p className="mb-12 text-lg text-neutral-light leading-relaxed">
+                  From recent grads to executive leaders, candidates rely on CareerLift AI for comprehensive job search assistance.
+                </p>
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {[
+                    { value: "4.9", label: "Average rating", sublabel: "1,200+ verified users" },
+                    { value: "72%", label: "Interview rate", sublabel: "Responses within 4 weeks" },
+                    { value: "3x", label: "More callbacks", sublabel: "vs. unoptimized resumes", span: true }
+                  ].map((stat, index) => (
+                    <div 
+                      key={stat.label} 
+                      className={`group rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg animate-fade-in-up ${stat.span ? 'sm:col-span-2' : ''}`}
+                      style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                      <div className="mb-3 flex items-baseline gap-2">
+                        <span className="text-4xl font-light text-primary">{stat.value}</span>
+                      </div>
+                      <p className="mb-1 text-base font-medium text-neutral">{stat.label}</p>
+                      <p className="text-sm text-neutral-lighter">{stat.sublabel}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-12 flex flex-wrap items-center gap-8 text-xs font-medium uppercase tracking-widest text-neutral-lighter">
+                  <span className="transition-colors hover:text-primary">BloomTech</span>
+                  <span className="transition-colors hover:text-primary">Meta Fellows</span>
+                  <span className="transition-colors hover:text-primary">Reforge</span>
+                  <span className="transition-colors hover:text-primary">Columbia Alumni</span>
+                </div>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                 {[
-                  { value: "4.9", label: "Avg. rating", sublabel: "Across 1,200+ verified users" },
-                  { value: "72%", label: "Interview rate", sublabel: "Get recruiter responses within 4 weeks" },
-                  { value: "3x", label: "More callbacks", sublabel: "Compared to unoptimized resumes", span: true }
-                ].map((stat, index) => (
-                  <div 
-                    key={stat.label} 
-                    className={`group flex items-center gap-4 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white/50 p-5 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-lg sm:p-6 ${stat.span ? 'sm:col-span-2' : ''}`}
+                  {
+                    avatar: "https://i.pravatar.cc/112?img=12",
+                    rating: 5,
+                    quote: "It highlighted missing compliance keywords we never spotted and rewrote our achievements with metrics that passed the screening instantly.",
+                    author: "Priya, Program Manager"
+                  },
+                  {
+                    avatar: "https://i.pravatar.cc/112?img=36",
+                    rating: 5,
+                    quote: "I keep separate versions for product and strategy roles and switch layouts depending on the recruiter. Huge time saver.",
+                    author: "Luis, Director of Product"
+                  },
+                  {
+                    avatar: "https://i.pravatar.cc/112?img=48",
+                    rating: 4.5,
+                    quote: "The insights panel shows exactly why each bullet changed. It's like having a career coach in the loop 24/7.",
+                    author: "Ellie, UX Researcher"
+                  },
+                  {
+                    avatar: "https://i.pravatar.cc/112?img=22",
+                    rating: 5,
+                    quote: "CareerLift AI gave our bootcamp grads tangible improvements — higher ATS scores and real interview conversions.",
+                    author: "Morgan, Career Coach"
+                  }
+                ].map((testimonial, index) => (
+                  <figure 
+                    key={testimonial.author} 
+                    className="group flex h-full flex-col rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg animate-fade-in-up"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-light text-xl font-bold text-neutral-white shadow-md transition group-hover:scale-110 group-hover:shadow-lg">
-                      {stat.value}
-                </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-bold text-neutral">{stat.label}</p>
-                      <p className="text-xs text-neutral-lighter">{stat.sublabel}</p>
-                </div>
-              </div>
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border border-neutral-lightest">
+                        <TestimonialAvatar 
+                          src={testimonial.avatar} 
+                          alt={`${testimonial.author.split(',')[0]} - ${testimonial.author.split(',')[1]?.trim() || 'User'}`}
+                          author={testimonial.author}
+                          className="h-full w-full object-cover" 
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-1 flex items-center gap-1">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <svg
+                              key={`${testimonial.author}-star-${i}`}
+                              className="h-3.5 w-3.5 text-yellow-400"
+                              fill={i + 1 <= Math.floor(testimonial.rating) ? "currentColor" : "none"}
+                              viewBox="0 0 20 20"
+                              stroke={i + 1 <= testimonial.rating ? "none" : "currentColor"}
+                            >
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <p className="text-xs text-neutral-lighter">{testimonial.rating.toFixed(1)}</p>
+                      </div>
+                    </div>
+                    <blockquote className="mb-4 flex-1 text-sm leading-relaxed text-neutral-light">
+                      &ldquo;{testimonial.quote}&rdquo;
+                    </blockquote>
+                    <figcaption className="text-sm font-medium text-neutral">{testimonial.author}</figcaption>
+                  </figure>
                 ))}
               </div>
-              <div className="flex flex-wrap items-center gap-6 pt-2 text-xs uppercase tracking-[0.3em] text-neutral-lighter sm:pt-4">
-                <span className="transition hover:text-primary">BloomTech</span>
-                <span className="transition hover:text-primary">Meta Fellows</span>
-                <span className="transition hover:text-primary">Reforge</span>
-                <span className="transition hover:text-primary">Columbia Alumni</span>
-              </div>
             </div>
-            <div className="grid gap-5 sm:grid-cols-2 sm:gap-4 lg:gap-5">
-            {[
-              {
-                avatar: "https://i.pravatar.cc/112?img=12",
-                rating: 5,
-                  quote: "It highlighted missing compliance keywords we never spotted and rewrote our achievements with metrics that passed the screening instantly.",
-                author: "Priya, Program Manager"
-              },
-              {
-                avatar: "https://i.pravatar.cc/112?img=36",
-                rating: 5,
-                  quote: "I keep separate versions for product and strategy roles and switch layouts depending on the recruiter. Huge time saver.",
-                author: "Luis, Director of Product"
-              },
-              {
-                avatar: "https://i.pravatar.cc/112?img=48",
-                rating: 4.5,
-                  quote: "The insights panel shows exactly why each bullet changed. It's like having a career coach in the loop 24/7.",
-                author: "Ellie, UX Researcher"
-              },
-              {
-                avatar: "https://i.pravatar.cc/112?img=22",
-                rating: 5,
-                  quote: "CareerLift AI gave our bootcamp grads tangible improvements — higher ATS scores and real interview conversions.",
-                author: "Morgan, Career Coach"
-              }
-              ].map((testimonial, index) => (
-                <figure 
-                  key={testimonial.author} 
-                  className="group flex h-full flex-col gap-4 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white to-neutral-white p-5 shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-primary hover:shadow-xl sm:p-6"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-neutral-lightest shadow-md transition group-hover:border-primary group-hover:shadow-lg">
-                    <TestimonialAvatar 
-                      src={testimonial.avatar} 
-                      alt={`${testimonial.author.split(',')[0]} - ${testimonial.author.split(',')[1]?.trim() || 'User'}`}
-                      author={testimonial.author}
-                      className="h-full w-full object-cover" 
-                    />
-                  </div>
-                    <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-1 text-yellow-400">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                        <svg
-                            key={`${testimonial.author}-star-${i}`}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                            fill={i + 1 <= Math.floor(testimonial.rating) ? "currentColor" : "none"}
-                          stroke="currentColor"
-                          className="h-4 w-4"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                              strokeWidth={i + 1 <= testimonial.rating ? 0 : 1}
-                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                          />
-                        </svg>
-                      ))}
-                    </div>
-                    <p className="text-xs font-bold text-neutral-light">{testimonial.rating.toFixed(1)} / 5</p>
-                  </div>
-                </div>
-                <blockquote className="flex-1 text-sm leading-relaxed text-neutral-light">
-                  <span className="text-3xl font-serif text-primary">&ldquo;</span>
-                  {testimonial.quote}
-                  <span className="text-3xl font-serif text-primary">&rdquo;</span>
-                </blockquote>
-                <figcaption className="text-sm font-bold text-neutral">{testimonial.author}</figcaption>
-              </figure>
-            ))}
           </div>
-        </div>
         </section>
 
-        {/* Enhanced How It Works Section */}
-        <section id="how-it-works" className="mt-12 mb-12 space-y-8 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white px-6 py-6 sm:mt-16 sm:mb-16 sm:space-y-10 sm:rounded-3xl sm:px-8 sm:py-8 md:px-10 md:py-10 lg:px-12 lg:py-12">
-          <div className="mx-auto max-w-4xl space-y-6 text-center sm:space-y-8">
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              How it works
-            </span>
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">How Our AI Resume Optimization Works</h2>
-            <div className="grid gap-5 sm:gap-6 md:grid-cols-3 md:gap-4 lg:gap-6">
+        {/* How It Works Section - Simplified & Elegant */}
+        <section id="how-it-works" className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16 sm:mb-20">
+              <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
+                Simple. Powerful.<br />
+                <span className="text-primary">Works in minutes.</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-light sm:text-xl">
+                Three steps to a resume that gets interviews
+              </p>
+            </div>
+            <div className="grid gap-12 md:grid-cols-3 md:gap-8 lg:gap-12">
               {[
                 {
-                  step: 1,
-                  title: "Upload Your Resume",
-                  description: "PDF, DOCX, or paste text directly",
+                  step: "01",
+                  title: "Upload",
+                  description: "Upload your resume and paste the job description",
                   icon: "M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                 },
                 {
-                  step: 2,
-                  title: "Add Job Description",
-                  description: "Paste the job posting or enter job details",
-                  icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  step: "02",
+                  title: "Analyze",
+                  description: "AI analyzes keyword gaps and calculates your ATS score",
+                  icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                 },
                 {
-                  step: 3,
-                  title: "Get Optimized Resume",
-                  description: "AI-powered improvements with real-time ATS score",
-                  icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  step: "03",
+                  title: "Optimize",
+                  description: "Get an optimized resume with AI-powered improvements",
+                  icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 }
               ].map((item, index) => (
-                <div key={item.step} className="flex flex-col items-center rounded-2xl border border-neutral-lightest/60 bg-gradient-to-br from-neutral-white to-neutral-white/50 p-5 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md sm:p-6 md:p-7 lg:p-8 animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <div className="flex flex-col items-center gap-5 pb-4 sm:gap-6 sm:pb-5">
-                    <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-primary text-4xl font-bold text-neutral-white shadow-lg ring-4 ring-primary/20 transition hover:scale-110 hover:shadow-xl">
-                      {item.step}
+                <div key={item.step} className="group text-center animate-fade-in-up" style={{ animationDelay: `${index * 0.15}s` }}>
+                  <div className="mb-6 flex justify-center">
+                    <div className="relative">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-2xl font-light text-primary transition-all duration-300 group-hover:bg-primary/20 group-hover:scale-110">
+                        {item.step}
+                      </div>
+                      <div className="absolute inset-0 rounded-full bg-primary/20 blur-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                     </div>
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary-muted text-primary">
-                      <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                  </div>
+                  <div className="mb-4 flex justify-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-neutral-lightest/50 text-primary transition-colors duration-300 group-hover:bg-primary/10">
+                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" d={item.icon} />
                       </svg>
                     </div>
                   </div>
-                  <div className="space-y-2.5 text-center sm:space-y-3">
-                    <h3 className="text-lg font-semibold text-neutral sm:text-xl">{item.title}</h3>
-                    <p className="text-sm leading-relaxed text-neutral-light sm:text-base">{item.description}</p>
-                  </div>
+                  <h3 className="mb-3 text-2xl font-medium text-neutral">{item.title}</h3>
+                  <p className="text-neutral-light leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="mb-12 sm:mb-16">
-          <div className="mb-8 text-center">
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">AI-Powered Resume Features</h2>
-            <p className="mx-auto max-w-2xl text-neutral-light">
-              Everything you need to optimize your resume and pass ATS filters.
-            </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              title: "AI-Powered Optimization",
-                description: "LLM-powered resume optimization and parsing using OpenAI/DeepSeek to tailor your resume to specific job descriptions.",
-                icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-            },
-            {
-              title: "ATS Keyword Gap Detection",
-                description: "Identify missing keywords with exact locations in your resume compared to the job posting.",
-                icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-            },
-            {
-              title: "Real-Time ATS Scoring",
-                description: "Get instant ATS score feedback with keyword matching and job match analysis.",
-                icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-            },
-            {
-              title: "Cover Letter Optimization",
-                description: "AI-powered cover letter optimization to match your resume and job requirements.",
-                icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            },
-            {
-              title: "Export & Download",
-                description: "Export your optimized resume and cover letter as PDF or DOC format for easy sharing.",
-                icon: "M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            }
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="rounded-xl border border-neutral-lightest bg-white p-6"
-              >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d={feature.icon} />
-                  </svg>
-                </div>
-                <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>
-                <p className="text-neutral-light">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-          {/* Pricing Section */}
-        <section id="pricing" className="mb-12 sm:mb-16">
-          <div className="mb-8 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary mb-4">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              Pricing
-            </span>
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Simple Pricing. All Features Included.</h2>
-            <p className="mx-auto max-w-2xl text-neutral-light">
-              Choose the plan that fits your job search. Same features, different credit allocation.
-            </p>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            {/* Freemium Tier */}
-            <div className="relative rounded-2xl border-2 border-neutral-lightest bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-neutral mb-2">Freemium</h3>
-                <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-5xl font-bold text-neutral">$0</span>
-                  <span className="text-neutral-light">/month</span>
-                </div>
-                <p className="text-sm text-neutral-light">Perfect for trying the product</p>
-              </div>
-              
-              <div className="mb-8 space-y-4">
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-neutral">3 credits per month</p>
-                    <p className="text-sm text-neutral-light">Enough for 3 optimizations</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-neutral">All features included</p>
-                    <p className="text-sm text-neutral-light">Resume optimization, cover letters, LinkedIn, ATS scan</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-neutral">Resume history & versioning</p>
-                    <p className="text-sm text-neutral-light">Track all your optimizations</p>
-                  </div>
-                </div>
-              </div>
-              
-              <a
-                href="#resume-analyzer"
-                className="block w-full text-center rounded-lg bg-neutral-lightest text-neutral py-3 px-6 font-semibold transition hover:bg-neutral-lightest/80"
-              >
-                Start Free
-              </a>
-            </div>
-
-            {/* Pro Tier */}
-            <div className="relative rounded-2xl border-2 border-primary bg-gradient-to-br from-primary/5 to-primary/10 p-8 shadow-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                <span className="inline-flex items-center rounded-full bg-primary px-4 py-1 text-xs font-bold text-white shadow-lg">
-                  Most Popular
-                </span>
-              </div>
-              
-              <div className="mb-6">
-                <h3 className="text-2xl font-bold text-neutral mb-2">Pro</h3>
-                <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-5xl font-bold text-neutral">$29</span>
-                  <span className="text-neutral-light">/month</span>
-                </div>
-                <p className="text-sm text-primary font-semibold mb-1">or $24/month billed annually</p>
-                <p className="text-sm text-neutral-light">Best for active job seekers</p>
-              </div>
-              
-              <div className="mb-8 space-y-4">
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-neutral">30 credits per month</p>
-                    <p className="text-sm text-neutral-light">10x more than freemium - perfect for multiple applications</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-neutral">All features included</p>
-                    <p className="text-sm text-neutral-light">Same features as freemium, more credits</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <svg className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <div>
-                    <p className="font-semibold text-neutral">Priority support</p>
-                    <p className="text-sm text-neutral-light">Faster response times</p>
-                  </div>
-                </div>
-              </div>
-              
-              <a
-                href="/pricing"
-                className="block w-full text-center rounded-lg bg-primary text-white py-3 px-6 font-semibold transition hover:bg-primary-dark shadow-lg hover:shadow-xl"
-              >
-                Upgrade to Pro
-              </a>
-            </div>
-          </div>
-
-          {/* Trust Indicators */}
-            <div className="mt-16 flex flex-wrap items-center justify-center gap-6 sm:gap-8 text-sm text-neutral-light">
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-secondary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span className="font-medium">Secure payment via Stripe</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-              <span className="font-medium">Cancel anytime</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <span className="font-medium">No hidden fees</span>
-            </div>
-          </div>
-
-          {/* Credit Costs Table */}
-          <div className="mt-12 max-w-3xl mx-auto">
-            <div className="rounded-2xl border border-neutral-lightest bg-white p-8 shadow-sm">
-              <h3 className="text-xl font-bold text-neutral mb-6 text-center">Credit Costs (Same for Both Tiers)</h3>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="flex items-center justify-between p-4 rounded-lg bg-neutral-lightest/50">
-                  <span className="font-medium text-neutral">Resume Optimization</span>
-                  <span className="font-bold text-primary">1 credit</span>
-                </div>
-                <div className="flex items-center justify-between p-4 rounded-lg bg-neutral-lightest/50">
-                  <span className="font-medium text-neutral">Cover Letter Generation</span>
-                  <span className="font-bold text-primary">1 credit</span>
-                </div>
-                <div className="flex items-center justify-between p-4 rounded-lg bg-neutral-lightest/50">
-                  <span className="font-medium text-neutral">LinkedIn Enhancement</span>
-                  <span className="font-bold text-primary">1 credit</span>
-                </div>
-                <div className="flex items-center justify-between p-4 rounded-lg bg-neutral-lightest/50">
-                  <span className="font-medium text-neutral">ATS Deep Scan</span>
-                  <span className="font-bold text-primary">1 credit</span>
-                </div>
-              </div>
-              <p className="text-center text-sm text-neutral-light mt-6">
-                All features cost the same. The only difference is how many credits you get each month.
+        {/* Features Section - Clean & Minimal */}
+        <section id="features" className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
+                Everything you need.<br />
+                <span className="text-primary">Nothing you don't.</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-light sm:text-xl">
+                Powerful features that help you land interviews
               </p>
             </div>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                {
+                  title: "AI-Powered Optimization",
+                  description: "LLM-powered resume optimization tailored to specific job descriptions.",
+                  icon: "M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                },
+                {
+                  title: "ATS Keyword Detection",
+                  description: "Identify missing keywords with exact locations compared to job postings.",
+                  icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                },
+                {
+                  title: "Real-Time ATS Scoring",
+                  description: "Instant ATS score feedback with keyword matching and job match analysis.",
+                  icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                },
+                {
+                  title: "Cover Letter Optimization",
+                  description: "AI-powered cover letter optimization to match your resume and job requirements.",
+                  icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                },
+                {
+                  title: "Export & Download",
+                  description: "Export optimized resumes and cover letters as PDF or DOC format.",
+                  icon: "M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                }
+              ].map((feature, index) => (
+                <div
+                  key={feature.title}
+                  className="group rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-lg animate-fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5 text-primary transition-colors duration-300 group-hover:bg-primary/10">
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={feature.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="mb-3 text-xl font-medium text-neutral">{feature.title}</h3>
+                  <p className="text-neutral-light leading-relaxed">{feature.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Enhanced FAQ Section */}
-        <section id="faq" className="mb-12 space-y-8 rounded-2xl border border-neutral-lightest/80 bg-gradient-to-br from-neutral-white via-neutral-white/30 to-neutral-white p-8 sm:mb-16 sm:space-y-10 sm:rounded-3xl sm:p-10 md:p-12">
-          <div className="mx-auto max-w-3xl space-y-6 sm:space-y-8">
-          <div className="text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary-muted px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-primary">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              FAQ
-            </span>
-              <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Resume Optimization & ATS FAQ</h2>
+          {/* Pricing Section - Elegant & Minimal */}
+        <section id="pricing" className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
+                Simple pricing.<br />
+                <span className="text-primary">All features included.</span>
+              </h2>
+              <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-light sm:text-xl">
+                Same features, different credit allocation
+              </p>
+            </div>
+            
+            <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto mb-16">
+              {/* Freemium Tier */}
+              <div className="group relative rounded-3xl border border-neutral-lightest/50 bg-neutral-white p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-xl">
+                <div className="mb-8">
+                  <h3 className="mb-2 text-2xl font-medium text-neutral">Freemium</h3>
+                  <div className="mb-4 flex items-baseline gap-2">
+                    <span className="text-6xl font-light text-neutral">$0</span>
+                    <span className="text-neutral-lighter">/month</span>
+                  </div>
+                  <p className="text-neutral-light">Perfect for trying the product</p>
+                </div>
+                
+                <div className="mb-10 space-y-5">
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-neutral">3 credits per month</p>
+                      <p className="text-sm text-neutral-lighter">Enough for 3 optimizations</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-neutral">All features included</p>
+                      <p className="text-sm text-neutral-lighter">Resume, cover letters, LinkedIn, ATS scan</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-secondary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-neutral">Resume history & versioning</p>
+                      <p className="text-sm text-neutral-lighter">Track all your optimizations</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <a
+                  href="#resume-analyzer"
+                  className="block w-full rounded-full border-2 border-neutral-lightest bg-neutral-white py-3.5 text-center font-medium text-neutral transition-all duration-300 hover:border-neutral-light hover:shadow-md"
+                >
+                  Start Free
+                </a>
+              </div>
+
+              {/* Pro Tier */}
+              <div className="group relative rounded-3xl border-2 border-primary bg-neutral-white p-8 shadow-lg transition-all duration-300 hover:shadow-2xl">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-white">
+                    Most Popular
+                  </span>
+                </div>
+                
+                <div className="mb-8">
+                  <h3 className="mb-2 text-2xl font-medium text-neutral">Pro</h3>
+                  <div className="mb-2 flex items-baseline gap-2">
+                    <span className="text-6xl font-light text-neutral">$29</span>
+                    <span className="text-neutral-lighter">/month</span>
+                  </div>
+                  <p className="mb-1 text-sm font-medium text-primary">or $24/month billed annually</p>
+                  <p className="text-neutral-light">Best for active job seekers</p>
+                </div>
+                
+                <div className="mb-10 space-y-5">
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-neutral">30 credits per month</p>
+                      <p className="text-sm text-neutral-lighter">10x more than freemium</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-neutral">All features included</p>
+                      <p className="text-sm text-neutral-lighter">Same features, more credits</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <svg className="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <div>
+                      <p className="font-medium text-neutral">Priority support</p>
+                      <p className="text-sm text-neutral-lighter">Faster response times</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <a
+                  href="/pricing"
+                  className="block w-full rounded-full bg-primary py-3.5 text-center font-medium text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/40"
+                >
+                  Upgrade to Pro
+                </a>
+              </div>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mb-12 flex flex-wrap items-center justify-center gap-8 text-sm text-neutral-lighter">
+              <span className="flex items-center gap-2">
+                <svg className="h-4 w-4 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Secure payment via Stripe
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                Cancel anytime
+              </span>
+              <span className="flex items-center gap-2">
+                <svg className="h-4 w-4 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                No hidden fees
+              </span>
+            </div>
+
+            {/* Credit Costs Table - Simplified */}
+            <div className="mx-auto max-w-2xl">
+              <div className="rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-8">
+                <h3 className="mb-6 text-center text-xl font-medium text-neutral">Credit Costs</h3>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    { name: "Resume Optimization", cost: "1 credit" },
+                    { name: "Cover Letter", cost: "1 credit" },
+                    { name: "LinkedIn Enhancement", cost: "1 credit" },
+                    { name: "ATS Deep Scan", cost: "1 credit" }
+                  ].map((item) => (
+                    <div key={item.name} className="flex items-center justify-between rounded-lg border border-neutral-lightest/30 bg-neutral-lightest/30 p-4">
+                      <span className="text-neutral">{item.name}</span>
+                      <span className="font-medium text-primary">{item.cost}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-6 text-center text-sm text-neutral-lighter">
+                  All features cost the same. The only difference is how many credits you get each month.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="space-y-4">
+        </section>
+
+        {/* FAQ Section - Clean & Minimal */}
+        <section id="faq" className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-4xl font-light tracking-tight text-neutral sm:text-5xl md:text-6xl">
+                Frequently asked<br />
+                <span className="text-primary">questions.</span>
+              </h2>
+            </div>
+            <div className="space-y-3">
             {[
               {
                 question: "Is my data secure?",
@@ -546,87 +550,101 @@ export default function Home() {
                 answer: "Most resume analyses complete in under 2 minutes. The time depends on the length of your resume and the complexity of the job description."
               }
             ].map((faq, index) => (
-                <details 
-                  key={index} 
-                  className="group rounded-2xl border border-neutral-lightest/80 bg-neutral-white p-6 shadow-sm transition-all duration-300 hover:border-primary hover:shadow-md open:border-primary open:shadow-lg focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2"
-                  style={{ animationDelay: `${index * 0.05}s` }}
-                >
-                  <summary className="flex cursor-pointer items-center justify-between text-lg font-semibold text-neutral transition hover:text-primary focus:outline-none focus:text-primary">
+              <details 
+                key={index} 
+                className="group rounded-2xl border border-neutral-lightest/50 bg-neutral-white p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-md open:border-primary/50 open:shadow-lg"
+              >
+                <summary className="flex cursor-pointer items-center justify-between text-lg font-medium text-neutral transition-colors hover:text-primary focus:outline-none">
                   <span>{faq.question}</span>
                   <svg
-                      className="h-5 w-5 shrink-0 text-neutral-lighter transition-transform group-open:rotate-180"
+                    className="h-5 w-5 shrink-0 text-neutral-lighter transition-transform duration-300 group-open:rotate-180"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
+                    strokeWidth={2}
                     aria-hidden="true"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </summary>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-light">{faq.answer}</p>
+                <p className="mt-4 leading-relaxed text-neutral-light">{faq.answer}</p>
               </details>
             ))}
-          </div>
-        </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section className="mb-12 sm:mb-16">
-          <div className="mx-auto max-w-3xl space-y-6 px-4 py-10 text-center sm:space-y-8 sm:px-6 sm:py-12 md:py-14 bg-primary text-white rounded-2xl sm:rounded-3xl">
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Start Your Free Resume Analysis Now</h2>
-            <p className="text-base text-neutral-white/90 sm:text-lg md:text-xl">
-              Get your ATS score and AI-powered improvements in minutes. No credit card required.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="#resume-analyzer"
-                className="rounded-lg bg-accent px-8 py-3 text-lg font-semibold text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 sm:w-auto"
-                aria-label="Start free resume analysis"
-              >
-                Start Free Analysis
-              </a>
             </div>
-            <div className="flex flex-wrap items-center justify-center gap-6 pt-6 text-sm text-white/80 sm:gap-8 sm:text-base">
-            <span className="flex items-center gap-2">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              Privacy-first
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              Powered by OpenAI
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              Secure & encrypted
-            </span>
           </div>
-        </div>
         </section>
 
-        {/* Additional Resources Section */}
-        <section className="mb-12 sm:mb-16">
-          <div className="mx-auto max-w-3xl space-y-6 text-center sm:space-y-8">
-            <h2 className="mb-4 text-3xl font-bold sm:text-4xl">More Career Resources</h2>
-            <p className="text-base leading-relaxed text-neutral-light sm:text-lg md:text-xl">
+        {/* Final CTA Section - Impactful */}
+        <section className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary-dark px-8 py-16 text-center sm:px-12 sm:py-20 md:py-24">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary-dark/90" />
+              <div className="relative">
+                <h2 className="mb-6 text-4xl font-light tracking-tight text-white sm:text-5xl md:text-6xl">
+                  Ready to get<br />
+                  <span className="font-normal">more interviews?</span>
+                </h2>
+                <p className="mx-auto mb-10 max-w-2xl text-lg text-white/90 sm:text-xl">
+                  Get your ATS score and AI-powered improvements in minutes.<br />
+                  No credit card required.
+                </p>
+                <div className="mb-10">
+                  <a
+                    href="#resume-analyzer"
+                    className="group inline-flex items-center rounded-full bg-white px-10 py-4 text-lg font-medium text-primary shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-white/30"
+                    aria-label="Start free resume analysis"
+                  >
+                    Start Free Analysis
+                    <svg className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </a>
+                </div>
+                <div className="flex flex-wrap items-center justify-center gap-8 text-sm text-white/80">
+                  <span className="flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    Privacy-first
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Powered by AI
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    Secure & encrypted
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Additional Resources Section - Refined */}
+        <section className="mb-20 sm:mb-24 md:mb-32">
+          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 className="mb-6 text-4xl font-light tracking-tight text-neutral sm:text-5xl">
+              More career resources
+            </h2>
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-neutral-light sm:text-xl">
               Explore our blog for in-depth resume tips, ATS strategies, and career advice to boost your job search.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a
                 href="/blog"
-                className="rounded-lg bg-primary px-8 py-3 text-lg font-semibold text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="rounded-full border-2 border-primary bg-primary px-8 py-3.5 text-lg font-medium text-white shadow-lg shadow-primary/30 transition-all duration-300 hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/40 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20"
                 aria-label="Visit our blog for resume tips"
               >
                 Visit Our Blog
               </a>
               <a
                 href="/documentation"
-                className="rounded-lg border-2 border-primary bg-white/10 px-8 py-3 text-lg font-semibold text-primary hover:bg-primary/5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                className="rounded-full border-2 border-neutral-lightest bg-neutral-white px-8 py-3.5 text-lg font-medium text-neutral transition-all duration-300 hover:border-neutral-light hover:shadow-md hover:scale-105 focus:outline-none focus:ring-4 focus:ring-neutral-lightest"
                 aria-label="View documentation"
               >
                 View Documentation
@@ -634,7 +652,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div>
 
       {/* Scroll to Top Button */}
       <ScrollToTopButton />
